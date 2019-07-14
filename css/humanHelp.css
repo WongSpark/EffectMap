@@ -1,0 +1,180 @@
+.helpPanel{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    height: 8rem;
+    width: 8rem;
+    background: rgb(93,159,250);
+    line-height: 8rem;
+    text-align: center;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    color: white;
+    font-family: 微软雅黑;
+    animation: callWaitingButtonAnimation 1.5s infinite;
+}
+@keyframes callWaitingButtonAnimation
+{
+    0%   {transform:scale(1) translateX(-50%);opacity:1;}
+    100% {transform:scale(1.5) translateX(-30%);opacity:0;}
+}
+.helpBtn{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    height: 8rem;
+    width: 8rem;
+    line-height: 8rem;
+    text-align: center;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    color: white;
+    font-family: 微软雅黑;
+    background-image: url(../images/ah_btn_help.png);
+    background-size: 8rem,8rem;
+    background-repeat:no-repeat;
+}
+.cancelHelpBtn{
+    background-image: url(../images/ah_btn_cancel_help.png);
+    background-size: 8rem,8rem;
+    background-repeat:no-repeat;
+}
+.cancelHelpPanel{
+    background:rgb(255,102,90);
+}
+.fullPanel{
+    height:100%;
+    width:100%;
+    background: rgba(155,158,162,0.3);
+    position:absolute;
+    z-index: 999;
+}
+.locationAlert{
+    background: white;
+    height: 16rem;
+    width: 23rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%) translateY(-50%);
+}
+.alertContent{
+    height: 5rem;
+    width: 23rem;
+    text-align: center;
+    margin: 0;
+    line-height: 5rem;
+    font-size: 1.35rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 600;
+}
+.alertImage{
+    height: 6rem;
+}
+.alertImageContainer{
+    height: 7rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.enterAlert{
+    height: 4rem;
+    line-height: 4rem;
+    color: rgb(93,159,250);
+    border-top: 0.1rem solid #f1efef;
+    font-size: 1.4rem;
+    font-family: PingFangSC-Regular;
+    font-weight: 600;
+}
+.callWaitingPanel{
+    position: absolute;
+    z-index: 999;
+    background: white;
+    height: 8rem;
+    width: 23rem;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 0.3rem;
+    display: none;
+    opacity:0.9;
+}
+.callWaitingContent{
+    margin: 0;
+    height: 4rem;
+    line-height: 6rem;
+    text-align: center;
+    color: rgb(51,51,51);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.callWaitingAnimation{
+    margin: 0;
+    height: 4rem;
+    line-height: 3rem;
+    text-align: center;
+    font-size: 6rem;
+    color: #5d9ffa;
+    animation: callWaitingAnimation 4s infinite;
+}
+@keyframes callWaitingAnimation
+{
+    0%   {opacity:1;}
+    50%  {opacity:0;}
+    100% {opacity:1;}
+}
+
+.callSuccessPanel{
+    position: absolute;
+    z-index: 999;
+    background: white;
+    height: 12rem;
+    width: 23rem;
+    top: 10%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%);
+    border-radius: 0.4rem;
+    display:none;
+}
+.callSuccessTop{
+    display: flex;
+    justify-content: center;
+}
+.callSuccessMarker{
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 2rem;
+    transform: translateY(-50%);
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.callSuccessResult{
+    margin: 0 0 1rem 0;
+    color: rgb(93,159,250);
+    font-size: 2rem;
+}
+.callSuccessContent{
+    color: rgb(51,51,51);
+    font-size: 1.35rem;
+    margin: 0;
+    font-weight: 600;
+}
+.callSuccessImage{
+    height: 3rem;
+    animation: callSuccessAnimation 2s;
+}
+@keyframes callSuccessAnimation
+{
+    0%   {transform: rotateY(0deg);}
+    50%  {transform: rotateY(180deg);}
+    100% {transform: rotateY(360deg);}
+}

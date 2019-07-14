@@ -1,0 +1,38 @@
+.map {
+    height: 100%;
+    width: 100%;
+}
+.floorSwitcher{
+    position:absolute;
+    height:15rem;
+    width:4rem;
+    left:1rem;
+    top:50%;
+    z-index: 999;
+    transform: translateY(-50%);
+}
+.floorBtnPanel{
+    list-style: none;
+    text-align: center;
+    padding: 0px;
+    margin:0px;
+}
+.floorBtn{
+    color:rgb(68,68,68);
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    width: 4rem;
+    height:4rem;
+    text-align:center;
+    line-height: 4rem;
+    background:white;
+    border-radius: 0.5rem;
+    border:none;
+    margin-top: 1.5rem;
+}
+.floorBtnSelected{
+    color:white;
+    width:4.5rem;
+    background:rgb(93,159,250);
+    transition: width 0.5s;
+}

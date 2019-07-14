@@ -1,0 +1,141 @@
+@import "common";
+@import "mapCommon";
+@import "~bootstrap/scss/bootstrap";
+
+
+.searchLocation{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background: #f5f4f4;
+    z-index: 1000;
+    top: 0;
+    display:none;
+}
+
+.searchBar{
+    padding-top: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 4rem;
+    align-items: center;
+    background: rgb(123, 174, 245);
+}
+
+.searchBox{
+    border: solid 1px white;
+    width: 18rem;
+    height: 2rem;
+    background: white;
+    display:flex;
+}
+.searchInput{
+    border:0;
+    flex-grow:25;
+    outline:none;
+}
+.searchLabel{
+    flex-grow:1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchLabel img{
+    height:1.5rem;
+    width:1.5rem;
+}
+.searchBtn{
+    margin-left:1rem;
+    color:white;
+    font-size:1.3rem;
+}
+.resultPanel{
+    background:white;
+    margin: 0;
+    padding:0;
+    display:none;
+}
+.resultItem{
+    text-indent:2rem;
+    line-height:3rem;
+}
+.defaultPanel{
+    background:white;
+    margin: 0;
+    padding:0;
+
+    li{
+        margin:0;
+        padding:0;
+    }
+
+    p{
+        margin:0;
+        padding:0;
+    }
+}
+.searchEntry{
+    height: 4rem;
+    width: 4rem;
+    background-size: 4rem 4rem;
+    right: 1rem;
+    top: 1rem;
+    position: absolute;
+    background-image: url(../images/search.png);
+}
+.searchReturn{
+    color:white;
+    margin-right:1rem;
+}
+
+.poiAttributePanel{
+    position:absolute;
+    bottom:0;
+    height:12rem;
+    width:100%;
+    background:white;
+    display:none;
+}
+
+.poiAttributeName{
+    margin:0;
+    height:3rem;
+    text-indent:2rem;
+    font-size:1.5rem;
+    line-height:3rem;
+}
+
+.poiAttributeDesc{
+    margin:0;
+    height:3rem;
+    color:gray;
+    text-indent:2rem;
+    font-size:1.2rem;
+}
+
+.goBtnContainer{
+    height:6rem;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.goBtn{
+    height:4rem;
+    width:96%;
+    text-align:center;
+    line-height:4rem;
+    color:white;
+    font-size:1.5rem;
+    border-radius:0.3rem;
+    background:#5d9ffa;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.goBtnIcon{
+    //background-size: 4rem 4rem;
+    //background-image:url("../images/moving.png");
+}

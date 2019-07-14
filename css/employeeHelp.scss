@@ -1,0 +1,194 @@
+@import "common";
+@import "mapCommon";
+
+$help-panel-height: 8rem;
+$transparent-color: #ffffff00;
+
+.mainPanel{
+    height:100%;
+    width:100%;
+}
+
+.helpPanel{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    height: $help-panel-height;
+    width: 8rem;
+    background: rgb(93,159,250);
+    line-height: $help-panel-height;
+    text-align: center;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    color: white;
+    font-family: 微软雅黑, serif;
+    animation: callWaitingButtonAnimation 1.5s infinite;
+}
+@keyframes callWaitingButtonAnimation
+{
+    0%   {transform:scale(1) translateX(-50%);opacity:1;}
+    100% {transform:scale(1.5) translateX(-30%);opacity:0;}
+}
+.helpBtn{
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+    height: 8rem;
+    width: 8rem;
+    line-height: 8rem;
+    text-align: center;
+    border-radius: 4rem;
+    font-size: 1.5rem;
+    color: white;
+    font-family: 微软雅黑, serif;
+    background-image: url(../images/ah_btn_help.png);
+    background-size: 8rem,8rem;
+    background-repeat:no-repeat;
+}
+.cancelHelpBtn{
+    background-image: url(../images/ah_btn_cancel_help.png);
+    background-size: 8rem,8rem;
+    background-repeat:no-repeat;
+}
+.cancelHelpPanel{
+    background:rgb(255,102,90);
+}
+.fullPanel{
+    height:100%;
+    width:100%;
+    background: rgba(155,158,162,0.3);
+    position:absolute;
+    z-index: 999;
+}
+.locationAlert{
+    background: white;
+    height: 16rem;
+    width: 23rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translateX(-50%) translateY(-50%);
+}
+.alertContent{
+    height: 5rem;
+    width: 23rem;
+    text-align: center;
+    margin: 0;
+    line-height: 5rem;
+    font-size: 1.35rem;
+    font-family: PingFangSC-Regular, serif;
+    font-weight: 600;
+}
+.alertImage{
+    height: 6rem;
+}
+.alertImageContainer{
+    height: 7rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.enterAlert{
+    height: 4rem;
+    line-height: 4rem;
+    color: rgb(93,159,250);
+    border-top: 0.1rem solid #f1efef;
+    font-size: 1.4rem;
+    font-family: PingFangSC-Regular, serif;
+    font-weight: 600;
+}
+.processPanel{
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background:white;
+}
+
+
+.processPanel header{
+    height: 8%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.processPanel header >div{
+    display: flex;
+    align-items: center;
+}
+.btnSelected{
+    color:dodgerblue;
+    border-bottom: solid 1px dodgerblue;
+}
+
+.processPanel main{
+    height: 90%;
+}
+.fullSubPanel{
+    height:100%;
+    width:100%;
+}
+.toDoList{
+    margin: 0.5rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.hide{
+    display: none;
+}
+.toDoItem{
+    margin-top:5px;
+    display: flex;
+    align-items: center;
+    height: 6rem;
+    width:98%;
+    border:solid #e4e4e4 1px;
+    border-radius:0.5rem;
+    box-shadow: 0 2px #f3f1f1;
+}
+.toDoPic{
+    height: 100%;
+    flex-grow:2;
+    background-image:url("../images/head_common.png");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size:3rem 3rem;
+}
+.toDoPhone{
+    flex-grow: 3;
+    height:100%;
+    display:flex;
+    padding-left: 1rem;
+    flex-direction: column;
+}
+.toDoPhone p{
+    height:3rem;
+    line-height:3rem;
+    margin:0;
+    padding:0;
+}
+.toDoBtn{
+    flex-grow:1;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    border-left:solid #e4e4e4 1px;
+}
+.toDoBtn button{
+    flex-grow:1;
+    border:none;
+    background-color:$transparent-color;
+}
+.toDoBtn button:first-child{
+    border-bottom:solid #e4e4e4 1px;
+}
