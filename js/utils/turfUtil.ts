@@ -5,9 +5,9 @@ import destination from "@turf/rhumb-destination";
 // @ts-ignore
 import measureDistance from "@turf/rhumb-distance";
 // @ts-ignore
-import { Feature, LineString, point, Point, Units } from "@turf/helpers";
+import {Feature, LineString, point, Point, Units} from "@turf/helpers";
 // @ts-ignore
-import { getGeom } from "@turf/invariant";
+import {getGeom} from "@turf/invariant";
 
 class TurfUtil{
     /**
@@ -20,6 +20,7 @@ class TurfUtil{
         const geom = getGeom(line);
         const coords = geom.coordinates;
         let travelled = 0;
+
         for (let i = 0; i < coords.length; i++) {
             if (distance >= travelled && i === coords.length - 1) {
                 break;
@@ -28,8 +29,8 @@ class TurfUtil{
                 if (!overshot) {
                     return point(coords[i]);
                 } else {
-                    const direction = bearing(coords[i-1], coords[i]);
-                    const interpolated = destination(coords[i-1], distance, direction, options);
+                    const direction = bearing(coords[i], coords[i - 1]);
+                    const interpolated = destination(coords[i], -overshot, direction, options);
                     return interpolated;
                 }
             } else {

@@ -2,7 +2,6 @@ import VectorLayer, {Options} from 'ol/layer/Vector';
 import LineString from "ol/geom/LineString";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
-
 // @ts-ignore
 import * as turf from '@turf/turf'
 
@@ -61,8 +60,7 @@ class FlightRouteLayer extends VectorLayer{
         this.frameIndex++;
         let turfLine = turf.lineString(this.positions);
         let stepLength:number = this.frameIndex * this.frameSpeed;
-        let point = turf.along(turfLine,stepLength);
-        // let point = TurfUtil.alongStraightLine(turfLine,stepLength);
+        let point = TurfUtil.alongStraightLine(turfLine, stepLength);
         let moveTo = point.geometry.coordinates.map((value:number) => parseFloat(value.toFixed(6)));;
         this.point.setGeometry(new Point(moveTo));
         this.point.set("direction",TurfUtil.getPointDirection(turfLine,stepLength));
