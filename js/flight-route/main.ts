@@ -37,6 +37,11 @@ async function main(){
     });
 
     map.addLayer(flightRouteLayer);
+
+    setTimeout(() => {
+        map.removeLayer(flightRouteLayer)
+        flightRouteLayer.dispose();
+    }, 30000)
 }
 
 async function getData(){
