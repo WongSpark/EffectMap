@@ -11,7 +11,8 @@ module.exports = {
         'animation-map':'./js/animation-map/animationLayerInit.js',
         'image-map':'./js/image-map/imageMap.js',
         'motion-track':'./js/motion-track/motionTrackInit.js',
-        'flight-route':'./js/flight-route/main.ts'
+        'flight-route': './js/flight-route/main.ts',
+        'progress-circle': './js/progress-circle/main.ts'
     },
     // devtool: "cheap-module-eval-source-map",
     devtool: "source-map",
@@ -32,7 +33,7 @@ module.exports = {
         host:"0.0.0.0",
         useLocalIp:true,
         https:false,
-        openPage:'flight-route.html',
+        openPage: 'progress-circle.html',
         progress:true,
         clientLogLevel: "info",
         watchContentBase: true,
@@ -63,7 +64,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.scss$/,
+                test: /\.scss|css$/,
                 use: [
                     {loader: "style-loader"},
                     {loader: 'css-loader'},
@@ -109,6 +110,11 @@ module.exports = {
             template: "./page/flightRouteMap.html",
             chunks: ["flight-route"],
             filename: "flight-route.html",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./page/ProgressCircleMap.html",
+            chunks: ["progress-circle"],
+            filename: "progress-circle.html",
         }),
         new webpack.HotModuleReplacementPlugin(),
         //拷贝文件夹中的文件到指定文件夹

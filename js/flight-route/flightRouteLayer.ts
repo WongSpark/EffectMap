@@ -77,9 +77,8 @@ export default class FlightRouteLayer extends VectorLayer {
         let turfLine = turf.lineString(this.positions);
         let stepLength:number = this.frameIndex * this.frameSpeed;
         let point = TurfUtil.alongStraightLine(turfLine, stepLength);
-        let moveTo = point.geometry.coordinates
-            .map((value: number) => parseFloat(value.toFixed(6)));
-        ;
+        let moveTo = point.geometry.coordinates;
+        // .map((value: number) => parseFloat(value.toFixed(6)));
         this.point.setGeometry(new Point(moveTo));
         this.point.set("direction",TurfUtil.getPointDirection(turfLine,stepLength));
         this.key = requestAnimationFrame(this.animation.bind(this))

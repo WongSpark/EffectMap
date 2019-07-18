@@ -5,6 +5,8 @@ import {Vector, XYZ} from "ol/source";
 
 import FlightRouteLayer from './flightRouteLayer'
 
+import "ol/ol.css"
+
 main().catch(e=>console.error(e));
 
 async function main(){
@@ -38,10 +40,10 @@ async function main(){
 
     map.addLayer(flightRouteLayer);
 
-    setTimeout(() => {
-        map.removeLayer(flightRouteLayer)
-        flightRouteLayer.dispose();
-    }, 30000)
+    // setTimeout(() => {
+    //     map.removeLayer(flightRouteLayer)
+    //     flightRouteLayer.dispose();
+    // }, 30000)
 }
 
 async function getData(){
