@@ -11,15 +11,12 @@ import Point from "ol/geom/Point";
 main();
 
 function main() {
-    let pointCoordinate = [120.08031547156963, 36.36778762724163];
     let progressCircleLayer = new ProgressCircleLayer({
         renderMode: 'image',
-        outCircleRadius: 20,
-        outCircleColor: "#060606",
         source: new Vector()
     });
 
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 1; i++) {
         addRandomFeature(progressCircleLayer.getSource(), i);
     }
 
@@ -45,6 +42,10 @@ function main() {
     });
 
     map.addLayer(progressCircleLayer);
+
+    setTimeout(() => {
+        progressCircleLayer.getSource().getFeatures()[0].set("progress", 100);
+    }, 3000)
 }
 
 
@@ -53,7 +54,6 @@ function addRandomFeature(source: Vector, index: number) {
     let y = (Math.random() / 100) + 36.35;
     let geom = new Point([x, y]);
     let feature = new Feature({
-        id: index,
         geometry: geom,
         progress: Math.random(),
     });

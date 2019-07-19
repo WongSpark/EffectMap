@@ -7,49 +7,60 @@ import PluggableMap from "ol/PluggableMap";
 import Style, {StyleLike} from "ol/style/Style";
 import RenderEvent from "ol/render/Event";
 import GeometryType from "ol/geom/GeometryType";
-import Point from "ol/geom/Point";
 import Icon from "ol/style/Icon";
 import VectorContext from "ol/render/VectorContext";
 
 export default class ProgressCircleLayer extends Vector {
     canvasWidth: number;
     canvasHeight: number;
-    outCircleRadius: number;
-    innerCircleRadius: number;
-    outCircleColor: string;
-    innerCircleColor: string;
-    styleCache: Map<number, Style> = new Map();
-    canvas = document.createElement('canvas');
+    backgroundCircleRadius: number;
+    backgroundCircleColor: string;
+    backgroundLineWidth: number;
+    frontCircleRadius: number;
+    frontCircleColor: string;
+    frontLineWidth: number;
+
+    private _internalIdRecord: number = 0;
+    private _internalIdKey: string = "_progress_circle__inner_id";
+    private _styleCache: Map<number, Style> = new Map();
 
     constructor(opt: Options) {
         super(opt);
-        this.outCircleRadius = opt.outCircleRadius ? opt.outCircleRadius : 10;
-        this.innerCircleRadius = opt.innerCircleRadius ? opt.innerCircleRadius : 10;
-        this.canvasWidth = this.outCircleRadius * 2 + 10;
-        this.canvasHeight = this.outCircleRadius * 2 + 10;
-        this.outCircleColor = opt.outCircleColor ? opt.outCircleColor : "rgb(209, 211, 214)";
-        this.innerCircleColor = opt.innerCircleColor ? opt.innerCircleColor : "#e8a915";
+        this.backgroundCircleRadius = opt.outCircleRadius ? opt.outCircleRadius : 10;
+        this.frontCircleRadius = opt.innerCircleRadius ? opt.innerCircleRadius : 10;
+        this.canvasWidth = this.backgroundCircleRadius * 2 + 10;
+        this.canvasHeight = this.backgroundCircleRadius * 2 + 10;
+        this.backgroundCircleColor = opt.outCircleColor ? opt.outCircleColor : "rgb(209, 211, 214)";
+        this.frontCircleColor = opt.innerCircleColor ? opt.innerCircleColor : "#e8a915";
+        this.backgroundLineWidth = opt.outLineWidth ? opt.outLineWidth : 4;
+        this.frontLineWidth = opt.innerLineWidth ? opt.innerLineWidth : 4;
 
         this.on("postcompose", (event) => {
             this.drawCircle(event);
         });
 
         this.getSource().on("addfeature", (event) => {
-            console.log(event);
             let feature = event.feature;
-            let featureId = feature.get("id");
+            let featureId = this._internalIdRecord++;
+            feature.set(this._internalIdKey, featureId);
+
             let featureProgress = feature.get("progress");
             let style = this._composeProgressCircle(featureProgress);
-            this.styleCache.set(featureId, style);
+
+            this._styleCache.set(featureId, style);
         });
         this.getSource().on("removefeature", (event) => {
-            console.log(event);
             let feature = event.feature;
-
+            let featureId = feature.get(this._internalIdKey);
+            this._styleCache.delete(featureId);
         });
         this.getSource().on("changefeature", (event) => {
-            console.log(event);
             let feature = event.feature;
+            let featureId = feature.get(this._internalIdKey);
+            let progress = feature.get("progress");
+            let style = this._composeProgressCircle(progress);
+            this._styleCache.set(featureId, style);
+            this.changed();
         });
     }
 
@@ -58,38 +69,14 @@ export default class ProgressCircleLayer extends Vector {
         let points = this.getSource().getFeatures().filter(feature => {
             return feature.getGeometry().getType() === GeometryType.POINT;
         });
-        this._composeBackgroundCircle(vectorContext);
-        points.forEach(pointFeature => {
-            let point = <Point>pointFeature.getGeometry();
-            vectorContext.drawGeometry(point.clone());
-        });
         points.forEach(pointFeature => {
             let point = pointFeature.getGeometry();
-            let featureId = pointFeature.get("id");
-            let style = this.styleCache.get(featureId);
+            let featureId = pointFeature.get(this._internalIdKey);
+            let style = this._styleCache.get(featureId);
             vectorContext.setStyle(style);
-            vectorContext.drawGeometry(point.clone())
+            vectorContext.drawGeometry(point)
         })
     }
-
-    _composeBackgroundCircle(vectorContext: VectorContext) {
-        this.canvas.width = this.canvasWidth;
-        this.canvas.height = this.canvasHeight;
-        let context = this.canvas.getContext("2d");
-        context.beginPath();
-        context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.outCircleRadius, 0, Math.PI * 2);
-        context.lineWidth = 4;
-        context.strokeStyle = this.outCircleColor;
-        context.stroke();
-
-        let canvasStyle = new Style({
-            image: new Icon({
-                img: this.canvas,
-                imgSize: [this.canvas.width, this.canvas.height]
-            })
-        });
-        vectorContext.setStyle(canvasStyle);
-    };
 
     _composeProgressCircle(progress: number): Style {
         let canvas = document.createElement('canvas');
@@ -97,10 +84,18 @@ export default class ProgressCircleLayer extends Vector {
         canvas.height = this.canvasHeight;
         let context = canvas.getContext("2d");
         context.beginPath();
-        context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.innerCircleRadius, 0, Math.PI * 2 * progress);
-        context.lineWidth = 4;
-        context.strokeStyle = this.innerCircleColor;
+        context.lineWidth = this.backgroundLineWidth;
+        context.strokeStyle = this.backgroundCircleColor;
+        context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.backgroundCircleRadius, 0, Math.PI * 2);
         context.stroke();
+        context.closePath();
+
+        context.beginPath();
+        context.lineWidth = this.frontLineWidth;
+        context.strokeStyle = this.frontCircleColor;
+        context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.frontCircleRadius, 0, Math.PI * 2 * progress);
+        context.stroke();
+        context.closePath();
 
         return new Style({
             image: new Icon({
@@ -147,6 +142,8 @@ export interface Options {
     innerCircleRadius?: number;
     outCircleColor?: string;
     innerCircleColor?: string;
+    outLineWidth?: number;
+    innerLineWidth?: number;
     opacity?: number;
     visible?: boolean;
     extent?: Extent;
