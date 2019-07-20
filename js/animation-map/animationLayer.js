@@ -35,7 +35,8 @@ class AnimationLayer extends ol.layer.Vector{
         this._backContext.globalCompositeOperation = 'copy';
 
         this.listenComposeKey = ol.events.listen(this, 'postcompose', this._composeHandler, this);
-
+        //tips: for performance
+        this.setRenderOrder(null);
     }
 
     /**
@@ -49,7 +50,7 @@ class AnimationLayer extends ol.layer.Vector{
      * 开启动画
      */
     enableAnimation(){
-        this.listenComposeKey = ol.events.listen(this, 'postcompose', this._composeHandler, this);
+        this.listenComposeKey = ol.events.listen(this, 'render', this._composeHandler, this);
         this.getSource().changed();
     }
 
@@ -63,26 +64,18 @@ class AnimationLayer extends ol.layer.Vector{
         let vectorContext = renderEvent.vectorContext;
         this._setFlashCircleInAnotherWay(vectorContext,frameState);
         // this._setStyleUseDuration(vectorContext,frameState);
-        let features = this.getSource().getFeatures();
-        let viewState = frameState.viewState;
-        let viewExtent = ol.extent.getForViewAndSize(
-            viewState.center, viewState.resolution, viewState.rotation, this.size);
+        let features = this.getSource().getFeaturesInExtent(frameState.extent);
         for(let i=0;i<features.length;i++){
             let feature = features[i];
-            //绘制某个范围内的要素动画
-            // let coor = feature.getGeometry().getFirstCoordinate();
-            // if(feature.get("animation") && ol.extent.containsCoordinate(viewExtent,coor)){
-            //     let flashGeom = feature.getGeometry().clone();
-            //     vectorContext.drawGeometry(flashGeom);
-            // }
 
             if(feature.get("animation")){
-                let flashGeom = feature.getGeometry().clone();
-                vectorContext.drawGeometry(flashGeom);
+                vectorContext.drawGeometry(feature.getGeometry());
             }
         }
 
-        this.getSource().changed();
+        if (features.length > 0) {
+            this.getSource().changed();
+        }
     }
 
     _setStyleUseDuration(vectorContext,frameState){
@@ -282,3 +275,4 @@ class AnimationLayer extends ol.layer.Vector{
     }
 }
 
+export default AnimationLayer;

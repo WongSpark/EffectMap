@@ -7,8 +7,8 @@ module.exports = {
     mode: 'development',
     //添加两个webpack打包入口
     entry: {
-        'navigation-map': ['./js/polyfill.js','./js/navigation-map/navigationMapInit.js'],
-        'animation-map':'./js/animation-map/animationLayerInit.js',
+        'navigation-map': ['./js/navigation-map/navigationMapInit.js'],
+        'animation-map': './js/animation-map/main.js',
         'image-map':'./js/image-map/imageMap.js',
         'motion-track':'./js/motion-track/motionTrackInit.js',
         'flight-route': './js/flight-route/main.ts',

@@ -26,8 +26,8 @@ class Test{
             layers: [this.layer,
                 new ol.layer.Image({
                     source: new ol.source.ImageStatic({
-                        // url: 'images/airport_map.png',
-                        url: 'images/map.svg',
+                        url: 'images/airport_map.png',
+                        // url: 'images/map.svg',
                         imageExtent: this.extend,
                         // imageSize: this.getImageSize(extend),
                     }),

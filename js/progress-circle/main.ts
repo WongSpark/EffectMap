@@ -13,10 +13,11 @@ main();
 function main() {
     let progressCircleLayer = new ProgressCircleLayer({
         renderMode: 'image',
-        source: new Vector()
+        source: new Vector(),
+        outCircleColor: "red"
     });
 
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < 2000; i++) {
         addRandomFeature(progressCircleLayer.getSource(), i);
     }
 
@@ -44,7 +45,8 @@ function main() {
     map.addLayer(progressCircleLayer);
 
     setTimeout(() => {
-        progressCircleLayer.getSource().getFeatures()[0].set("progress", 100);
+        //progressCircleLayer.getSource().removeFeature(progressCircleLayer.getSource().getFeatures()[0]);
+        // progressCircleLayer.getSource().getFeatures()[0].set("progress", 100);
     }, 3000)
 }
 

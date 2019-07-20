@@ -9,6 +9,7 @@ import RenderEvent from "ol/render/Event";
 import GeometryType from "ol/geom/GeometryType";
 import Icon from "ol/style/Icon";
 import VectorContext from "ol/render/VectorContext";
+import EventType from "ol/render/EventType";
 
 export default class ProgressCircleLayer extends Vector {
     canvasWidth: number;
@@ -35,7 +36,8 @@ export default class ProgressCircleLayer extends Vector {
         this.backgroundLineWidth = opt.outLineWidth ? opt.outLineWidth : 4;
         this.frontLineWidth = opt.innerLineWidth ? opt.innerLineWidth : 4;
 
-        this.on("postcompose", (event) => {
+        //tip:for performance,render event will not impact interaction.
+        this.on(EventType.RENDER, (event) => {
             this.drawCircle(event);
         });
 
@@ -45,7 +47,7 @@ export default class ProgressCircleLayer extends Vector {
             feature.set(this._internalIdKey, featureId);
 
             let featureProgress = feature.get("progress");
-            let style = this._composeProgressCircle(featureProgress);
+            let style = this._composeCircleStyle(featureProgress);
 
             this._styleCache.set(featureId, style);
         });
@@ -58,10 +60,13 @@ export default class ProgressCircleLayer extends Vector {
             let feature = event.feature;
             let featureId = feature.get(this._internalIdKey);
             let progress = feature.get("progress");
-            let style = this._composeProgressCircle(progress);
+            let style = this._composeCircleStyle(progress);
             this._styleCache.set(featureId, style);
             this.changed();
         });
+
+        //tips: for performance
+        this.setRenderOrder(null);
     }
 
     drawCircle(event: RenderEvent) {
@@ -78,7 +83,7 @@ export default class ProgressCircleLayer extends Vector {
         })
     }
 
-    _composeProgressCircle(progress: number): Style {
+    _composeCircleStyle(progress: number): Style {
         let canvas = document.createElement('canvas');
         canvas.width = this.canvasWidth;
         canvas.height = this.canvasHeight;
@@ -137,6 +142,14 @@ export default class ProgressCircleLayer extends Vector {
     }
 }
 
+/**
+ * @property outCircleRadius {number}
+ * @property outCircleColor {string}
+ * @property outLineWidth {number}
+ * @property innerCircleRadius {number}
+ * @property innerCircleColor {string}
+ * @property innerLineWidth {number}
+ */
 export interface Options {
     outCircleRadius?: number;
     innerCircleRadius?: number;
