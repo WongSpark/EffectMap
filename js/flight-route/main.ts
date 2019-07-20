@@ -3,7 +3,7 @@ import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import {Vector, XYZ} from "ol/source";
 
-import FlightRouteLayer from './flightRouteLayer'
+import FlightRouteLayer from './flightRouteLayerBaseOnRender'
 
 import "ol/ol.css"
 
@@ -12,6 +12,7 @@ main().catch(e=>console.error(e));
 async function main(){
     let lineCoordinates = await getData();
     let flightRouteLayer = new FlightRouteLayer({
+        renderMode: "image",
         source:new Vector()
     });
     flightRouteLayer.startAnimation(lineCoordinates);

@@ -13,6 +13,7 @@ import {OrderFunction} from "ol/render";
 import VectorRenderType from "ol/layer/VectorRenderType";
 import VectorSource from "ol/source/Vector";
 import PluggableMap from "ol/PluggableMap";
+import EventType from "ol/render/EventType";
 
 /**
  * 飞行路线轨迹动画图层。继承{@link VectorLayer},因此具有Layer的功能。
@@ -20,36 +21,37 @@ import PluggableMap from "ol/PluggableMap";
  * 中的动画循环，否则会造成内存泄漏。
  */
 export default class FlightRouteLayer extends VectorLayer {
-    key:number;
     point: Feature;
     speed: number = 0;
-    frameCount:number = 0;
+    frameCount: number = 0;
     frameSpeed: number = 0;
-    frameIndex:number = 1;
+    frameIndex: number = 1;
     positions: number[][];
 
-    constructor(opt_options?: Options){
+    constructor(opt_options?: Options) {
         super(opt_options);
         this.speed = opt_options.speed ? opt_options.speed : 30;
         this.frameSpeed = this.speed / 60;
+
+        this.on(EventType.RENDERCOMPLETE, this.animation);
     }
 
     /**
      * 开始播放动画
      * @param lineCoordinates
      */
-    startAnimation(lineCoordinates:number[][]){
+    startAnimation(lineCoordinates: number[][]) {
         this.positions = lineCoordinates;
         let olLine = new Feature(new LineString(this.positions));
         this.getSource().addFeature(olLine);
         this.point = new Feature(new Point(this.positions[0]));
-        this.point.setStyle((feature, res)=> {
+        this.point.setStyle((feature, res) => {
             return new Style({
                 image: new Icon({
                     src: 'images/flight.svg',
-                    scale:0.15,
+                    scale: 0.15,
                     rotateWithView: true,
-                    rotation: (parseFloat(feature.get("direction"))/180) * Math.PI
+                    rotation: (parseFloat(feature.get("direction")) / 180) * Math.PI
                 })
             });
         });
@@ -59,50 +61,39 @@ export default class FlightRouteLayer extends VectorLayer {
         let length = turf.lineDistance(turfLine);
         this.frameCount = Math.floor(length / this.frameSpeed);
 
-        this.loop();
+        this.on(EventType.RENDER, this.animation);
     }
 
-    loop() {
-        this.key = requestAnimationFrame(() => {
-            this.animation();
-        })
-    }
-
-    animation(){
-        if(this.frameIndex>this.frameCount) {
-            cancelAnimationFrame(this.key);
-            return;
+    animation() {
+        if (this.frameIndex > this.frameCount) {
+            this.un(EventType.RENDER, this.animation);
         }
 
         this.frameIndex++;
         let turfLine = turf.lineString(this.positions);
-        let stepLength:number = this.frameIndex * this.frameSpeed;
+        let stepLength: number = this.frameIndex * this.frameSpeed;
         let point = TurfUtil.alongStraightLine(turfLine, stepLength);
         let moveTo = point.geometry.coordinates;
-        // .map((value: number) => parseFloat(value.toFixed(6)));
         this.point.setGeometry(new Point(moveTo));
-        this.point.set("direction",TurfUtil.getPointDirection(turfLine,stepLength));
-        this.key = requestAnimationFrame(this.animation.bind(this))
+        this.point.set("direction", TurfUtil.getPointDirection(turfLine, stepLength));
     }
 
     /**
      * 取消动画
      */
     stopAnimation() {
-        if (this.key) {
-            cancelAnimationFrame(this.key);
-        }
+        this.un(EventType.RENDER, this.animation);
     }
 
     protected disposeInternal(): void {
-        cancelAnimationFrame(this.key);
+        this.un(EventType.RENDER, this.animation);
     }
 }
 
+/**
+ * @property speed? {number} - 速度（单位km/s）
+ */
 export interface Options {
-    /**
-     * 单位：千米/s
-     */
     speed?: number;
     opacity?: number;
     visible?: boolean;
