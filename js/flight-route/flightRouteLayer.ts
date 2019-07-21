@@ -21,7 +21,7 @@ import PluggableMap from "ol/PluggableMap";
  */
 export default class FlightRouteLayer extends VectorLayer {
     key:number;
-    point: Feature;
+    animationFeature: Feature;
     speed: number = 0;
     frameCount:number = 0;
     frameSpeed: number = 0;
@@ -42,8 +42,8 @@ export default class FlightRouteLayer extends VectorLayer {
         this.positions = lineCoordinates;
         let olLine = new Feature(new LineString(this.positions));
         this.getSource().addFeature(olLine);
-        this.point = new Feature(new Point(this.positions[0]));
-        this.point.setStyle((feature, res)=> {
+        this.animationFeature = new Feature(new Point(this.positions[0]));
+        this.animationFeature.setStyle((feature, res) => {
             return new Style({
                 image: new Icon({
                     src: 'images/flight.svg',
@@ -53,7 +53,7 @@ export default class FlightRouteLayer extends VectorLayer {
                 })
             });
         });
-        this.getSource().addFeature(this.point);
+        this.getSource().addFeature(this.animationFeature);
 
         let turfLine = turf.lineString(this.positions);
         let length = turf.lineDistance(turfLine);
@@ -80,8 +80,8 @@ export default class FlightRouteLayer extends VectorLayer {
         let point = TurfUtil.alongStraightLine(turfLine, stepLength);
         let moveTo = point.geometry.coordinates;
         // .map((value: number) => parseFloat(value.toFixed(6)));
-        this.point.setGeometry(new Point(moveTo));
-        this.point.set("direction",TurfUtil.getPointDirection(turfLine,stepLength));
+        this.animationFeature.setGeometry(new Point(moveTo));
+        this.animationFeature.set("direction", TurfUtil.getPointDirection(turfLine, stepLength));
         this.key = requestAnimationFrame(this.animation.bind(this))
     }
 
