@@ -1,8 +1,14 @@
+import EventType from "ol/render/EventType";
+import {Vector as VectorLayer} from "ol/layer";
+import Observable from "ol/Observable"
+import Style from "ol/style/Style";
+import Icon from "ol/style/Icon";
+
 /**
  * 动画图层，可设置炫光球特效。
  *
  */
-class AnimationLayer extends ol.layer.Vector{
+export default class HaloAnimationLayer extends VectorLayer {
     constructor(opt){
         super(opt);
         this.tempRadius = 0;
@@ -34,7 +40,13 @@ class AnimationLayer extends ol.layer.Vector{
         this._backContext.globalAlpha = 0.95;
         this._backContext.globalCompositeOperation = 'copy';
 
-        this.listenComposeKey = ol.events.listen(this, 'postcompose', this._composeHandler, this);
+        this.listenComposeKey = this.on(EventType.POSTCOMPOSE, () => {
+            this.getSource().changed();
+        });
+        this.listenRenderKey = this.on(EventType.RENDER, (event) => {
+            this._composeHandler(event);
+        });
+
         //tips: for performance
         this.setRenderOrder(null);
     }
@@ -43,14 +55,20 @@ class AnimationLayer extends ol.layer.Vector{
      * 关闭动画
      */
     disableAnimation(){
-        ol.Observable.unByKey(this.listenComposeKey);
+        Observable.unByKey(this.listenComposeKey);
+        Observable.unByKey(this.listenRenderKey);
     }
 
     /**
      * 开启动画
      */
     enableAnimation(){
-        this.listenComposeKey = ol.events.listen(this, 'render', this._composeHandler, this);
+        this.listenComposeKey = this.on(EventType.POSTCOMPOSE, () => {
+            this.getSource().changed();
+        });
+        this.listenRenderKey = this.on(EventType.RENDER, (event) => {
+            this._composeHandler(event);
+        });
         this.getSource().changed();
     }
 
@@ -62,10 +80,10 @@ class AnimationLayer extends ol.layer.Vector{
     _composeHandler(renderEvent){
         let frameState = renderEvent.frameState;
         let vectorContext = renderEvent.vectorContext;
-        this._setFlashCircleInAnotherWay(vectorContext,frameState);
+        this._setFlashCircleInAnotherWay(vectorContext);
         // this._setStyleUseDuration(vectorContext,frameState);
         let features = this.getSource().getFeaturesInExtent(frameState.extent);
-        for(let i=0;i<features.length;i++){
+        for(let i=0; i<features.length; i++){
             let feature = features[i];
 
             if(feature.get("animation")){
@@ -78,7 +96,7 @@ class AnimationLayer extends ol.layer.Vector{
         }
     }
 
-    _setStyleUseDuration(vectorContext,frameState){
+    _setStyleUseDuration(vectorContext, frameState){
         if(this.start === null){
             this.start = new Date().getTime();
         }
@@ -263,9 +281,9 @@ class AnimationLayer extends ol.layer.Vector{
         return this._canvas;
     };
 
-    _setFlashCircleInAnotherWay(vectorContext,frameState){
-        let canvasStyle = new ol.style.Style({
-            image: new ol.style.Icon({
+    _setFlashCircleInAnotherWay(vectorContext) {
+        let canvasStyle = new Style({
+            image: new Icon({
                 img: this._getStyleCanvas(),
                 scale:1,
                 imgSize: [this._canvasWidth, this._canvasHeight],
@@ -275,4 +293,3 @@ class AnimationLayer extends ol.layer.Vector{
     }
 }
 
-export default AnimationLayer;

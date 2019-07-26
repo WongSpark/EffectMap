@@ -8,7 +8,7 @@ module.exports = {
     //添加两个webpack打包入口
     entry: {
         'navigation-map': ['./js/navigation-map/navigationMapInit.js'],
-        'animation-map': './js/animation-map/main.js',
+        'halo-animation': './js/halo-animation/main.js',
         'image-map':'./js/image-map/imageMap.js',
         'motion-track':'./js/motion-track/motionTrackInit.js',
         'flight-route': './js/flight-route/main.ts',
@@ -92,9 +92,9 @@ module.exports = {
             filename: "navigation-map.html",
         }),
         new HtmlWebpackPlugin({
-            template: "./page/animationMap.html",
-            chunks: ["animation-map"],
-            filename: "animation-map.html",
+            template: "./page/haloAnimation.html",
+            chunks: ["halo-animation"],
+            filename: "halo-animation.html",
         }),
         new HtmlWebpackPlugin({
             template: "./page/imageMap.html",
@@ -119,7 +119,6 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         //拷贝文件夹中的文件到指定文件夹
         new CopyPlugin([
-            {from: 'third', to: 'third'},
             {from: 'images', to: 'images'},
         ]),
     ]

@@ -4,7 +4,7 @@ import TileLayer from "ol/layer/Tile";
 import {Vector, XYZ} from "ol/source";
 
 import "ol/ol.css"
-import ProgressCircleLayer from "./progressCircleLayer";
+import ProgressCircleLayer from "./ProgressCircleLayer";
 import Feature from "ol/Feature";
 import Point from "ol/geom/Point";
 

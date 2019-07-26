@@ -3,7 +3,7 @@ import View from "ol/View";
 import TileLayer from "ol/layer/Tile";
 import {Vector, XYZ} from "ol/source";
 
-import FlightRouteLayer from './flightRouteLayerBaseOnRenderEvent'
+import FlightRouteLayer from './FlightRouteLayerBaseOnRenderEvent'
 
 import "ol/ol.css"
 
