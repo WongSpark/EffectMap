@@ -14,7 +14,7 @@ function main() {
     let progressCircleLayer = new ProgressCircleLayer({
         renderMode: 'image',
         source: new Vector(),
-        outCircleColor: "red"
+        // outCircleColor: "red"
     });
 
     for (let i = 0; i < 2000; i++) {
