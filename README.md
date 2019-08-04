@@ -17,7 +17,7 @@
 
 ![光环动画](https://github.com/WongSpark/EffectMap/blob/master/screenshoot/光环动画.png)
 
-3·文字气泡图层
+4·文字气泡图层
 >以气泡框背景展示文字，文字内容颜色可控制
 
 ![文字气泡](https://github.com/WongSpark/EffectMap/blob/master/screenshoot/气泡文字.png)
