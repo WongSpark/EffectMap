@@ -12,7 +12,9 @@ module.exports = {
         'image-map':'./js/image-map/imageMap.js',
         'motion-track':'./js/motion-track/motionTrackInit.js',
         'flight-route': './js/flight-route/main.ts',
-        'progress-circle': './js/progress-circle/main.ts'
+        'progress-circle': './js/progress-circle/main.ts',
+        'integration-file': './js/integration-file/main.js',
+        'bubble-text': './js/bubble-text/main.ts'
     },
     // devtool: "cheap-module-eval-source-map",
     devtool: "source-map",
@@ -115,6 +117,16 @@ module.exports = {
             template: "./page/ProgressCircleMap.html",
             chunks: ["progress-circle"],
             filename: "progress-circle.html",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./page/animationMap.html",
+            chunks: ["integration-file"],
+            filename: "integration-file.html",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./page/bubbleTextMap.html",
+            chunks: ["bubble-text"],
+            filename: "bubble-text.html",
         }),
         new webpack.HotModuleReplacementPlugin(),
         //拷贝文件夹中的文件到指定文件夹

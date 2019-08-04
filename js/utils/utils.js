@@ -1,26 +1,36 @@
-/**
- * 外网及内网地址
- * @type {{mapServerUrl: string, humanServerUrl: string}}
- */
-export let UrlConfig = {
-    //首创环境
-    mapServerUrl:"http://192.168.163.166",
-    humanServerUrl:"http://192.168.163.166",
-    navigationServerUrl:"http://192.168.163.166",
+export class CanvasUtil {
+    /**
+     * 创建高分辨率画布
+     * @param w     画布宽
+     * @param h     画布高
+     * @param ratio 屏幕分辨率
+     */
+    static createHiDPICanvas(w, h, ratio) {
 
-    //实验室环境
-    // mapServerUrl:"http://10.96.3.10:8090",
-    // humanServerUrl:"http://10.232.85.81",
-    // navigationServerUrl:"http://10.232.85.81",
+        const PIXEL_RATIO = (function () {
+            const c = document.createElement("canvas"),
+                ctx = c.getContext("2d"),
+                dpr = window.devicePixelRatio || 1,
+                bsr = ctx['webkitBackingStorePixelRatio'] ||
+                    ctx['mozBackingStorePixelRatio'] ||
+                    ctx['msBackingStorePixelRatio'] ||
+                    ctx['oBackingStorePixelRatio'] ||
+                    ctx['backingStorePixelRatio'] || 1;
 
-    //生产环境
-    // mapServerUrl:"http://10.96.3.10:8090",
-    // humanServerUrl:"http://10.64.22.21",
-    // navigationServerUrl:"http://10.64.22.21",
+            return dpr / bsr;
+        })();
 
-    //外网
-    // mapServerUrl:"http://yanfa.qdkaiya.com:8204",
-    // humanServerUrl:"http://yanfa.qdkaiya.com:8204"
+        if (!ratio) {
+            ratio = PIXEL_RATIO;
+        }
+        const can = document.createElement("canvas");
+        can.width = w * ratio;
+        can.height = h * ratio;
+        can.style.width = w + "px";
+        can.style.height = h + "px";
+        can.getContext("2d").setTransform(ratio, 0, 0, ratio, 0, 0);
+        return can;
+    }
 }
 
 /**
