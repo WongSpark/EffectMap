@@ -7,14 +7,14 @@ module.exports = {
     mode: 'development',
     //添加两个webpack打包入口
     entry: {
-        'navigation-map': ['./js/navigation-map/navigationMapInit.js'],
         'halo-animation': './js/halo-animation/main.js',
         'image-map':'./js/image-map/imageMap.js',
         'motion-track':'./js/motion-track/motionTrackInit.js',
         'flight-route': './js/flight-route/main.ts',
         'progress-circle': './js/progress-circle/main.ts',
         'integration-file': './js/integration-file/main.js',
-        'bubble-text': './js/bubble-text/main.ts'
+        'bubble-text': './js/bubble-text/main.ts',
+        'wind-layer': './js/wind-layer/main.js'
     },
     // devtool: "cheap-module-eval-source-map",
     devtool: "source-map",
@@ -89,11 +89,6 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: "./page/navigationMap.html",
-            chunks: ["navigation-map"],
-            filename: "navigation-map.html",
-        }),
-        new HtmlWebpackPlugin({
             template: "./page/haloAnimation.html",
             chunks: ["halo-animation"],
             filename: "halo-animation.html",
@@ -127,6 +122,11 @@ module.exports = {
             template: "./page/bubbleTextMap.html",
             chunks: ["bubble-text"],
             filename: "bubble-text.html",
+        }),
+        new HtmlWebpackPlugin({
+            template: "./page/windLayer.html",
+            chunks: ["wind-layer"],
+            filename: "wind-layer.html",
         }),
         new webpack.HotModuleReplacementPlugin(),
         //拷贝文件夹中的文件到指定文件夹

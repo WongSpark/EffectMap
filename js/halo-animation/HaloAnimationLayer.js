@@ -41,7 +41,7 @@ export default class HaloAnimationLayer extends VectorLayer {
         this._backContext.globalCompositeOperation = 'copy';
 
         this.listenComposeKey = this.on(EventType.POSTCOMPOSE, () => {
-            this.getSource().changed();
+            // this.getSource().changed();
         });
         this.listenRenderKey = this.on(EventType.RENDER, (event) => {
             this._composeHandler(event);
