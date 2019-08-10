@@ -21,3 +21,8 @@
 >以气泡框背景展示文字，文字内容颜色可控制
 
 ![文字气泡](https://github.com/WongSpark/EffectMap/blob/master/screenshoot/气泡文字.png)
+
+5·风场图图层
+>整合esri风场图魔改版
+
+![风场图](https://github.com/WongSpark/EffectMap/blob/master/screenshoot/风场图.png)
