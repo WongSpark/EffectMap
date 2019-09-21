@@ -132,6 +132,7 @@ module.exports = {
         //拷贝文件夹中的文件到指定文件夹
         new CopyPlugin([
             {from: 'images', to: 'images'},
+            {from: 'data', to: 'data'},
         ]),
     ]
 }

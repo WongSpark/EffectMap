@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0f846922e8d3f69e7075";
+/******/ 	var hotCurrentHash = "2886517766441d6c00ce";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1522,7 +1522,7 @@ var map = new ol__WEBPACK_IMPORTED_MODULE_2__["Map"]({
     zoom: 5
   })
 });
-fetch('./js/wind-layer/sample.json', {
+fetch('../../data/sample.json', {
   method: "get"
 }).then(function (response) {
   return response.json();

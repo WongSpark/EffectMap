@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "0f846922e8d3f69e7075";
+/******/ 	var hotCurrentHash = "2886517766441d6c00ce";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1007,7 +1007,7 @@ function getData() {
         var res;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, fetch('/data/route.json', {
+                case 0: return [4 /*yield*/, fetch('../../data/route.json', {
                         method: "get"
                     })];
                 case 1:
