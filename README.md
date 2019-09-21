@@ -14,7 +14,7 @@
 
 3·环形炫光特效图层
 >展示一个环形炫光特效，类似于光圈闪烁
-
+[demo](超链接地址 "https://wongspark.github.io/EffectMap/dist/halo-animation.html")
 ![光环动画](https://github.com/WongSpark/EffectMap/blob/master/screenshoot/光环动画.png)
 
 4·文字气泡图层
