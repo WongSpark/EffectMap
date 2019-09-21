@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "a358fc3fe1b158072316";
+/******/ 	var hotCurrentHash = "94639023a316c933471f";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -258,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "image-map";
+/******/ 			var chunkId = "halo-animation";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -788,138 +788,567 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./js/image-map/imageMap.js")(__webpack_require__.s = "./js/image-map/imageMap.js");
+/******/ 	return hotCreateRequire("./js/halo-animation/main.js")(__webpack_require__.s = "./js/halo-animation/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./js/image-map/imageMap.js":
-/*!**********************************!*\
-  !*** ./js/image-map/imageMap.js ***!
-  \**********************************/
-/*! no exports provided */
+/***/ "./js/halo-animation/HaloAnimationLayer.js":
+/*!*************************************************!*\
+  !*** ./js/halo-animation/HaloAnimationLayer.js ***!
+  \*************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var ol_style_Style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/style/Style */ "./node_modules/ol/style/Style.js");
-/* harmony import */ var ol_style_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/style/Icon */ "./node_modules/ol/style/Icon.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source.js");
-/* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/Feature */ "./node_modules/ol/Feature.js");
-/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/geom/Point */ "./node_modules/ol/geom/Point.js");
-/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
-/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
-/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer.js");
-/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control.js");
-/* harmony import */ var ol_proj_Units__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ol/proj/Units */ "./node_modules/ol/proj/Units.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return HaloAnimationLayer; });
+/* harmony import */ var ol_render_EventType__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/render/EventType */ "./node_modules/ol/render/EventType.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer.js");
+/* harmony import */ var ol_Observable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/Observable */ "./node_modules/ol/Observable.js");
+/* harmony import */ var ol_style_Style__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/style/Style */ "./node_modules/ol/style/Style.js");
+/* harmony import */ var ol_style_Icon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/style/Icon */ "./node_modules/ol/style/Icon.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
 
 
 
+/**
+ * 动画图层，可设置炫光球特效。
+ *
+ */
 
-
-
-
-
-var Test =
+var HaloAnimationLayer =
 /*#__PURE__*/
-function () {
-  function Test() {
-    _classCallCheck(this, Test);
+function (_VectorLayer) {
+  _inherits(HaloAnimationLayer, _VectorLayer);
 
-    this.extend = [120.05, 36.32, 120.13, 36.4];
-  } // 初始化地图
+  function HaloAnimationLayer(opt) {
+    var _this;
+
+    _classCallCheck(this, HaloAnimationLayer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HaloAnimationLayer).call(this, opt));
+    _this.tempRadius = 0;
+    _this.start = null;
+    _this.duration = 1000;
+    _this.speedRadio = 1 / 30;
+    _this.maxRadius = 40;
+    _this.maxOpacity = 1;
+    _this.minRadius = 20;
+    _this.minOpacity = 0;
+    _this.outerRadius = _this.minRadius;
+    _this.innerRadius = _this.maxRadius * 0.5;
+    _this.opacity = _this.maxOpacity;
+    _this.outerOpacity = _this.maxOpacity;
+    _this.size = [document.body.clientWidth, document.body.clientHeight];
+    _this._canvasHeight = _this.maxRadius * 2;
+    _this._canvasWidth = _this.maxRadius * 2;
+    _this._canvas = document.createElement('canvas');
+    _this._canvas.width = _this.maxRadius * 2;
+    _this._canvas.height = _this.maxRadius * 2;
+    _this._backCanvas = document.createElement('canvas');
+    _this._backContext = _this._backCanvas.getContext('2d');
+    _this._backCanvas.width = _this.maxRadius * 2;
+    _this._backCanvas.height = _this.maxRadius * 2;
+    _this._backContext.globalAlpha = 0.95;
+    _this._backContext.globalCompositeOperation = 'copy';
+    _this.listenComposeKey = _this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_0__["default"].POSTCOMPOSE, function () {// this.getSource().changed();
+    });
+    _this.listenRenderKey = _this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_0__["default"].RENDER, function (event) {
+      _this._composeHandler(event);
+    }); //tips: for performance
+
+    _this.setRenderOrder(null);
+
+    return _this;
+  }
+  /**
+   * 关闭动画
+   */
 
 
-  _createClass(Test, [{
-    key: "initMap",
-    value: function initMap() {
-      var _this = this;
+  _createClass(HaloAnimationLayer, [{
+    key: "disableAnimation",
+    value: function disableAnimation() {
+      ol_Observable__WEBPACK_IMPORTED_MODULE_2__["default"].unByKey(this.listenComposeKey);
+      ol_Observable__WEBPACK_IMPORTED_MODULE_2__["default"].unByKey(this.listenRenderKey);
+    }
+    /**
+     * 开启动画
+     */
 
-      // 车辆 飞行器 人员 图层
-      this.layer = new ol_layer__WEBPACK_IMPORTED_MODULE_7__["Vector"]({
-        source: new ol_source__WEBPACK_IMPORTED_MODULE_2__["Vector"](),
-        zIndex: 2
+  }, {
+    key: "enableAnimation",
+    value: function enableAnimation() {
+      var _this2 = this;
+
+      this.listenComposeKey = this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_0__["default"].POSTCOMPOSE, function () {
+        _this2.getSource().changed();
       });
-      this.map = new ol_Map__WEBPACK_IMPORTED_MODULE_6__["default"]({
-        target: 'map',
-        controls: Object(ol_control__WEBPACK_IMPORTED_MODULE_8__["defaults"])({
-          attribution: false,
-          rotation: false
-        }),
-        view: new ol_View__WEBPACK_IMPORTED_MODULE_5__["default"]({
-          center: [120.09, 36.36],
-          zoom: 15,
-          projection: 'EPSG:4326' // rotation: -(73 / 180) * Math.PI,
-
-        }),
-        layers: [this.layer, new ol_layer__WEBPACK_IMPORTED_MODULE_7__["Image"]({
-          source: new ol_source__WEBPACK_IMPORTED_MODULE_2__["ImageStatic"]({
-            url: 'images/airport_map.png',
-            // url: 'images/map.svg',
-            imageExtent: this.extend // imageSize: this.getImageSize(extend),
-
-          }),
-          zIndex: 1
-        })]
+      this.listenRenderKey = this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_0__["default"].RENDER, function (event) {
+        _this2._composeHandler(event);
       });
-      var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_4__["default"]([120.08, 36.36]);
-      var feature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"](geom);
-      this.layer.getSource().addFeature(feature);
-      var flightStyle = new ol_style_Style__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_1__["default"]({
-          src: "../images/flight.svg",
-          scale: 0.1
-        })
-      });
+      this.getSource().changed();
+    }
+    /**
+     * 每一帧动画的组成函数
+     * @param renderEvent
+     * @private
+     */
 
-      for (var i = 0; i < 100; i++) {
-        addRandomFeatureWithFlight(false, flightStyle);
+  }, {
+    key: "_composeHandler",
+    value: function _composeHandler(renderEvent) {
+      var frameState = renderEvent.frameState;
+      var vectorContext = renderEvent.vectorContext;
+
+      this._setFlashCircleInAnotherWay(vectorContext); // this._setStyleUseDuration(vectorContext,frameState);
+
+
+      var features = this.getSource().getFeaturesInExtent(frameState.extent);
+
+      for (var i = 0; i < features.length; i++) {
+        var feature = features[i];
+
+        if (feature.get("animation")) {
+          vectorContext.drawGeometry(feature.getGeometry());
+        }
       }
 
-      function addRandomFeatureWithFlight(enableAnimation, style) {
-        var x = Math.random() / 100 + 120.08;
-        var y = Math.random() / 100 + 36.35;
-        var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_4__["default"]([x, y]);
-        var feature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
-          geometry: geom,
-          animation: enableAnimation
-        }); // feature.setStyle(style);
+      if (features.length > 0) {
+        this.getSource().changed();
+      }
+    }
+  }, {
+    key: "_setStyleUseDuration",
+    value: function _setStyleUseDuration(vectorContext, frameState) {
+      if (this.start === null) {
+        this.start = new Date().getTime();
+      }
 
-        this.layer.getSource().addFeature(feature);
-      } // 根据分辨率设置飞机图片的大小
+      var elapsed = frameState.time - this.start;
+      var elapsedRatio = elapsed / this.duration;
+
+      if (elapsedRatio > 1) {
+        elapsedRatio = 0;
+        this.start = new Date().getTime();
+      } // 半径5-30
 
 
-      map.getView().on("change:resolution", function (e) {
-        var resolution = map.getView().getResolution();
-        var scaleRadio = 30 / (resolution * ol_proj_Units__WEBPACK_IMPORTED_MODULE_9__["METERS_PER_UNIT"].degrees) / 200;
-        var style = new ol_style_Style__WEBPACK_IMPORTED_MODULE_0__["default"]({
-          image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_1__["default"]({
-            src: "../images/flight.svg",
-            scale: scaleRadio
+      var radius = ol.easing.easeOut(elapsedRatio) * 25 + 5; // radius = Math.floor(radius);
+
+      var style = new ol.style.Style({
+        image: new ol.style.Circle({
+          radius: radius,
+          snapToPixel: false,
+          stroke: new ol.style.Stroke({
+            color: 'rgba(255, 0, 0, ' + 1 + ')',
+            width: 0.25 + this.opacity
           })
-        });
-
-        _this.layer.getSource().getFeatures().forEach(function (feature) {
-          feature.setStyle(style);
-        });
+        })
       });
+      vectorContext.setStyle(style);
+    }
+    /**
+     * 设置炫光圆特效样式
+     * @param vectorContext
+     * @private
+     */
+
+  }, {
+    key: "_setFlashCircleStyle",
+    value: function _setFlashCircleStyle(vectorContext) {
+      var outerRadius = this.outerRadius;
+      var innerRadius = this.innerRadius;
+      var canvas = this._canvas;
+      canvas.width = this.maxRadius * 2;
+      canvas.height = this.maxRadius * 2;
+      var ctx = canvas.getContext("2d");
+      var gradient;
+
+      if (this.outerRadius === this.maxRadius) {
+        gradient = ctx.createRadialGradient(this.maxRadius, this.maxRadius, innerRadius * 0.3, this.maxRadius, this.maxRadius, innerRadius * 0.9);
+        gradient.addColorStop(0, 'rgba(131, 45, 72,0)');
+        gradient.addColorStop(0.5, 'rgba(131, 45, 72,0.3)');
+        gradient.addColorStop(1, 'rgba(131, 45, 72,0.8)');
+        this.outerOpacity = this.outerOpacity - 0.02 <= 0 ? this.minOpacity : this.outerOpacity -= 0.02;
+        ctx.globalAlpha = this.outerOpacity;
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.maxRadius, this.maxRadius, outerRadius, 0, Math.PI * 2, false);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        gradient = ctx.createRadialGradient(this.maxRadius, this.maxRadius, innerRadius * 0.3, this.maxRadius, this.maxRadius, innerRadius * 0.9);
+        gradient.addColorStop(0, 'rgba(131, 45, 72,0)');
+        gradient.addColorStop(0.5, 'rgba(131, 45, 72,0.3)');
+        gradient.addColorStop(1, 'rgba(131, 45, 72,0.4)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.maxRadius, this.maxRadius, innerRadius, 0, Math.PI * 2, false);
+        ctx.fill();
+        this.innerRadius += (this.maxRadius - this.minRadius) * this.speedRadio * 0.7;
+      } else {
+        gradient = ctx.createRadialGradient(this.maxRadius, this.maxRadius, outerRadius * 0.3, this.maxRadius, this.maxRadius, outerRadius * 0.9);
+        gradient.addColorStop(0, 'rgba(131, 45, 72,0)');
+        gradient.addColorStop(0.5, 'rgba(131, 45, 72,0.3)');
+        gradient.addColorStop(1, 'rgba(131, 45, 72,0.4)');
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(this.maxRadius, this.maxRadius, outerRadius, 0, Math.PI * 2, false);
+        ctx.fill();
+      }
+
+      this.outerRadius += (this.maxRadius - this.minRadius) * this.speedRadio;
+
+      if (this.outerRadius >= this.maxRadius) {
+        this.outerRadius = this.maxRadius;
+      }
+
+      if (this.innerRadius >= this.maxRadius * 0.8) {
+        this.innerRadius = this.maxRadius * 0.5;
+        this.outerRadius = this.minRadius;
+        this.outerOpacity = this.maxOpacity;
+      }
+
+      var canvasStyle = new ol.style.Style({
+        image: new ol.style.Icon({
+          img: canvas,
+          scale: 1,
+          imgSize: [canvas.width, canvas.height]
+        })
+      });
+      vectorContext.setStyle(canvasStyle);
+    }
+    /**
+     * 设置不规则几何图形特效样式
+     * @param vectorContext
+     * @private
+     */
+
+  }, {
+    key: "_setArrowStyle",
+    value: function _setArrowStyle(vectorContext) {
+      var canvas = document.createElement('canvas');
+      canvas.width = 20;
+      canvas.height = 20;
+      var context = canvas.getContext("2d");
+      context.strokeStyle = "red";
+      context.lineWidth = 1;
+      context.beginPath();
+      context.moveTo(0, 0);
+      context.lineTo(20, 10);
+      context.lineTo(0, 20);
+      context.lineTo(10, 10);
+      context.lineTo(0, 0);
+      context.stroke(); // 把绘制了的canvas设置到style里面
+
+      var canvasStyle = new ol.style.Style({
+        image: new ol.style.Icon({
+          img: canvas,
+          imgSize: [canvas.width, canvas.height],
+          rotation: 90 * Math.PI / 180
+        })
+      });
+      vectorContext.setStyle(canvasStyle);
+    }
+    /**
+     * 设置放大圆特效样式
+     * @param vectorContext
+     * @private
+     */
+
+  }, {
+    key: "_setScaleCircleStyle",
+    value: function _setScaleCircleStyle(vectorContext) {
+      if (this.outerRadius >= this.maxRadius) this.outerRadius = this.minRadius;
+      if (this.opacity <= this.minOpacity) this.opacity = this.maxOpacity;
+      this.outerRadius = this.outerRadius + (this.maxRadius - this.minRadius) * this.speedRadio;
+      this.opacity = this.opacity - (this.maxOpacity - this.minOpacity) * this.speedRadio;
+      var style = new ol.style.Style({
+        image: new ol.style.Circle({
+          radius: this.outerRadius,
+          snapToPixel: false,
+          stroke: new ol.style.Stroke({
+            color: 'rgba(255, 0, 0, ' + this.opacity + ')',
+            width: 0.25 + this.opacity
+          })
+        })
+      });
+      vectorContext.setStyle(style);
+    } //画圆
+
+  }, {
+    key: "_drawCircle",
+    value: function _drawCircle() {
+      var context = this._canvas.getContext("2d");
+
+      context.beginPath();
+      context.arc(this.maxRadius, this.maxRadius, this.tempRadius, 0, Math.PI * 2);
+      context.closePath();
+      context.lineWidth = 2; //线条宽度
+
+      context.strokeStyle = 'rgba(131, 45, 72,1)'; //颜色
+
+      context.stroke();
+      this.tempRadius += 0.5; //每一帧半径增加0.5
+      //半径radius大于30时，重置为0
+
+      if (this.tempRadius > 35) {
+        this.tempRadius = 15;
+      }
+    }
+  }, {
+    key: "_getStyleCanvas",
+    value: function _getStyleCanvas() {
+      var context = this._canvas.getContext("2d"); //1.先将主canvas的图像缓存到临时canvas中
+
+
+      this._backContext.drawImage(this._canvas, 0, 0, this._canvasWidth, this._canvasHeight); //2.清除主canvas上的图像
+
+
+      context.clearRect(0, 0, this._canvasWidth, this._canvasHeight); //3.在主canvas上画新圆
+
+      this._drawCircle(); //4.等新圆画完后，再把临时canvas的图像绘制回主canvas中
+
+
+      context.drawImage(this._backCanvas, 0, 0, this._canvasWidth, this._canvasHeight);
+      return this._canvas;
+    }
+  }, {
+    key: "_setFlashCircleInAnotherWay",
+    value: function _setFlashCircleInAnotherWay(vectorContext) {
+      var canvasStyle = new ol_style_Style__WEBPACK_IMPORTED_MODULE_3__["default"]({
+        image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_4__["default"]({
+          img: this._getStyleCanvas(),
+          scale: 1,
+          imgSize: [this._canvasWidth, this._canvasHeight]
+        })
+      });
+      vectorContext.setStyle(canvasStyle);
     }
   }]);
 
-  return Test;
-}();
+  return HaloAnimationLayer;
+}(ol_layer__WEBPACK_IMPORTED_MODULE_1__["Vector"]);
 
-var test = new Test();
-test.initMap();
+
+
+/***/ }),
+
+/***/ "./js/halo-animation/main.js":
+/*!***********************************!*\
+  !*** ./js/halo-animation/main.js ***!
+  \***********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/ol.css */ "./node_modules/ol/ol.css");
+/* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(ol_ol_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
+/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer.js");
+/* harmony import */ var ol_style_Style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/style/Style */ "./node_modules/ol/style/Style.js");
+/* harmony import */ var ol_style_Icon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/style/Icon */ "./node_modules/ol/style/Icon.js");
+/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/geom/Point */ "./node_modules/ol/geom/Point.js");
+/* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/Feature */ "./node_modules/ol/Feature.js");
+/* harmony import */ var _HaloAnimationLayer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./HaloAnimationLayer */ "./js/halo-animation/HaloAnimationLayer.js");
+
+
+
+
+
+
+
+
+
+
+var map = new ol_Map__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  target: 'map',
+  view: new ol_View__WEBPACK_IMPORTED_MODULE_2__["default"]({
+    center: [120.09, 36.36],
+    zoom: 15,
+    projection: 'EPSG:4326'
+  }),
+  layers: [new ol_layer__WEBPACK_IMPORTED_MODULE_4__["Tile"]({
+    source: new ol_source__WEBPACK_IMPORTED_MODULE_3__["XYZ"]({
+      url: 'http://www.google.cn/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m3!1e0!2sm!3i342009817!3m9!2szh-CN!3sCN!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&token=32965'
+    })
+  })]
+});
+var source = new ol_source__WEBPACK_IMPORTED_MODULE_3__["Vector"]({
+  overlaps: false,
+  wrapX: false
+});
+var vector = new _HaloAnimationLayer__WEBPACK_IMPORTED_MODULE_9__["default"]({
+  renderMode: 'image',
+  source: source,
+  transparent: true
+});
+map.addLayer(vector);
+var flightSource = new ol_source__WEBPACK_IMPORTED_MODULE_3__["Vector"]({
+  overlaps: false,
+  wrapX: false
+});
+var flightVector = new ol_layer__WEBPACK_IMPORTED_MODULE_4__["Vector"]({
+  source: flightSource,
+  renderMode: 'image',
+  transparent: true,
+  style: new ol_style_Style__WEBPACK_IMPORTED_MODULE_5__["default"]({
+    image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_6__["default"]({
+      src: "../images/flight.svg",
+      scale: 0.1
+    })
+  })
+});
+map.addLayer(flightVector);
+
+function addRandomFeature(enableAnimation) {
+  var x = Math.random() / 100 + 120.08;
+  var y = Math.random() / 100 + 36.35;
+  var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"]([x, y]);
+  var feature = new ol_Feature__WEBPACK_IMPORTED_MODULE_8__["default"]({
+    geometry: geom,
+    animation: enableAnimation
+  });
+  source.addFeature(feature);
+}
+
+for (var i = 0; i < 500; i++) {
+  addRandomFeature(true);
+}
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/ol/ol.css":
+/*!***************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/ol/ol.css ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, ".ol-box {\n  box-sizing: border-box;\n  border-radius: 2px;\n  border: 2px solid blue; }\n\n.ol-mouse-position {\n  top: 8px;\n  right: 8px;\n  position: absolute; }\n\n.ol-scale-line {\n  background: rgba(0, 60, 136, 0.3);\n  border-radius: 4px;\n  bottom: 8px;\n  left: 8px;\n  padding: 2px;\n  position: absolute; }\n\n.ol-scale-line-inner {\n  border: 1px solid #eee;\n  border-top: none;\n  color: #eee;\n  font-size: 10px;\n  text-align: center;\n  margin: 1px;\n  will-change: contents, width; }\n\n.ol-overlay-container {\n  will-change: left,right,top,bottom; }\n\n.ol-unsupported {\n  display: none; }\n\n.ol-viewport, .ol-unselectable {\n  -webkit-touch-callout: none;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }\n\n.ol-selectable {\n  -webkit-touch-callout: default;\n  -webkit-user-select: text;\n  -moz-user-select: text;\n  -ms-user-select: text;\n  user-select: text; }\n\n.ol-grabbing {\n  cursor: -webkit-grabbing;\n  cursor: -moz-grabbing;\n  cursor: grabbing; }\n\n.ol-grab {\n  cursor: move;\n  cursor: -webkit-grab;\n  cursor: -moz-grab;\n  cursor: grab; }\n\n.ol-control {\n  position: absolute;\n  background-color: rgba(255, 255, 255, 0.4);\n  border-radius: 4px;\n  padding: 2px; }\n\n.ol-control:hover {\n  background-color: rgba(255, 255, 255, 0.6); }\n\n.ol-zoom {\n  top: .5em;\n  left: .5em; }\n\n.ol-rotate {\n  top: .5em;\n  right: .5em;\n  transition: opacity .25s linear, visibility 0s linear; }\n\n.ol-rotate.ol-hidden {\n  opacity: 0;\n  visibility: hidden;\n  transition: opacity .25s linear, visibility 0s linear .25s; }\n\n.ol-zoom-extent {\n  top: 4.643em;\n  left: .5em; }\n\n.ol-full-screen {\n  right: .5em;\n  top: .5em; }\n\n@media print {\n  .ol-control {\n    display: none; } }\n\n.ol-control button {\n  display: block;\n  margin: 1px;\n  padding: 0;\n  color: white;\n  font-size: 1.14em;\n  font-weight: bold;\n  text-decoration: none;\n  text-align: center;\n  height: 1.375em;\n  width: 1.375em;\n  line-height: .4em;\n  background-color: rgba(0, 60, 136, 0.5);\n  border: none;\n  border-radius: 2px; }\n\n.ol-control button::-moz-focus-inner {\n  border: none;\n  padding: 0; }\n\n.ol-zoom-extent button {\n  line-height: 1.4em; }\n\n.ol-compass {\n  display: block;\n  font-weight: normal;\n  font-size: 1.2em;\n  will-change: transform; }\n\n.ol-touch .ol-control button {\n  font-size: 1.5em; }\n\n.ol-touch .ol-zoom-extent {\n  top: 5.5em; }\n\n.ol-control button:hover,\n.ol-control button:focus {\n  text-decoration: none;\n  background-color: rgba(0, 60, 136, 0.7); }\n\n.ol-zoom .ol-zoom-in {\n  border-radius: 2px 2px 0 0; }\n\n.ol-zoom .ol-zoom-out {\n  border-radius: 0 0 2px 2px; }\n\n.ol-attribution {\n  text-align: right;\n  bottom: .5em;\n  right: .5em;\n  max-width: calc(100% - 1.3em); }\n\n.ol-attribution ul {\n  margin: 0;\n  padding: 0 .5em;\n  font-size: .7rem;\n  line-height: 1.375em;\n  color: #000;\n  text-shadow: 0 0 2px #fff; }\n\n.ol-attribution li {\n  display: inline;\n  list-style: none;\n  line-height: inherit; }\n\n.ol-attribution li:not(:last-child):after {\n  content: \" \"; }\n\n.ol-attribution img {\n  max-height: 2em;\n  max-width: inherit;\n  vertical-align: middle; }\n\n.ol-attribution ul, .ol-attribution button {\n  display: inline-block; }\n\n.ol-attribution.ol-collapsed ul {\n  display: none; }\n\n.ol-attribution:not(.ol-collapsed) {\n  background: rgba(255, 255, 255, 0.8); }\n\n.ol-attribution.ol-uncollapsible {\n  bottom: 0;\n  right: 0;\n  border-radius: 4px 0 0;\n  height: 1.1em;\n  line-height: 1em; }\n\n.ol-attribution.ol-uncollapsible img {\n  margin-top: -.2em;\n  max-height: 1.6em; }\n\n.ol-attribution.ol-uncollapsible button {\n  display: none; }\n\n.ol-zoomslider {\n  top: 4.5em;\n  left: .5em;\n  height: 200px; }\n\n.ol-zoomslider button {\n  position: relative;\n  height: 10px; }\n\n.ol-touch .ol-zoomslider {\n  top: 5.5em; }\n\n.ol-overviewmap {\n  left: 0.5em;\n  bottom: 0.5em; }\n\n.ol-overviewmap.ol-uncollapsible {\n  bottom: 0;\n  left: 0;\n  border-radius: 0 4px 0 0; }\n\n.ol-overviewmap .ol-overviewmap-map,\n.ol-overviewmap button {\n  display: inline-block; }\n\n.ol-overviewmap .ol-overviewmap-map {\n  border: 1px solid #7b98bc;\n  height: 150px;\n  margin: 2px;\n  width: 150px; }\n\n.ol-overviewmap:not(.ol-collapsed) button {\n  bottom: 1px;\n  left: 2px;\n  position: absolute; }\n\n.ol-overviewmap.ol-collapsed .ol-overviewmap-map,\n.ol-overviewmap.ol-uncollapsible button {\n  display: none; }\n\n.ol-overviewmap:not(.ol-collapsed) {\n  background: rgba(255, 255, 255, 0.8); }\n\n.ol-overviewmap-box {\n  border: 2px dotted rgba(0, 60, 136, 0.7); }\n\n.ol-overviewmap .ol-overviewmap-box:hover {\n  cursor: move; }\n", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return '@media ' + item[2] + '{' + content + '}';
+      } else {
+        return content;
+      }
+    }).join('');
+  }; // import a list of modules into the list
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (i = 0; i < modules.length; i++) {
+      var item = modules[i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || '';
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+  return '/*# ' + data + ' */';
+}
 
 /***/ }),
 
@@ -3696,649 +4125,6 @@ function unByKey(key) {
 /* harmony default export */ __webpack_exports__["default"] = (Observable);
 
 //# sourceMappingURL=Observable.js.map
-
-/***/ }),
-
-/***/ "./node_modules/ol/Overlay.js":
-/*!************************************!*\
-  !*** ./node_modules/ol/Overlay.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MapEventType.js */ "./node_modules/ol/MapEventType.js");
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Object.js */ "./node_modules/ol/Object.js");
-/* harmony import */ var _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OverlayPositioning.js */ "./node_modules/ol/OverlayPositioning.js");
-/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css.js */ "./node_modules/ol/css.js");
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dom.js */ "./node_modules/ol/dom.js");
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./extent.js */ "./node_modules/ol/extent.js");
-/**
- * @module ol/Overlay
- */
-
-
-
-
-
-
-
-
-
-/**
- * @typedef {Object} Options
- * @property {number|string} [id] Set the overlay id. The overlay id can be used
- * with the {@link module:ol/Map~Map#getOverlayById} method.
- * @property {HTMLElement} [element] The overlay element.
- * @property {Array<number>} [offset=[0, 0]] Offsets in pixels used when positioning
- * the overlay. The first element in the
- * array is the horizontal offset. A positive value shifts the overlay right.
- * The second element in the array is the vertical offset. A positive value
- * shifts the overlay down.
- * @property {import("./coordinate.js").Coordinate} [position] The overlay position
- * in map projection.
- * @property {OverlayPositioning} [positioning='top-left'] Defines how
- * the overlay is actually positioned with respect to its `position` property.
- * Possible values are `'bottom-left'`, `'bottom-center'`, `'bottom-right'`,
- * `'center-left'`, `'center-center'`, `'center-right'`, `'top-left'`,
- * `'top-center'`, and `'top-right'`.
- * @property {boolean} [stopEvent=true] Whether event propagation to the map
- * viewport should be stopped. If `true` the overlay is placed in the same
- * container as that of the controls (CSS class name
- * `ol-overlaycontainer-stopevent`); if `false` it is placed in the container
- * with CSS class name specified by the `className` property.
- * @property {boolean} [insertFirst=true] Whether the overlay is inserted first
- * in the overlay container, or appended. If the overlay is placed in the same
- * container as that of the controls (see the `stopEvent` option) you will
- * probably set `insertFirst` to `true` so the overlay is displayed below the
- * controls.
- * @property {boolean} [autoPan=false] If set to `true` the map is panned when
- * calling `setPosition`, so that the overlay is entirely visible in the current
- * viewport.
- * @property {PanOptions} [autoPanAnimation] The
- * animation options used to pan the overlay into view. This animation is only
- * used when `autoPan` is enabled. A `duration` and `easing` may be provided to
- * customize the animation.
- * @property {number} [autoPanMargin=20] The margin (in pixels) between the
- * overlay and the borders of the map when autopanning.
- * @property {string} [className='ol-overlay-container ol-selectable'] CSS class
- * name.
- */
-
-
-/**
- * @typedef {Object} PanOptions
- * @property {number} [duration=1000] The duration of the animation in
- * milliseconds.
- * @property {function(number):number} [easing] The easing function to use. Can
- * be one from {@link module:ol/easing} or a custom function.
- * Default is {@link module:ol/easing~inAndOut}.
- */
-
-
-/**
- * @enum {string}
- * @protected
- */
-var Property = {
-  ELEMENT: 'element',
-  MAP: 'map',
-  OFFSET: 'offset',
-  POSITION: 'position',
-  POSITIONING: 'positioning'
-};
-
-
-/**
- * @classdesc
- * An element to be displayed over the map and attached to a single map
- * location.  Like {@link module:ol/control/Control~Control}, Overlays are
- * visible widgets. Unlike Controls, they are not in a fixed position on the
- * screen, but are tied to a geographical coordinate, so panning the map will
- * move an Overlay but not a Control.
- *
- * Example:
- *
- *     import Overlay from 'ol/Overlay';
- *
- *     var popup = new Overlay({
- *       element: document.getElementById('popup')
- *     });
- *     popup.setPosition(coordinate);
- *     map.addOverlay(popup);
- *
- * @api
- */
-var Overlay = /*@__PURE__*/(function (BaseObject) {
-  function Overlay(options) {
-
-    BaseObject.call(this);
-
-    /**
-     * @protected
-     * @type {Options}
-     */
-    this.options = options;
-
-    /**
-     * @protected
-     * @type {number|string|undefined}
-     */
-    this.id = options.id;
-
-    /**
-     * @protected
-     * @type {boolean}
-     */
-    this.insertFirst = options.insertFirst !== undefined ?
-      options.insertFirst : true;
-
-    /**
-     * @protected
-     * @type {boolean}
-     */
-    this.stopEvent = options.stopEvent !== undefined ? options.stopEvent : true;
-
-    /**
-     * @protected
-     * @type {HTMLElement}
-     */
-    this.element = document.createElement('div');
-    this.element.className = options.className !== undefined ?
-      options.className : 'ol-overlay-container ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_SELECTABLE"];
-    this.element.style.position = 'absolute';
-
-    /**
-     * @protected
-     * @type {boolean}
-     */
-    this.autoPan = options.autoPan !== undefined ? options.autoPan : false;
-
-    /**
-     * @protected
-     * @type {PanOptions}
-     */
-    this.autoPanAnimation = options.autoPanAnimation || /** @type {PanOptions} */ ({});
-
-    /**
-     * @protected
-     * @type {number}
-     */
-    this.autoPanMargin = options.autoPanMargin !== undefined ?
-      options.autoPanMargin : 20;
-
-    /**
-     * @protected
-     * @type {{bottom_: string,
-     *         left_: string,
-     *         right_: string,
-     *         top_: string,
-     *         visible: boolean}}
-     */
-    this.rendered = {
-      bottom_: '',
-      left_: '',
-      right_: '',
-      top_: '',
-      visible: true
-    };
-
-    /**
-     * @protected
-     * @type {?import("./events.js").EventsKey}
-     */
-    this.mapPostrenderListenerKey = null;
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
-      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.ELEMENT),
-      this.handleElementChanged, this);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
-      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.MAP),
-      this.handleMapChanged, this);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
-      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.OFFSET),
-      this.handleOffsetChanged, this);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
-      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.POSITION),
-      this.handlePositionChanged, this);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
-      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.POSITIONING),
-      this.handlePositioningChanged, this);
-
-    if (options.element !== undefined) {
-      this.setElement(options.element);
-    }
-
-    this.setOffset(options.offset !== undefined ? options.offset : [0, 0]);
-
-    this.setPositioning(options.positioning !== undefined ?
-      /** @type {OverlayPositioning} */ (options.positioning) :
-      _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].TOP_LEFT);
-
-    if (options.position !== undefined) {
-      this.setPosition(options.position);
-    }
-
-  }
-
-  if ( BaseObject ) Overlay.__proto__ = BaseObject;
-  Overlay.prototype = Object.create( BaseObject && BaseObject.prototype );
-  Overlay.prototype.constructor = Overlay;
-
-  /**
-   * Get the DOM element of this overlay.
-   * @return {HTMLElement|undefined} The Element containing the overlay.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.getElement = function getElement () {
-    return /** @type {HTMLElement|undefined} */ (this.get(Property.ELEMENT));
-  };
-
-  /**
-   * Get the overlay identifier which is set on constructor.
-   * @return {number|string|undefined} Id.
-   * @api
-   */
-  Overlay.prototype.getId = function getId () {
-    return this.id;
-  };
-
-  /**
-   * Get the map associated with this overlay.
-   * @return {import("./PluggableMap.js").default|undefined} The map that the
-   * overlay is part of.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.getMap = function getMap () {
-    return (
-      /** @type {import("./PluggableMap.js").default|undefined} */ (this.get(Property.MAP))
-    );
-  };
-
-  /**
-   * Get the offset of this overlay.
-   * @return {Array<number>} The offset.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.getOffset = function getOffset () {
-    return /** @type {Array<number>} */ (this.get(Property.OFFSET));
-  };
-
-  /**
-   * Get the current position of this overlay.
-   * @return {import("./coordinate.js").Coordinate|undefined} The spatial point that the overlay is
-   *     anchored at.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.getPosition = function getPosition () {
-    return (
-      /** @type {import("./coordinate.js").Coordinate|undefined} */ (this.get(Property.POSITION))
-    );
-  };
-
-  /**
-   * Get the current positioning of this overlay.
-   * @return {OverlayPositioning} How the overlay is positioned
-   *     relative to its point on the map.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.getPositioning = function getPositioning () {
-    return (
-      /** @type {OverlayPositioning} */ (this.get(Property.POSITIONING))
-    );
-  };
-
-  /**
-   * @protected
-   */
-  Overlay.prototype.handleElementChanged = function handleElementChanged () {
-    Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["removeChildren"])(this.element);
-    var element = this.getElement();
-    if (element) {
-      this.element.appendChild(element);
-    }
-  };
-
-  /**
-   * @protected
-   */
-  Overlay.prototype.handleMapChanged = function handleMapChanged () {
-    if (this.mapPostrenderListenerKey) {
-      Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["removeNode"])(this.element);
-      Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["unlistenByKey"])(this.mapPostrenderListenerKey);
-      this.mapPostrenderListenerKey = null;
-    }
-    var map = this.getMap();
-    if (map) {
-      this.mapPostrenderListenerKey = Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(map,
-        _MapEventType_js__WEBPACK_IMPORTED_MODULE_0__["default"].POSTRENDER, this.render, this);
-      this.updatePixelPosition();
-      var container = this.stopEvent ?
-        map.getOverlayContainerStopEvent() : map.getOverlayContainer();
-      if (this.insertFirst) {
-        container.insertBefore(this.element, container.childNodes[0] || null);
-      } else {
-        container.appendChild(this.element);
-      }
-    }
-  };
-
-  /**
-   * @protected
-   */
-  Overlay.prototype.render = function render () {
-    this.updatePixelPosition();
-  };
-
-  /**
-   * @protected
-   */
-  Overlay.prototype.handleOffsetChanged = function handleOffsetChanged () {
-    this.updatePixelPosition();
-  };
-
-  /**
-   * @protected
-   */
-  Overlay.prototype.handlePositionChanged = function handlePositionChanged () {
-    this.updatePixelPosition();
-    if (this.get(Property.POSITION) && this.autoPan) {
-      this.panIntoView();
-    }
-  };
-
-  /**
-   * @protected
-   */
-  Overlay.prototype.handlePositioningChanged = function handlePositioningChanged () {
-    this.updatePixelPosition();
-  };
-
-  /**
-   * Set the DOM element to be associated with this overlay.
-   * @param {HTMLElement|undefined} element The Element containing the overlay.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.setElement = function setElement (element) {
-    this.set(Property.ELEMENT, element);
-  };
-
-  /**
-   * Set the map to be associated with this overlay.
-   * @param {import("./PluggableMap.js").default|undefined} map The map that the
-   * overlay is part of.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.setMap = function setMap (map) {
-    this.set(Property.MAP, map);
-  };
-
-  /**
-   * Set the offset for this overlay.
-   * @param {Array<number>} offset Offset.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.setOffset = function setOffset (offset) {
-    this.set(Property.OFFSET, offset);
-  };
-
-  /**
-   * Set the position for this overlay. If the position is `undefined` the
-   * overlay is hidden.
-   * @param {import("./coordinate.js").Coordinate|undefined} position The spatial point that the overlay
-   *     is anchored at.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.setPosition = function setPosition (position) {
-    this.set(Property.POSITION, position);
-  };
-
-  /**
-   * Pan the map so that the overlay is entirely visible in the current viewport
-   * (if necessary).
-   * @protected
-   */
-  Overlay.prototype.panIntoView = function panIntoView () {
-    var map = this.getMap();
-
-    if (!map || !map.getTargetElement()) {
-      return;
-    }
-
-    var mapRect = this.getRect(map.getTargetElement(), map.getSize());
-    var element = this.getElement();
-    var overlayRect = this.getRect(element, [Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["outerWidth"])(element), Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["outerHeight"])(element)]);
-
-    var margin = this.autoPanMargin;
-    if (!Object(_extent_js__WEBPACK_IMPORTED_MODULE_6__["containsExtent"])(mapRect, overlayRect)) {
-      // the overlay is not completely inside the viewport, so pan the map
-      var offsetLeft = overlayRect[0] - mapRect[0];
-      var offsetRight = mapRect[2] - overlayRect[2];
-      var offsetTop = overlayRect[1] - mapRect[1];
-      var offsetBottom = mapRect[3] - overlayRect[3];
-
-      var delta = [0, 0];
-      if (offsetLeft < 0) {
-        // move map to the left
-        delta[0] = offsetLeft - margin;
-      } else if (offsetRight < 0) {
-        // move map to the right
-        delta[0] = Math.abs(offsetRight) + margin;
-      }
-      if (offsetTop < 0) {
-        // move map up
-        delta[1] = offsetTop - margin;
-      } else if (offsetBottom < 0) {
-        // move map down
-        delta[1] = Math.abs(offsetBottom) + margin;
-      }
-
-      if (delta[0] !== 0 || delta[1] !== 0) {
-        var center = /** @type {import("./coordinate.js").Coordinate} */ (map.getView().getCenter());
-        var centerPx = map.getPixelFromCoordinate(center);
-        var newCenterPx = [
-          centerPx[0] + delta[0],
-          centerPx[1] + delta[1]
-        ];
-
-        map.getView().animate({
-          center: map.getCoordinateFromPixel(newCenterPx),
-          duration: this.autoPanAnimation.duration,
-          easing: this.autoPanAnimation.easing
-        });
-      }
-    }
-  };
-
-  /**
-   * Get the extent of an element relative to the document
-   * @param {HTMLElement|undefined} element The element.
-   * @param {import("./size.js").Size|undefined} size The size of the element.
-   * @return {import("./extent.js").Extent} The extent.
-   * @protected
-   */
-  Overlay.prototype.getRect = function getRect (element, size) {
-    var box = element.getBoundingClientRect();
-    var offsetX = box.left + window.pageXOffset;
-    var offsetY = box.top + window.pageYOffset;
-    return [
-      offsetX,
-      offsetY,
-      offsetX + size[0],
-      offsetY + size[1]
-    ];
-  };
-
-  /**
-   * Set the positioning for this overlay.
-   * @param {OverlayPositioning} positioning how the overlay is
-   *     positioned relative to its point on the map.
-   * @observable
-   * @api
-   */
-  Overlay.prototype.setPositioning = function setPositioning (positioning) {
-    this.set(Property.POSITIONING, positioning);
-  };
-
-  /**
-   * Modify the visibility of the element.
-   * @param {boolean} visible Element visibility.
-   * @protected
-   */
-  Overlay.prototype.setVisible = function setVisible (visible) {
-    if (this.rendered.visible !== visible) {
-      this.element.style.display = visible ? '' : 'none';
-      this.rendered.visible = visible;
-    }
-  };
-
-  /**
-   * Update pixel position.
-   * @protected
-   */
-  Overlay.prototype.updatePixelPosition = function updatePixelPosition () {
-    var map = this.getMap();
-    var position = this.getPosition();
-    if (!map || !map.isRendered() || !position) {
-      this.setVisible(false);
-      return;
-    }
-
-    var pixel = map.getPixelFromCoordinate(position);
-    var mapSize = map.getSize();
-    this.updateRenderedPosition(pixel, mapSize);
-  };
-
-  /**
-   * @param {import("./pixel.js").Pixel} pixel The pixel location.
-   * @param {import("./size.js").Size|undefined} mapSize The map size.
-   * @protected
-   */
-  Overlay.prototype.updateRenderedPosition = function updateRenderedPosition (pixel, mapSize) {
-    var style = this.element.style;
-    var offset = this.getOffset();
-
-    var positioning = this.getPositioning();
-
-    this.setVisible(true);
-
-    var offsetX = offset[0];
-    var offsetY = offset[1];
-    if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_RIGHT ||
-        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_RIGHT ||
-        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].TOP_RIGHT) {
-      if (this.rendered.left_ !== '') {
-        this.rendered.left_ = style.left = '';
-      }
-      var right = Math.round(mapSize[0] - pixel[0] - offsetX) + 'px';
-      if (this.rendered.right_ != right) {
-        this.rendered.right_ = style.right = right;
-      }
-    } else {
-      if (this.rendered.right_ !== '') {
-        this.rendered.right_ = style.right = '';
-      }
-      if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_CENTER ||
-          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_CENTER ||
-          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].TOP_CENTER) {
-        offsetX -= this.element.offsetWidth / 2;
-      }
-      var left = Math.round(pixel[0] + offsetX) + 'px';
-      if (this.rendered.left_ != left) {
-        this.rendered.left_ = style.left = left;
-      }
-    }
-    if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_LEFT ||
-        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_CENTER ||
-        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_RIGHT) {
-      if (this.rendered.top_ !== '') {
-        this.rendered.top_ = style.top = '';
-      }
-      var bottom = Math.round(mapSize[1] - pixel[1] - offsetY) + 'px';
-      if (this.rendered.bottom_ != bottom) {
-        this.rendered.bottom_ = style.bottom = bottom;
-      }
-    } else {
-      if (this.rendered.bottom_ !== '') {
-        this.rendered.bottom_ = style.bottom = '';
-      }
-      if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_LEFT ||
-          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_CENTER ||
-          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_RIGHT) {
-        offsetY -= this.element.offsetHeight / 2;
-      }
-      var top = Math.round(pixel[1] + offsetY) + 'px';
-      if (this.rendered.top_ != top) {
-        this.rendered.top_ = style.top = top;
-      }
-    }
-  };
-
-  /**
-   * returns the options this Overlay has been created with
-   * @return {Options} overlay options
-   */
-  Overlay.prototype.getOptions = function getOptions () {
-    return this.options;
-  };
-
-  return Overlay;
-}(_Object_js__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-
-/* harmony default export */ __webpack_exports__["default"] = (Overlay);
-
-//# sourceMappingURL=Overlay.js.map
-
-/***/ }),
-
-/***/ "./node_modules/ol/OverlayPositioning.js":
-/*!***********************************************!*\
-  !*** ./node_modules/ol/OverlayPositioning.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/**
- * @module ol/OverlayPositioning
- */
-
-/**
- * Overlay position: `'bottom-left'`, `'bottom-center'`,  `'bottom-right'`,
- * `'center-left'`, `'center-center'`, `'center-right'`, `'top-left'`,
- * `'top-center'`, `'top-right'`
- * @enum {string}
- */
-/* harmony default export */ __webpack_exports__["default"] = ({
-  BOTTOM_LEFT: 'bottom-left',
-  BOTTOM_CENTER: 'bottom-center',
-  BOTTOM_RIGHT: 'bottom-right',
-  CENTER_LEFT: 'center-left',
-  CENTER_CENTER: 'center-center',
-  CENTER_RIGHT: 'center-right',
-  TOP_LEFT: 'top-left',
-  TOP_CENTER: 'top-center',
-  TOP_RIGHT: 'top-right'
-});
-
-//# sourceMappingURL=OverlayPositioning.js.map
 
 /***/ }),
 
@@ -9220,68 +9006,6 @@ function asColorLike(color) {
 
 /***/ }),
 
-/***/ "./node_modules/ol/control.js":
-/*!************************************!*\
-  !*** ./node_modules/ol/control.js ***!
-  \************************************/
-/*! exports provided: Attribution, Control, FullScreen, MousePosition, OverviewMap, Rotate, ScaleLine, Zoom, ZoomSlider, ZoomToExtent, defaults */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _control_Attribution_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./control/Attribution.js */ "./node_modules/ol/control/Attribution.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Attribution", function() { return _control_Attribution_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-/* harmony import */ var _control_Control_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./control/Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Control", function() { return _control_Control_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
-
-/* harmony import */ var _control_FullScreen_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./control/FullScreen.js */ "./node_modules/ol/control/FullScreen.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FullScreen", function() { return _control_FullScreen_js__WEBPACK_IMPORTED_MODULE_2__["default"]; });
-
-/* harmony import */ var _control_MousePosition_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./control/MousePosition.js */ "./node_modules/ol/control/MousePosition.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MousePosition", function() { return _control_MousePosition_js__WEBPACK_IMPORTED_MODULE_3__["default"]; });
-
-/* harmony import */ var _control_OverviewMap_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./control/OverviewMap.js */ "./node_modules/ol/control/OverviewMap.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OverviewMap", function() { return _control_OverviewMap_js__WEBPACK_IMPORTED_MODULE_4__["default"]; });
-
-/* harmony import */ var _control_Rotate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./control/Rotate.js */ "./node_modules/ol/control/Rotate.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Rotate", function() { return _control_Rotate_js__WEBPACK_IMPORTED_MODULE_5__["default"]; });
-
-/* harmony import */ var _control_ScaleLine_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./control/ScaleLine.js */ "./node_modules/ol/control/ScaleLine.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ScaleLine", function() { return _control_ScaleLine_js__WEBPACK_IMPORTED_MODULE_6__["default"]; });
-
-/* harmony import */ var _control_Zoom_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./control/Zoom.js */ "./node_modules/ol/control/Zoom.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Zoom", function() { return _control_Zoom_js__WEBPACK_IMPORTED_MODULE_7__["default"]; });
-
-/* harmony import */ var _control_ZoomSlider_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./control/ZoomSlider.js */ "./node_modules/ol/control/ZoomSlider.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ZoomSlider", function() { return _control_ZoomSlider_js__WEBPACK_IMPORTED_MODULE_8__["default"]; });
-
-/* harmony import */ var _control_ZoomToExtent_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./control/ZoomToExtent.js */ "./node_modules/ol/control/ZoomToExtent.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ZoomToExtent", function() { return _control_ZoomToExtent_js__WEBPACK_IMPORTED_MODULE_9__["default"]; });
-
-/* harmony import */ var _control_util_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./control/util.js */ "./node_modules/ol/control/util.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "defaults", function() { return _control_util_js__WEBPACK_IMPORTED_MODULE_10__["defaults"]; });
-
-/**
- * @module ol/control
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-//# sourceMappingURL=control.js.map
-
-/***/ }),
-
 /***/ "./node_modules/ol/control/Attribution.js":
 /*!************************************************!*\
   !*** ./node_modules/ol/control/Attribution.js ***!
@@ -9818,1231 +9542,6 @@ var Control = /*@__PURE__*/(function (BaseObject) {
 
 /***/ }),
 
-/***/ "./node_modules/ol/control/FullScreen.js":
-/*!***********************************************!*\
-  !*** ./node_modules/ol/control/FullScreen.js ***!
-  \***********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
-/**
- * @module ol/control/FullScreen
- */
-
-
-
-
-
-
-
-/**
- * @return {string} Change type.
- */
-var getChangeType = (function() {
-  var changeType;
-  return function() {
-    if (!changeType) {
-      var body = document.body;
-      if (body.webkitRequestFullscreen) {
-        changeType = 'webkitfullscreenchange';
-      } else if (body.mozRequestFullScreen) {
-        changeType = 'mozfullscreenchange';
-      } else if (body.msRequestFullscreen) {
-        changeType = 'MSFullscreenChange';
-      } else if (body.requestFullscreen) {
-        changeType = 'fullscreenchange';
-      }
-    }
-    return changeType;
-  };
-})();
-
-
-/**
- * @typedef {Object} Options
- * @property {string} [className='ol-full-screen'] CSS class name.
- * @property {string|Text} [label='\u2922'] Text label to use for the button.
- * Instead of text, also an element (e.g. a `span` element) can be used.
- * @property {string|Text} [labelActive='\u00d7'] Text label to use for the
- * button when full-screen is active.
- * Instead of text, also an element (e.g. a `span` element) can be used.
- * @property {string} [tipLabel='Toggle full-screen'] Text label to use for the button tip.
- * @property {boolean} [keys=false] Full keyboard access.
- * @property {HTMLElement|string} [target] Specify a target if you want the
- * control to be rendered outside of the map's viewport.
- * @property {HTMLElement|string} [source] The element to be displayed
- * fullscreen. When not provided, the element containing the map viewport will
- * be displayed fullscreen.
- */
-
-
-/**
- * @classdesc
- * Provides a button that when clicked fills up the full screen with the map.
- * The full screen source element is by default the element containing the map viewport unless
- * overridden by providing the `source` option. In which case, the dom
- * element introduced using this parameter will be displayed in full screen.
- *
- * When in full screen mode, a close button is shown to exit full screen mode.
- * The [Fullscreen API](http://www.w3.org/TR/fullscreen/) is used to
- * toggle the map in full screen mode.
- *
- * @api
- */
-var FullScreen = /*@__PURE__*/(function (Control) {
-  function FullScreen(opt_options) {
-
-    var options = opt_options ? opt_options : {};
-
-    Control.call(this, {
-      element: document.createElement('div'),
-      target: options.target
-    });
-
-    /**
-     * @private
-     * @type {string}
-     */
-    this.cssClassName_ = options.className !== undefined ? options.className :
-      'ol-full-screen';
-
-    var label = options.label !== undefined ? options.label : '\u2922';
-
-    /**
-     * @private
-     * @type {Text}
-     */
-    this.labelNode_ = typeof label === 'string' ?
-      document.createTextNode(label) : label;
-
-    var labelActive = options.labelActive !== undefined ? options.labelActive : '\u00d7';
-
-    /**
-     * @private
-     * @type {Text}
-     */
-    this.labelActiveNode_ = typeof labelActive === 'string' ?
-      document.createTextNode(labelActive) : labelActive;
-
-    /**
-     * @private
-     * @type {HTMLElement}
-     */
-    this.button_ = document.createElement('button');
-
-    var tipLabel = options.tipLabel ? options.tipLabel : 'Toggle full-screen';
-    this.setClassName_(this.button_, isFullScreen());
-    this.button_.setAttribute('type', 'button');
-    this.button_.title = tipLabel;
-    this.button_.appendChild(this.labelNode_);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_3__["listen"])(this.button_, _events_EventType_js__WEBPACK_IMPORTED_MODULE_4__["default"].CLICK,
-      this.handleClick_, this);
-
-    var cssClasses = this.cssClassName_ + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_1__["CLASS_UNSELECTABLE"] +
-        ' ' + _css_js__WEBPACK_IMPORTED_MODULE_1__["CLASS_CONTROL"] + ' ' +
-        (!isFullScreenSupported() ? _css_js__WEBPACK_IMPORTED_MODULE_1__["CLASS_UNSUPPORTED"] : '');
-    var element = this.element;
-    element.className = cssClasses;
-    element.appendChild(this.button_);
-
-    /**
-     * @private
-     * @type {boolean}
-     */
-    this.keys_ = options.keys !== undefined ? options.keys : false;
-
-    /**
-     * @private
-     * @type {HTMLElement|string|undefined}
-     */
-    this.source_ = options.source;
-
-  }
-
-  if ( Control ) FullScreen.__proto__ = Control;
-  FullScreen.prototype = Object.create( Control && Control.prototype );
-  FullScreen.prototype.constructor = FullScreen;
-
-  /**
-   * @param {MouseEvent} event The event to handle
-   * @private
-   */
-  FullScreen.prototype.handleClick_ = function handleClick_ (event) {
-    event.preventDefault();
-    this.handleFullScreen_();
-  };
-
-  /**
-   * @private
-   */
-  FullScreen.prototype.handleFullScreen_ = function handleFullScreen_ () {
-    if (!isFullScreenSupported()) {
-      return;
-    }
-    var map = this.getMap();
-    if (!map) {
-      return;
-    }
-    if (isFullScreen()) {
-      exitFullScreen();
-    } else {
-      var element;
-      if (this.source_) {
-        element = typeof this.source_ === 'string' ?
-          document.getElementById(this.source_) :
-          this.source_;
-      } else {
-        element = map.getTargetElement();
-      }
-      if (this.keys_) {
-        requestFullScreenWithKeys(element);
-
-      } else {
-        requestFullScreen(element);
-      }
-    }
-  };
-
-  /**
-   * @private
-   */
-  FullScreen.prototype.handleFullScreenChange_ = function handleFullScreenChange_ () {
-    var map = this.getMap();
-    if (isFullScreen()) {
-      this.setClassName_(this.button_, true);
-      Object(_dom_js__WEBPACK_IMPORTED_MODULE_2__["replaceNode"])(this.labelActiveNode_, this.labelNode_);
-    } else {
-      this.setClassName_(this.button_, false);
-      Object(_dom_js__WEBPACK_IMPORTED_MODULE_2__["replaceNode"])(this.labelNode_, this.labelActiveNode_);
-    }
-    if (map) {
-      map.updateSize();
-    }
-  };
-
-  /**
-   * @param {HTMLElement} element Target element
-   * @param {boolean} fullscreen True if fullscreen class name should be active
-   * @private
-   */
-  FullScreen.prototype.setClassName_ = function setClassName_ (element, fullscreen) {
-    var activeClassName = this.cssClassName_ + '-true';
-    var inactiveClassName = this.cssClassName_ + '-false';
-    var nextClassName = fullscreen ? activeClassName : inactiveClassName;
-    element.classList.remove(activeClassName);
-    element.classList.remove(inactiveClassName);
-    element.classList.add(nextClassName);
-  };
-
-  /**
-   * @inheritDoc
-   * @api
-   */
-  FullScreen.prototype.setMap = function setMap (map) {
-    Control.prototype.setMap.call(this, map);
-    if (map) {
-      this.listenerKeys.push(Object(_events_js__WEBPACK_IMPORTED_MODULE_3__["listen"])(document,
-        getChangeType(),
-        this.handleFullScreenChange_, this)
-      );
-    }
-  };
-
-  return FullScreen;
-}(_Control_js__WEBPACK_IMPORTED_MODULE_0__["default"]));
-
-
-/**
- * @return {boolean} Fullscreen is supported by the current platform.
- */
-function isFullScreenSupported() {
-  var body = document.body;
-  return !!(
-    body.webkitRequestFullscreen ||
-    (body.mozRequestFullScreen && document.mozFullScreenEnabled) ||
-    (body.msRequestFullscreen && document.msFullscreenEnabled) ||
-    (body.requestFullscreen && document.fullscreenEnabled)
-  );
-}
-
-/**
- * @return {boolean} Element is currently in fullscreen.
- */
-function isFullScreen() {
-  return !!(
-    document.webkitIsFullScreen || document.mozFullScreen ||
-    document.msFullscreenElement || document.fullscreenElement
-  );
-}
-
-/**
- * Request to fullscreen an element.
- * @param {HTMLElement} element Element to request fullscreen
- */
-function requestFullScreen(element) {
-  if (element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen();
-  } else if (element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  }
-}
-
-/**
- * Request to fullscreen an element with keyboard input.
- * @param {HTMLElement} element Element to request fullscreen
- */
-function requestFullScreenWithKeys(element) {
-  if (element.mozRequestFullScreenWithKeys) {
-    element.mozRequestFullScreenWithKeys();
-  } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  } else {
-    requestFullScreen(element);
-  }
-}
-
-/**
- * Exit fullscreen.
- */
-function exitFullScreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
-  } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  }
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (FullScreen);
-
-//# sourceMappingURL=FullScreen.js.map
-
-/***/ }),
-
-/***/ "./node_modules/ol/control/MousePosition.js":
-/*!**************************************************!*\
-  !*** ./node_modules/ol/control/MousePosition.js ***!
-  \**************************************************/
-/*! exports provided: render, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
-/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
-/**
- * @module ol/control/MousePosition
- */
-
-
-
-
-
-
-
-/**
- * @type {string}
- */
-var PROJECTION = 'projection';
-
-/**
- * @type {string}
- */
-var COORDINATE_FORMAT = 'coordinateFormat';
-
-
-/**
- * @typedef {Object} Options
- * @property {string} [className='ol-mouse-position'] CSS class name.
- * @property {import("../coordinate.js").CoordinateFormat} [coordinateFormat] Coordinate format.
- * @property {import("../proj.js").ProjectionLike} [projection] Projection. Default is the view projection.
- * @property {function(import("../MapEvent.js").default)} [render] Function called when the
- * control should be re-rendered. This is called in a `requestAnimationFrame`
- * callback.
- * @property {HTMLElement|string} [target] Specify a target if you want the
- * control to be rendered outside of the map's viewport.
- * @property {string} [undefinedHTML='&#160;'] Markup to show when coordinates are not
- * available (e.g. when the pointer leaves the map viewport).  By default, the last position
- * will be replaced with `'&#160;'` (`&nbsp;`) when the pointer leaves the viewport.  To
- * retain the last rendered position, set this option to something falsey (like an empty
- * string `''`).
- */
-
-
-/**
- * @classdesc
- * A control to show the 2D coordinates of the mouse cursor. By default, these
- * are in the view projection, but can be in any supported projection.
- * By default the control is shown in the top right corner of the map, but this
- * can be changed by using the css selector `.ol-mouse-position`.
- *
- * On touch devices, which usually do not have a mouse cursor, the coordinates
- * of the currently touched position are shown.
- *
- * @api
- */
-var MousePosition = /*@__PURE__*/(function (Control) {
-  function MousePosition(opt_options) {
-
-    var options = opt_options ? opt_options : {};
-
-    var element = document.createElement('div');
-    element.className = options.className !== undefined ? options.className : 'ol-mouse-position';
-
-    Control.call(this, {
-      element: element,
-      render: options.render || render,
-      target: options.target
-    });
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(this,
-      Object(_Object_js__WEBPACK_IMPORTED_MODULE_2__["getChangeEventType"])(PROJECTION),
-      this.handleProjectionChanged_, this);
-
-    if (options.coordinateFormat) {
-      this.setCoordinateFormat(options.coordinateFormat);
-    }
-    if (options.projection) {
-      this.setProjection(options.projection);
-    }
-
-    /**
-     * @private
-     * @type {string}
-     */
-    this.undefinedHTML_ = options.undefinedHTML !== undefined ? options.undefinedHTML : '&#160;';
-
-    /**
-     * @private
-     * @type {boolean}
-     */
-    this.renderOnMouseOut_ = !!this.undefinedHTML_;
-
-    /**
-     * @private
-     * @type {string}
-     */
-    this.renderedHTML_ = element.innerHTML;
-
-    /**
-     * @private
-     * @type {import("../proj/Projection.js").default}
-     */
-    this.mapProjection_ = null;
-
-    /**
-     * @private
-     * @type {?import("../proj.js").TransformFunction}
-     */
-    this.transform_ = null;
-
-    /**
-     * @private
-     * @type {import("../pixel.js").Pixel}
-     */
-    this.lastMouseMovePixel_ = null;
-
-  }
-
-  if ( Control ) MousePosition.__proto__ = Control;
-  MousePosition.prototype = Object.create( Control && Control.prototype );
-  MousePosition.prototype.constructor = MousePosition;
-
-  /**
-   * @private
-   */
-  MousePosition.prototype.handleProjectionChanged_ = function handleProjectionChanged_ () {
-    this.transform_ = null;
-  };
-
-  /**
-   * Return the coordinate format type used to render the current position or
-   * undefined.
-   * @return {import("../coordinate.js").CoordinateFormat|undefined} The format to render the current
-   *     position in.
-   * @observable
-   * @api
-   */
-  MousePosition.prototype.getCoordinateFormat = function getCoordinateFormat () {
-    return (
-      /** @type {import("../coordinate.js").CoordinateFormat|undefined} */ (this.get(COORDINATE_FORMAT))
-    );
-  };
-
-  /**
-   * Return the projection that is used to report the mouse position.
-   * @return {import("../proj/Projection.js").default|undefined} The projection to report mouse
-   *     position in.
-   * @observable
-   * @api
-   */
-  MousePosition.prototype.getProjection = function getProjection () {
-    return (
-      /** @type {import("../proj/Projection.js").default|undefined} */ (this.get(PROJECTION))
-    );
-  };
-
-  /**
-   * @param {Event} event Browser event.
-   * @protected
-   */
-  MousePosition.prototype.handleMouseMove = function handleMouseMove (event) {
-    var map = this.getMap();
-    this.lastMouseMovePixel_ = map.getEventPixel(event);
-    this.updateHTML_(this.lastMouseMovePixel_);
-  };
-
-  /**
-   * @param {Event} event Browser event.
-   * @protected
-   */
-  MousePosition.prototype.handleMouseOut = function handleMouseOut (event) {
-    this.updateHTML_(null);
-    this.lastMouseMovePixel_ = null;
-  };
-
-  /**
-   * @inheritDoc
-   * @api
-   */
-  MousePosition.prototype.setMap = function setMap (map) {
-    Control.prototype.setMap.call(this, map);
-    if (map) {
-      var viewport = map.getViewport();
-      this.listenerKeys.push(
-        Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].MOUSEMOVE, this.handleMouseMove, this),
-        Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].TOUCHSTART, this.handleMouseMove, this)
-      );
-      if (this.renderOnMouseOut_) {
-        this.listenerKeys.push(
-          Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].MOUSEOUT, this.handleMouseOut, this),
-          Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].TOUCHEND, this.handleMouseOut, this)
-        );
-      }
-    }
-  };
-
-  /**
-   * Set the coordinate format type used to render the current position.
-   * @param {import("../coordinate.js").CoordinateFormat} format The format to render the current
-   *     position in.
-   * @observable
-   * @api
-   */
-  MousePosition.prototype.setCoordinateFormat = function setCoordinateFormat (format) {
-    this.set(COORDINATE_FORMAT, format);
-  };
-
-  /**
-   * Set the projection that is used to report the mouse position.
-   * @param {import("../proj.js").ProjectionLike} projection The projection to report mouse
-   *     position in.
-   * @observable
-   * @api
-   */
-  MousePosition.prototype.setProjection = function setProjection (projection) {
-    this.set(PROJECTION, Object(_proj_js__WEBPACK_IMPORTED_MODULE_4__["get"])(projection));
-  };
-
-  /**
-   * @param {?import("../pixel.js").Pixel} pixel Pixel.
-   * @private
-   */
-  MousePosition.prototype.updateHTML_ = function updateHTML_ (pixel) {
-    var html = this.undefinedHTML_;
-    if (pixel && this.mapProjection_) {
-      if (!this.transform_) {
-        var projection = this.getProjection();
-        if (projection) {
-          this.transform_ = Object(_proj_js__WEBPACK_IMPORTED_MODULE_4__["getTransformFromProjections"])(
-            this.mapProjection_, projection);
-        } else {
-          this.transform_ = _proj_js__WEBPACK_IMPORTED_MODULE_4__["identityTransform"];
-        }
-      }
-      var map = this.getMap();
-      var coordinate = map.getCoordinateFromPixel(pixel);
-      if (coordinate) {
-        this.transform_(coordinate, coordinate);
-        var coordinateFormat = this.getCoordinateFormat();
-        if (coordinateFormat) {
-          html = coordinateFormat(coordinate);
-        } else {
-          html = coordinate.toString();
-        }
-      }
-    }
-    if (!this.renderedHTML_ || html !== this.renderedHTML_) {
-      this.element.innerHTML = html;
-      this.renderedHTML_ = html;
-    }
-  };
-
-  return MousePosition;
-}(_Control_js__WEBPACK_IMPORTED_MODULE_3__["default"]));
-
-
-/**
- * Update the projection. Rendering of the coordinates is done in
- * `handleMouseMove` and `handleMouseUp`.
- * @param {import("../MapEvent.js").default} mapEvent Map event.
- * @this {MousePosition}
- * @api
- */
-function render(mapEvent) {
-  var frameState = mapEvent.frameState;
-  if (!frameState) {
-    this.mapProjection_ = null;
-  } else {
-    if (this.mapProjection_ != frameState.viewState.projection) {
-      this.mapProjection_ = frameState.viewState.projection;
-      this.transform_ = null;
-    }
-  }
-}
-
-
-/* harmony default export */ __webpack_exports__["default"] = (MousePosition);
-
-//# sourceMappingURL=MousePosition.js.map
-
-/***/ }),
-
-/***/ "./node_modules/ol/control/OverviewMap.js":
-/*!************************************************!*\
-  !*** ./node_modules/ol/control/OverviewMap.js ***!
-  \************************************************/
-/*! exports provided: render, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony import */ var _Collection_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Collection.js */ "./node_modules/ol/Collection.js");
-/* harmony import */ var _Map_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Map.js */ "./node_modules/ol/Map.js");
-/* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../MapEventType.js */ "./node_modules/ol/MapEventType.js");
-/* harmony import */ var _MapProperty_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../MapProperty.js */ "./node_modules/ol/MapProperty.js");
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
-/* harmony import */ var _ObjectEventType_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ObjectEventType.js */ "./node_modules/ol/ObjectEventType.js");
-/* harmony import */ var _Overlay_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Overlay.js */ "./node_modules/ol/Overlay.js");
-/* harmony import */ var _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../OverlayPositioning.js */ "./node_modules/ol/OverlayPositioning.js");
-/* harmony import */ var _ViewProperty_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ViewProperty.js */ "./node_modules/ol/ViewProperty.js");
-/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
-/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
-/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
-/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
-/**
- * @module ol/control/OverviewMap
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * Maximum width and/or height extent ratio that determines when the overview
- * map should be zoomed out.
- * @type {number}
- */
-var MAX_RATIO = 0.75;
-
-
-/**
- * Minimum width and/or height extent ratio that determines when the overview
- * map should be zoomed in.
- * @type {number}
- */
-var MIN_RATIO = 0.1;
-
-
-/**
- * @typedef {Object} Options
- * @property {string} [className='ol-overviewmap'] CSS class name.
- * @property {boolean} [collapsed=true] Whether the control should start collapsed or not (expanded).
- * @property {string|HTMLElement} [collapseLabel='«'] Text label to use for the
- * expanded overviewmap button. Instead of text, also an element (e.g. a `span` element) can be used.
- * @property {boolean} [collapsible=true] Whether the control can be collapsed or not.
- * @property {string|HTMLElement} [label='»'] Text label to use for the collapsed
- * overviewmap button. Instead of text, also an element (e.g. a `span` element) can be used.
- * @property {Array<import("../layer/Layer.js").default>|import("../Collection.js").default<import("../layer/Layer.js").default>} [layers]
- * Layers for the overview map. If not set, then all main map layers are used
- * instead.
- * @property {function(import("../MapEvent.js").default)} [render] Function called when the control
- * should be re-rendered. This is called in a `requestAnimationFrame` callback.
- * @property {HTMLElement|string} [target] Specify a target if you want the control
- * to be rendered outside of the map's viewport.
- * @property {string} [tipLabel='Overview map'] Text label to use for the button tip.
- * @property {import("../View.js").default} [view] Custom view for the overview map. If not provided,
- * a default view with an EPSG:3857 projection will be used.
- */
-
-
-/**
- * Create a new control with a map acting as an overview map for an other
- * defined map.
- *
- * @api
- */
-var OverviewMap = /*@__PURE__*/(function (Control) {
-  function OverviewMap(opt_options) {
-
-    var options = opt_options ? opt_options : {};
-
-    Control.call(this, {
-      element: document.createElement('div'),
-      render: options.render || render,
-      target: options.target
-    });
-
-    /**
-     * @type {boolean}
-     * @private
-     */
-    this.collapsed_ = options.collapsed !== undefined ? options.collapsed : true;
-
-    /**
-     * @private
-     * @type {boolean}
-     */
-    this.collapsible_ = options.collapsible !== undefined ?
-      options.collapsible : true;
-
-    if (!this.collapsible_) {
-      this.collapsed_ = false;
-    }
-
-    var className = options.className !== undefined ? options.className : 'ol-overviewmap';
-
-    var tipLabel = options.tipLabel !== undefined ? options.tipLabel : 'Overview map';
-
-    var collapseLabel = options.collapseLabel !== undefined ? options.collapseLabel : '\u00AB';
-
-    if (typeof collapseLabel === 'string') {
-      /**
-       * @private
-       * @type {HTMLElement}
-       */
-      this.collapseLabel_ = document.createElement('span');
-      this.collapseLabel_.textContent = collapseLabel;
-    } else {
-      this.collapseLabel_ = collapseLabel;
-    }
-
-    var label = options.label !== undefined ? options.label : '\u00BB';
-
-
-    if (typeof label === 'string') {
-      /**
-       * @private
-       * @type {HTMLElement}
-       */
-      this.label_ = document.createElement('span');
-      this.label_.textContent = label;
-    } else {
-      this.label_ = label;
-    }
-
-    var activeLabel = (this.collapsible_ && !this.collapsed_) ?
-      this.collapseLabel_ : this.label_;
-    var button = document.createElement('button');
-    button.setAttribute('type', 'button');
-    button.title = tipLabel;
-    button.appendChild(activeLabel);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listen"])(button, _events_EventType_js__WEBPACK_IMPORTED_MODULE_14__["default"].CLICK,
-      this.handleClick_, this);
-
-    /**
-     * @type {HTMLElement}
-     * @private
-     */
-    this.ovmapDiv_ = document.createElement('div');
-    this.ovmapDiv_.className = 'ol-overviewmap-map';
-
-    /**
-     * @type {import("../Map.js").default}
-     * @private
-     */
-    this.ovmap_ = new _Map_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
-      controls: new _Collection_js__WEBPACK_IMPORTED_MODULE_0__["default"](),
-      interactions: new _Collection_js__WEBPACK_IMPORTED_MODULE_0__["default"](),
-      view: options.view
-    });
-    var ovmap = this.ovmap_;
-
-    if (options.layers) {
-      /** @type {Array<import("../layer/Layer.js").default>} */ (options.layers).forEach(
-        /**
-         * @param {import("../layer/Layer.js").default} layer Layer.
-         */
-        (function(layer) {
-          ovmap.addLayer(layer);
-        }).bind(this));
-    }
-
-    var box = document.createElement('div');
-    box.className = 'ol-overviewmap-box';
-    box.style.boxSizing = 'border-box';
-
-    /**
-     * @type {import("../Overlay.js").default}
-     * @private
-     */
-    this.boxOverlay_ = new _Overlay_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
-      position: [0, 0],
-      positioning: _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_7__["default"].BOTTOM_LEFT,
-      element: box
-    });
-    this.ovmap_.addOverlay(this.boxOverlay_);
-
-    var cssClasses = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_UNSELECTABLE"] + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_CONTROL"] +
-        (this.collapsed_ && this.collapsible_ ? ' ' + _css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_COLLAPSED"] : '') +
-        (this.collapsible_ ? '' : ' ol-uncollapsible');
-    var element = this.element;
-    element.className = cssClasses;
-    element.appendChild(this.ovmapDiv_);
-    element.appendChild(button);
-
-    /* Interactive map */
-
-    var scope = this;
-
-    var overlay = this.boxOverlay_;
-    var overlayBox = this.boxOverlay_.getElement();
-
-    /* Functions definition */
-
-    var computeDesiredMousePosition = function(mousePosition) {
-      return {
-        clientX: mousePosition.clientX - (overlayBox.offsetWidth / 2),
-        clientY: mousePosition.clientY + (overlayBox.offsetHeight / 2)
-      };
-    };
-
-    var move = function(event) {
-      var position = /** @type {?} */ (computeDesiredMousePosition(event));
-      var coordinates = ovmap.getEventCoordinate(/** @type {Event} */ (position));
-
-      overlay.setPosition(coordinates);
-    };
-
-    var endMoving = function(event) {
-      var coordinates = ovmap.getEventCoordinate(event);
-
-      scope.getMap().getView().setCenter(coordinates);
-
-      window.removeEventListener('mousemove', move);
-      window.removeEventListener('mouseup', endMoving);
-    };
-
-    /* Binding */
-
-    overlayBox.addEventListener('mousedown', function() {
-      window.addEventListener('mousemove', move);
-      window.addEventListener('mouseup', endMoving);
-    });
-  }
-
-  if ( Control ) OverviewMap.__proto__ = Control;
-  OverviewMap.prototype = Object.create( Control && Control.prototype );
-  OverviewMap.prototype.constructor = OverviewMap;
-
-  /**
-   * @inheritDoc
-   * @api
-   */
-  OverviewMap.prototype.setMap = function setMap (map) {
-    var oldMap = this.getMap();
-    if (map === oldMap) {
-      return;
-    }
-    if (oldMap) {
-      var oldView = oldMap.getView();
-      if (oldView) {
-        this.unbindView_(oldView);
-      }
-      this.ovmap_.setTarget(null);
-    }
-    Control.prototype.setMap.call(this, map);
-
-    if (map) {
-      this.ovmap_.setTarget(this.ovmapDiv_);
-      this.listenerKeys.push(Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listen"])(
-        map, _ObjectEventType_js__WEBPACK_IMPORTED_MODULE_5__["default"].PROPERTYCHANGE,
-        this.handleMapPropertyChange_, this));
-
-      // TODO: to really support map switching, this would need to be reworked
-      if (this.ovmap_.getLayers().getLength() === 0) {
-        this.ovmap_.setLayerGroup(map.getLayerGroup());
-      }
-
-      var view = map.getView();
-      if (view) {
-        this.bindView_(view);
-        if (view.isDef()) {
-          this.ovmap_.updateSize();
-          this.resetExtent_();
-        }
-      }
-    }
-  };
-
-  /**
-   * Handle map property changes.  This only deals with changes to the map's view.
-   * @param {import("../Object.js").ObjectEvent} event The propertychange event.
-   * @private
-   */
-  OverviewMap.prototype.handleMapPropertyChange_ = function handleMapPropertyChange_ (event) {
-    if (event.key === _MapProperty_js__WEBPACK_IMPORTED_MODULE_3__["default"].VIEW) {
-      var oldView = /** @type {import("../View.js").default} */ (event.oldValue);
-      if (oldView) {
-        this.unbindView_(oldView);
-      }
-      var newView = this.getMap().getView();
-      this.bindView_(newView);
-    }
-  };
-
-  /**
-   * Register listeners for view property changes.
-   * @param {import("../View.js").default} view The view.
-   * @private
-   */
-  OverviewMap.prototype.bindView_ = function bindView_ (view) {
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listen"])(view,
-      Object(_Object_js__WEBPACK_IMPORTED_MODULE_4__["getChangeEventType"])(_ViewProperty_js__WEBPACK_IMPORTED_MODULE_8__["default"].ROTATION),
-      this.handleRotationChanged_, this);
-  };
-
-  /**
-   * Unregister listeners for view property changes.
-   * @param {import("../View.js").default} view The view.
-   * @private
-   */
-  OverviewMap.prototype.unbindView_ = function unbindView_ (view) {
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["unlisten"])(view,
-      Object(_Object_js__WEBPACK_IMPORTED_MODULE_4__["getChangeEventType"])(_ViewProperty_js__WEBPACK_IMPORTED_MODULE_8__["default"].ROTATION),
-      this.handleRotationChanged_, this);
-  };
-
-  /**
-   * Handle rotation changes to the main map.
-   * TODO: This should rotate the extent rectrangle instead of the
-   * overview map's view.
-   * @private
-   */
-  OverviewMap.prototype.handleRotationChanged_ = function handleRotationChanged_ () {
-    this.ovmap_.getView().setRotation(this.getMap().getView().getRotation());
-  };
-
-  /**
-   * Reset the overview map extent if the box size (width or
-   * height) is less than the size of the overview map size times minRatio
-   * or is greater than the size of the overview size times maxRatio.
-   *
-   * If the map extent was not reset, the box size can fits in the defined
-   * ratio sizes. This method then checks if is contained inside the overview
-   * map current extent. If not, recenter the overview map to the current
-   * main map center location.
-   * @private
-   */
-  OverviewMap.prototype.validateExtent_ = function validateExtent_ () {
-    var map = this.getMap();
-    var ovmap = this.ovmap_;
-
-    if (!map.isRendered() || !ovmap.isRendered()) {
-      return;
-    }
-
-    var mapSize = /** @type {import("../size.js").Size} */ (map.getSize());
-
-    var view = map.getView();
-    var extent = view.calculateExtent(mapSize);
-
-    var ovmapSize = /** @type {import("../size.js").Size} */ (ovmap.getSize());
-
-    var ovview = ovmap.getView();
-    var ovextent = ovview.calculateExtent(ovmapSize);
-
-    var topLeftPixel =
-        ovmap.getPixelFromCoordinate(Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getTopLeft"])(extent));
-    var bottomRightPixel =
-        ovmap.getPixelFromCoordinate(Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getBottomRight"])(extent));
-
-    var boxWidth = Math.abs(topLeftPixel[0] - bottomRightPixel[0]);
-    var boxHeight = Math.abs(topLeftPixel[1] - bottomRightPixel[1]);
-
-    var ovmapWidth = ovmapSize[0];
-    var ovmapHeight = ovmapSize[1];
-
-    if (boxWidth < ovmapWidth * MIN_RATIO ||
-        boxHeight < ovmapHeight * MIN_RATIO ||
-        boxWidth > ovmapWidth * MAX_RATIO ||
-        boxHeight > ovmapHeight * MAX_RATIO) {
-      this.resetExtent_();
-    } else if (!Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["containsExtent"])(ovextent, extent)) {
-      this.recenter_();
-    }
-  };
-
-  /**
-   * Reset the overview map extent to half calculated min and max ratio times
-   * the extent of the main map.
-   * @private
-   */
-  OverviewMap.prototype.resetExtent_ = function resetExtent_ () {
-    if (MAX_RATIO === 0 || MIN_RATIO === 0) {
-      return;
-    }
-
-    var map = this.getMap();
-    var ovmap = this.ovmap_;
-
-    var mapSize = /** @type {import("../size.js").Size} */ (map.getSize());
-
-    var view = map.getView();
-    var extent = view.calculateExtent(mapSize);
-
-    var ovview = ovmap.getView();
-
-    // get how many times the current map overview could hold different
-    // box sizes using the min and max ratio, pick the step in the middle used
-    // to calculate the extent from the main map to set it to the overview map,
-    var steps = Math.log(
-      MAX_RATIO / MIN_RATIO) / Math.LN2;
-    var ratio = 1 / (Math.pow(2, steps / 2) * MIN_RATIO);
-    Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["scaleFromCenter"])(extent, ratio);
-    ovview.fit(extent);
-  };
-
-  /**
-   * Set the center of the overview map to the map center without changing its
-   * resolution.
-   * @private
-   */
-  OverviewMap.prototype.recenter_ = function recenter_ () {
-    var map = this.getMap();
-    var ovmap = this.ovmap_;
-
-    var view = map.getView();
-
-    var ovview = ovmap.getView();
-
-    ovview.setCenter(view.getCenter());
-  };
-
-  /**
-   * Update the box using the main map extent
-   * @private
-   */
-  OverviewMap.prototype.updateBox_ = function updateBox_ () {
-    var map = this.getMap();
-    var ovmap = this.ovmap_;
-
-    if (!map.isRendered() || !ovmap.isRendered()) {
-      return;
-    }
-
-    var mapSize = /** @type {import("../size.js").Size} */ (map.getSize());
-
-    var view = map.getView();
-
-    var ovview = ovmap.getView();
-
-    var rotation = view.getRotation();
-
-    var overlay = this.boxOverlay_;
-    var box = this.boxOverlay_.getElement();
-    var extent = view.calculateExtent(mapSize);
-    var ovresolution = ovview.getResolution();
-    var bottomLeft = Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getBottomLeft"])(extent);
-    var topRight = Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getTopRight"])(extent);
-
-    // set position using bottom left coordinates
-    var rotateBottomLeft = this.calculateCoordinateRotate_(rotation, bottomLeft);
-    overlay.setPosition(rotateBottomLeft);
-
-    // set box size calculated from map extent size and overview map resolution
-    if (box) {
-      box.style.width = Math.abs((bottomLeft[0] - topRight[0]) / ovresolution) + 'px';
-      box.style.height = Math.abs((topRight[1] - bottomLeft[1]) / ovresolution) + 'px';
-    }
-  };
-
-  /**
-   * @param {number} rotation Target rotation.
-   * @param {import("../coordinate.js").Coordinate} coordinate Coordinate.
-   * @return {import("../coordinate.js").Coordinate|undefined} Coordinate for rotation and center anchor.
-   * @private
-   */
-  OverviewMap.prototype.calculateCoordinateRotate_ = function calculateCoordinateRotate_ (rotation, coordinate) {
-    var coordinateRotate;
-
-    var map = this.getMap();
-    var view = map.getView();
-
-    var currentCenter = view.getCenter();
-
-    if (currentCenter) {
-      coordinateRotate = [
-        coordinate[0] - currentCenter[0],
-        coordinate[1] - currentCenter[1]
-      ];
-      Object(_coordinate_js__WEBPACK_IMPORTED_MODULE_10__["rotate"])(coordinateRotate, rotation);
-      Object(_coordinate_js__WEBPACK_IMPORTED_MODULE_10__["add"])(coordinateRotate, currentCenter);
-    }
-    return coordinateRotate;
-  };
-
-  /**
-   * @param {MouseEvent} event The event to handle
-   * @private
-   */
-  OverviewMap.prototype.handleClick_ = function handleClick_ (event) {
-    event.preventDefault();
-    this.handleToggle_();
-  };
-
-  /**
-   * @private
-   */
-  OverviewMap.prototype.handleToggle_ = function handleToggle_ () {
-    this.element.classList.toggle(_css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_COLLAPSED"]);
-    if (this.collapsed_) {
-      Object(_dom_js__WEBPACK_IMPORTED_MODULE_12__["replaceNode"])(this.collapseLabel_, this.label_);
-    } else {
-      Object(_dom_js__WEBPACK_IMPORTED_MODULE_12__["replaceNode"])(this.label_, this.collapseLabel_);
-    }
-    this.collapsed_ = !this.collapsed_;
-
-    // manage overview map if it had not been rendered before and control
-    // is expanded
-    var ovmap = this.ovmap_;
-    if (!this.collapsed_ && !ovmap.isRendered()) {
-      ovmap.updateSize();
-      this.resetExtent_();
-      Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listenOnce"])(ovmap, _MapEventType_js__WEBPACK_IMPORTED_MODULE_2__["default"].POSTRENDER,
-        function(event) {
-          this.updateBox_();
-        },
-        this);
-    }
-  };
-
-  /**
-   * Return `true` if the overview map is collapsible, `false` otherwise.
-   * @return {boolean} True if the widget is collapsible.
-   * @api
-   */
-  OverviewMap.prototype.getCollapsible = function getCollapsible () {
-    return this.collapsible_;
-  };
-
-  /**
-   * Set whether the overview map should be collapsible.
-   * @param {boolean} collapsible True if the widget is collapsible.
-   * @api
-   */
-  OverviewMap.prototype.setCollapsible = function setCollapsible (collapsible) {
-    if (this.collapsible_ === collapsible) {
-      return;
-    }
-    this.collapsible_ = collapsible;
-    this.element.classList.toggle('ol-uncollapsible');
-    if (!collapsible && this.collapsed_) {
-      this.handleToggle_();
-    }
-  };
-
-  /**
-   * Collapse or expand the overview map according to the passed parameter. Will
-   * not do anything if the overview map isn't collapsible or if the current
-   * collapsed state is already the one requested.
-   * @param {boolean} collapsed True if the widget is collapsed.
-   * @api
-   */
-  OverviewMap.prototype.setCollapsed = function setCollapsed (collapsed) {
-    if (!this.collapsible_ || this.collapsed_ === collapsed) {
-      return;
-    }
-    this.handleToggle_();
-  };
-
-  /**
-   * Determine if the overview map is collapsed.
-   * @return {boolean} The overview map is collapsed.
-   * @api
-   */
-  OverviewMap.prototype.getCollapsed = function getCollapsed () {
-    return this.collapsed_;
-  };
-
-  /**
-   * Return the overview map.
-   * @return {import("../PluggableMap.js").default} Overview map.
-   * @api
-   */
-  OverviewMap.prototype.getOverviewMap = function getOverviewMap () {
-    return this.ovmap_;
-  };
-
-  return OverviewMap;
-}(_Control_js__WEBPACK_IMPORTED_MODULE_9__["default"]));
-
-
-/**
- * Update the overview map element.
- * @param {import("../MapEvent.js").default} mapEvent Map event.
- * @this {OverviewMap}
- * @api
- */
-function render(mapEvent) {
-  this.validateExtent_();
-  this.updateBox_();
-}
-
-
-/* harmony default export */ __webpack_exports__["default"] = (OverviewMap);
-
-//# sourceMappingURL=OverviewMap.js.map
-
-/***/ }),
-
 /***/ "./node_modules/ol/control/Rotate.js":
 /*!*******************************************!*\
   !*** ./node_modules/ol/control/Rotate.js ***!
@@ -11244,328 +9743,6 @@ function render(mapEvent) {
 
 /***/ }),
 
-/***/ "./node_modules/ol/control/ScaleLine.js":
-/*!**********************************************!*\
-  !*** ./node_modules/ol/control/ScaleLine.js ***!
-  \**********************************************/
-/*! exports provided: Units, render, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Units", function() { return Units; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
-/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../asserts.js */ "./node_modules/ol/asserts.js");
-/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
-/* harmony import */ var _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../proj/Units.js */ "./node_modules/ol/proj/Units.js");
-/**
- * @module ol/control/ScaleLine
- */
-
-
-
-
-
-
-
-
-
-/**
- * @type {string}
- */
-var UNITS_PROP = 'units';
-
-/**
- * Units for the scale line. Supported values are `'degrees'`, `'imperial'`,
- * `'nautical'`, `'metric'`, `'us'`.
- * @enum {string}
- */
-var Units = {
-  DEGREES: 'degrees',
-  IMPERIAL: 'imperial',
-  NAUTICAL: 'nautical',
-  METRIC: 'metric',
-  US: 'us'
-};
-
-
-/**
- * @const
- * @type {Array<number>}
- */
-var LEADING_DIGITS = [1, 2, 5];
-
-
-/**
- * @typedef {Object} Options
- * @property {string} [className='ol-scale-line'] CSS Class name.
- * @property {number} [minWidth=64] Minimum width in pixels.
- * @property {function(import("../MapEvent.js").default)} [render] Function called when the control
- * should be re-rendered. This is called in a `requestAnimationFrame` callback.
- * @property {HTMLElement|string} [target] Specify a target if you want the control
- * to be rendered outside of the map's viewport.
- * @property {Units|string} [units='metric'] Units.
- */
-
-
-/**
- * @classdesc
- * A control displaying rough y-axis distances, calculated for the center of the
- * viewport. For conformal projections (e.g. EPSG:3857, the default view
- * projection in OpenLayers), the scale is valid for all directions.
- * No scale line will be shown when the y-axis distance of a pixel at the
- * viewport center cannot be calculated in the view projection.
- * By default the scale line will show in the bottom left portion of the map,
- * but this can be changed by using the css selector `.ol-scale-line`.
- *
- * @api
- */
-var ScaleLine = /*@__PURE__*/(function (Control) {
-  function ScaleLine(opt_options) {
-
-    var options = opt_options ? opt_options : {};
-
-    var className = options.className !== undefined ? options.className : 'ol-scale-line';
-
-    Control.call(this, {
-      element: document.createElement('div'),
-      render: options.render || render,
-      target: options.target
-    });
-
-    /**
-     * @private
-     * @type {HTMLElement}
-     */
-    this.innerElement_ = document.createElement('div');
-    this.innerElement_.className = className + '-inner';
-
-    this.element.className = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_UNSELECTABLE"];
-    this.element.appendChild(this.innerElement_);
-
-    /**
-     * @private
-     * @type {?import("../View.js").State}
-     */
-    this.viewState_ = null;
-
-    /**
-     * @private
-     * @type {number}
-     */
-    this.minWidth_ = options.minWidth !== undefined ? options.minWidth : 64;
-
-    /**
-     * @private
-     * @type {boolean}
-     */
-    this.renderedVisible_ = false;
-
-    /**
-     * @private
-     * @type {number|undefined}
-     */
-    this.renderedWidth_ = undefined;
-
-    /**
-     * @private
-     * @type {string}
-     */
-    this.renderedHTML_ = '';
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(
-      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_0__["getChangeEventType"])(UNITS_PROP),
-      this.handleUnitsChanged_, this);
-
-    this.setUnits(/** @type {Units} */ (options.units) || Units.METRIC);
-
-  }
-
-  if ( Control ) ScaleLine.__proto__ = Control;
-  ScaleLine.prototype = Object.create( Control && Control.prototype );
-  ScaleLine.prototype.constructor = ScaleLine;
-
-  /**
-   * Return the units to use in the scale line.
-   * @return {Units} The units
-   * to use in the scale line.
-   * @observable
-   * @api
-   */
-  ScaleLine.prototype.getUnits = function getUnits () {
-    return this.get(UNITS_PROP);
-  };
-
-  /**
-   * @private
-   */
-  ScaleLine.prototype.handleUnitsChanged_ = function handleUnitsChanged_ () {
-    this.updateElement_();
-  };
-
-  /**
-   * Set the units to use in the scale line.
-   * @param {Units} units The units to use in the scale line.
-   * @observable
-   * @api
-   */
-  ScaleLine.prototype.setUnits = function setUnits (units) {
-    this.set(UNITS_PROP, units);
-  };
-
-  /**
-   * @private
-   */
-  ScaleLine.prototype.updateElement_ = function updateElement_ () {
-    var viewState = this.viewState_;
-
-    if (!viewState) {
-      if (this.renderedVisible_) {
-        this.element.style.display = 'none';
-        this.renderedVisible_ = false;
-      }
-      return;
-    }
-
-    var center = viewState.center;
-    var projection = viewState.projection;
-    var units = this.getUnits();
-    var pointResolutionUnits = units == Units.DEGREES ?
-      _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES :
-      _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].METERS;
-    var pointResolution =
-        Object(_proj_js__WEBPACK_IMPORTED_MODULE_5__["getPointResolution"])(projection, viewState.resolution, center, pointResolutionUnits);
-    if (projection.getUnits() != _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES && projection.getMetersPerUnit()
-      && pointResolutionUnits == _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].METERS) {
-      pointResolution *= projection.getMetersPerUnit();
-    }
-
-    var nominalCount = this.minWidth_ * pointResolution;
-    var suffix = '';
-    if (units == Units.DEGREES) {
-      var metersPerDegree = _proj_js__WEBPACK_IMPORTED_MODULE_5__["METERS_PER_UNIT"][_proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES];
-      if (projection.getUnits() == _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES) {
-        nominalCount *= metersPerDegree;
-      } else {
-        pointResolution /= metersPerDegree;
-      }
-      if (nominalCount < metersPerDegree / 60) {
-        suffix = '\u2033'; // seconds
-        pointResolution *= 3600;
-      } else if (nominalCount < metersPerDegree) {
-        suffix = '\u2032'; // minutes
-        pointResolution *= 60;
-      } else {
-        suffix = '\u00b0'; // degrees
-      }
-    } else if (units == Units.IMPERIAL) {
-      if (nominalCount < 0.9144) {
-        suffix = 'in';
-        pointResolution /= 0.0254;
-      } else if (nominalCount < 1609.344) {
-        suffix = 'ft';
-        pointResolution /= 0.3048;
-      } else {
-        suffix = 'mi';
-        pointResolution /= 1609.344;
-      }
-    } else if (units == Units.NAUTICAL) {
-      pointResolution /= 1852;
-      suffix = 'nm';
-    } else if (units == Units.METRIC) {
-      if (nominalCount < 0.001) {
-        suffix = 'μm';
-        pointResolution *= 1000000;
-      } else if (nominalCount < 1) {
-        suffix = 'mm';
-        pointResolution *= 1000;
-      } else if (nominalCount < 1000) {
-        suffix = 'm';
-      } else {
-        suffix = 'km';
-        pointResolution /= 1000;
-      }
-    } else if (units == Units.US) {
-      if (nominalCount < 0.9144) {
-        suffix = 'in';
-        pointResolution *= 39.37;
-      } else if (nominalCount < 1609.344) {
-        suffix = 'ft';
-        pointResolution /= 0.30480061;
-      } else {
-        suffix = 'mi';
-        pointResolution /= 1609.3472;
-      }
-    } else {
-      Object(_asserts_js__WEBPACK_IMPORTED_MODULE_1__["assert"])(false, 33); // Invalid units
-    }
-
-    var i = 3 * Math.floor(
-      Math.log(this.minWidth_ * pointResolution) / Math.log(10));
-    var count, width;
-    while (true) {
-      count = LEADING_DIGITS[((i % 3) + 3) % 3] *
-          Math.pow(10, Math.floor(i / 3));
-      width = Math.round(count / pointResolution);
-      if (isNaN(width)) {
-        this.element.style.display = 'none';
-        this.renderedVisible_ = false;
-        return;
-      } else if (width >= this.minWidth_) {
-        break;
-      }
-      ++i;
-    }
-
-    var html = count + ' ' + suffix;
-    if (this.renderedHTML_ != html) {
-      this.innerElement_.innerHTML = html;
-      this.renderedHTML_ = html;
-    }
-
-    if (this.renderedWidth_ != width) {
-      this.innerElement_.style.width = width + 'px';
-      this.renderedWidth_ = width;
-    }
-
-    if (!this.renderedVisible_) {
-      this.element.style.display = '';
-      this.renderedVisible_ = true;
-    }
-
-  };
-
-  return ScaleLine;
-}(_Control_js__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-
-/**
- * Update the scale line element.
- * @param {import("../MapEvent.js").default} mapEvent Map event.
- * @this {ScaleLine}
- * @api
- */
-function render(mapEvent) {
-  var frameState = mapEvent.frameState;
-  if (!frameState) {
-    this.viewState_ = null;
-  } else {
-    this.viewState_ = frameState.viewState;
-  }
-  this.updateElement_();
-}
-
-
-/* harmony default export */ __webpack_exports__["default"] = (ScaleLine);
-
-//# sourceMappingURL=ScaleLine.js.map
-
-/***/ }),
-
 /***/ "./node_modules/ol/control/Zoom.js":
 /*!*****************************************!*\
   !*** ./node_modules/ol/control/Zoom.js ***!
@@ -11721,526 +9898,6 @@ var Zoom = /*@__PURE__*/(function (Control) {
 /* harmony default export */ __webpack_exports__["default"] = (Zoom);
 
 //# sourceMappingURL=Zoom.js.map
-
-/***/ }),
-
-/***/ "./node_modules/ol/control/ZoomSlider.js":
-/*!***********************************************!*\
-  !*** ./node_modules/ol/control/ZoomSlider.js ***!
-  \***********************************************/
-/*! exports provided: render, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony import */ var _ViewHint_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ViewHint.js */ "./node_modules/ol/ViewHint.js");
-/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
-/* harmony import */ var _easing_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../easing.js */ "./node_modules/ol/easing.js");
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events/Event.js */ "./node_modules/ol/events/Event.js");
-/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
-/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../math.js */ "./node_modules/ol/math.js");
-/* harmony import */ var _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pointer/EventType.js */ "./node_modules/ol/pointer/EventType.js");
-/* harmony import */ var _pointer_PointerEventHandler_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pointer/PointerEventHandler.js */ "./node_modules/ol/pointer/PointerEventHandler.js");
-/**
- * @module ol/control/ZoomSlider
- */
-
-
-
-
-
-
-
-
-
-
-
-
-/**
- * The enum for available directions.
- *
- * @enum {number}
- */
-var Direction = {
-  VERTICAL: 0,
-  HORIZONTAL: 1
-};
-
-
-/**
- * @typedef {Object} Options
- * @property {string} [className='ol-zoomslider'] CSS class name.
- * @property {number} [duration=200] Animation duration in milliseconds.
- * @property {function(import("../MapEvent.js").default)} [render] Function called when the control
- * should be re-rendered. This is called in a `requestAnimationFrame` callback.
- */
-
-
-/**
- * @classdesc
- * A slider type of control for zooming.
- *
- * Example:
- *
- *     map.addControl(new ZoomSlider());
- *
- * @api
- */
-var ZoomSlider = /*@__PURE__*/(function (Control) {
-  function ZoomSlider(opt_options) {
-
-    var options = opt_options ? opt_options : {};
-
-    Control.call(this, {
-      element: document.createElement('div'),
-      render: options.render || render
-    });
-
-    /**
-      * @type {!Array.<import("../events.js").EventsKey>}
-      * @private
-      */
-    this.dragListenerKeys_ = [];
-
-    /**
-     * Will hold the current resolution of the view.
-     *
-     * @type {number|undefined}
-     * @private
-     */
-    this.currentResolution_ = undefined;
-
-    /**
-     * The direction of the slider. Will be determined from actual display of the
-     * container and defaults to Direction.VERTICAL.
-     *
-     * @type {Direction}
-     * @private
-     */
-    this.direction_ = Direction.VERTICAL;
-
-    /**
-     * @type {boolean}
-     * @private
-     */
-    this.dragging_;
-
-    /**
-     * @type {number}
-     * @private
-     */
-    this.heightLimit_ = 0;
-
-    /**
-     * @type {number}
-     * @private
-     */
-    this.widthLimit_ = 0;
-
-    /**
-     * @type {number|undefined}
-     * @private
-     */
-    this.previousX_;
-
-    /**
-     * @type {number|undefined}
-     * @private
-     */
-    this.previousY_;
-
-    /**
-     * The calculated thumb size (border box plus margins).  Set when initSlider_
-     * is called.
-     * @type {import("../size.js").Size}
-     * @private
-     */
-    this.thumbSize_ = null;
-
-    /**
-     * Whether the slider is initialized.
-     * @type {boolean}
-     * @private
-     */
-    this.sliderInitialized_ = false;
-
-    /**
-     * @type {number}
-     * @private
-     */
-    this.duration_ = options.duration !== undefined ? options.duration : 200;
-
-    var className = options.className !== undefined ? options.className : 'ol-zoomslider';
-    var thumbElement = document.createElement('button');
-    thumbElement.setAttribute('type', 'button');
-    thumbElement.className = className + '-thumb ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["CLASS_UNSELECTABLE"];
-    var containerElement = this.element;
-    containerElement.className = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["CLASS_UNSELECTABLE"] + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["CLASS_CONTROL"];
-    containerElement.appendChild(thumbElement);
-    /**
-     * @type {PointerEventHandler}
-     * @private
-     */
-    this.dragger_ = new _pointer_PointerEventHandler_js__WEBPACK_IMPORTED_MODULE_9__["default"](containerElement);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.dragger_, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERDOWN,
-      this.handleDraggerStart_, this);
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.dragger_, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERMOVE,
-      this.handleDraggerDrag_, this);
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.dragger_, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERUP,
-      this.handleDraggerEnd_, this);
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(containerElement, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].CLICK, this.handleContainerClick_, this);
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(thumbElement, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].CLICK, _events_Event_js__WEBPACK_IMPORTED_MODULE_5__["stopPropagation"]);
-  }
-
-  if ( Control ) ZoomSlider.__proto__ = Control;
-  ZoomSlider.prototype = Object.create( Control && Control.prototype );
-  ZoomSlider.prototype.constructor = ZoomSlider;
-
-  /**
-   * @inheritDoc
-   */
-  ZoomSlider.prototype.disposeInternal = function disposeInternal () {
-    this.dragger_.dispose();
-    Control.prototype.disposeInternal.call(this);
-  };
-
-  /**
-   * @inheritDoc
-   */
-  ZoomSlider.prototype.setMap = function setMap (map) {
-    Control.prototype.setMap.call(this, map);
-    if (map) {
-      map.render();
-    }
-  };
-
-  /**
-   * Initializes the slider element. This will determine and set this controls
-   * direction_ and also constrain the dragging of the thumb to always be within
-   * the bounds of the container.
-   *
-   * @private
-   */
-  ZoomSlider.prototype.initSlider_ = function initSlider_ () {
-    var container = this.element;
-    var containerSize = {
-      width: container.offsetWidth, height: container.offsetHeight
-    };
-
-    var thumb = /** @type {HTMLElement} */ (container.firstElementChild);
-    var computedStyle = getComputedStyle(thumb);
-    var thumbWidth = thumb.offsetWidth +
-        parseFloat(computedStyle['marginRight']) +
-        parseFloat(computedStyle['marginLeft']);
-    var thumbHeight = thumb.offsetHeight +
-        parseFloat(computedStyle['marginTop']) +
-        parseFloat(computedStyle['marginBottom']);
-    this.thumbSize_ = [thumbWidth, thumbHeight];
-
-    if (containerSize.width > containerSize.height) {
-      this.direction_ = Direction.HORIZONTAL;
-      this.widthLimit_ = containerSize.width - thumbWidth;
-    } else {
-      this.direction_ = Direction.VERTICAL;
-      this.heightLimit_ = containerSize.height - thumbHeight;
-    }
-    this.sliderInitialized_ = true;
-  };
-
-  /**
-   * @param {MouseEvent} event The browser event to handle.
-   * @private
-   */
-  ZoomSlider.prototype.handleContainerClick_ = function handleContainerClick_ (event) {
-    var view = this.getMap().getView();
-
-    var relativePosition = this.getRelativePosition_(
-      event.offsetX - this.thumbSize_[0] / 2,
-      event.offsetY - this.thumbSize_[1] / 2);
-
-    var resolution = this.getResolutionForPosition_(relativePosition);
-
-    view.animate({
-      resolution: view.constrainResolution(resolution),
-      duration: this.duration_,
-      easing: _easing_js__WEBPACK_IMPORTED_MODULE_3__["easeOut"]
-    });
-  };
-
-  /**
-   * Handle dragger start events.
-   * @param {import("../pointer/PointerEvent.js").default} event The drag event.
-   * @private
-   */
-  ZoomSlider.prototype.handleDraggerStart_ = function handleDraggerStart_ (event) {
-    if (!this.dragging_ && event.originalEvent.target === this.element.firstElementChild) {
-      this.getMap().getView().setHint(_ViewHint_js__WEBPACK_IMPORTED_MODULE_0__["default"].INTERACTING, 1);
-      this.previousX_ = event.clientX;
-      this.previousY_ = event.clientY;
-      this.dragging_ = true;
-
-      if (this.dragListenerKeys_.length === 0) {
-        var drag = this.handleDraggerDrag_;
-        var end = this.handleDraggerEnd_;
-        this.dragListenerKeys_.push(
-          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].MOUSEMOVE, drag, this),
-          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERMOVE, drag, this),
-          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].MOUSEUP, end, this),
-          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERUP, end, this)
-        );
-      }
-    }
-  };
-
-  /**
-   * Handle dragger drag events.
-   *
-   * @param {import("../pointer/PointerEvent.js").default} event The drag event.
-   * @private
-   */
-  ZoomSlider.prototype.handleDraggerDrag_ = function handleDraggerDrag_ (event) {
-    if (this.dragging_) {
-      var element = /** @type {HTMLElement} */ (this.element.firstElementChild);
-      var deltaX = event.clientX - this.previousX_ + parseFloat(element.style.left);
-      var deltaY = event.clientY - this.previousY_ + parseFloat(element.style.top);
-      var relativePosition = this.getRelativePosition_(deltaX, deltaY);
-      this.currentResolution_ = this.getResolutionForPosition_(relativePosition);
-      this.getMap().getView().setResolution(this.currentResolution_);
-      this.setThumbPosition_(this.currentResolution_);
-      this.previousX_ = event.clientX;
-      this.previousY_ = event.clientY;
-    }
-  };
-
-  /**
-   * Handle dragger end events.
-   * @param {import("../pointer/PointerEvent.js").default} event The drag event.
-   * @private
-   */
-  ZoomSlider.prototype.handleDraggerEnd_ = function handleDraggerEnd_ (event) {
-    if (this.dragging_) {
-      var view = this.getMap().getView();
-      view.setHint(_ViewHint_js__WEBPACK_IMPORTED_MODULE_0__["default"].INTERACTING, -1);
-
-      view.animate({
-        resolution: view.constrainResolution(this.currentResolution_),
-        duration: this.duration_,
-        easing: _easing_js__WEBPACK_IMPORTED_MODULE_3__["easeOut"]
-      });
-
-      this.dragging_ = false;
-      this.previousX_ = undefined;
-      this.previousY_ = undefined;
-      this.dragListenerKeys_.forEach(_events_js__WEBPACK_IMPORTED_MODULE_4__["unlistenByKey"]);
-      this.dragListenerKeys_.length = 0;
-    }
-  };
-
-  /**
-   * Positions the thumb inside its container according to the given resolution.
-   *
-   * @param {number} res The res.
-   * @private
-   */
-  ZoomSlider.prototype.setThumbPosition_ = function setThumbPosition_ (res) {
-    var position = this.getPositionForResolution_(res);
-    var thumb = /** @type {HTMLElement} */ (this.element.firstElementChild);
-
-    if (this.direction_ == Direction.HORIZONTAL) {
-      thumb.style.left = this.widthLimit_ * position + 'px';
-    } else {
-      thumb.style.top = this.heightLimit_ * position + 'px';
-    }
-  };
-
-  /**
-   * Calculates the relative position of the thumb given x and y offsets.  The
-   * relative position scales from 0 to 1.  The x and y offsets are assumed to be
-   * in pixel units within the dragger limits.
-   *
-   * @param {number} x Pixel position relative to the left of the slider.
-   * @param {number} y Pixel position relative to the top of the slider.
-   * @return {number} The relative position of the thumb.
-   * @private
-   */
-  ZoomSlider.prototype.getRelativePosition_ = function getRelativePosition_ (x, y) {
-    var amount;
-    if (this.direction_ === Direction.HORIZONTAL) {
-      amount = x / this.widthLimit_;
-    } else {
-      amount = y / this.heightLimit_;
-    }
-    return Object(_math_js__WEBPACK_IMPORTED_MODULE_7__["clamp"])(amount, 0, 1);
-  };
-
-  /**
-   * Calculates the corresponding resolution of the thumb given its relative
-   * position (where 0 is the minimum and 1 is the maximum).
-   *
-   * @param {number} position The relative position of the thumb.
-   * @return {number} The corresponding resolution.
-   * @private
-   */
-  ZoomSlider.prototype.getResolutionForPosition_ = function getResolutionForPosition_ (position) {
-    var fn = this.getMap().getView().getResolutionForValueFunction();
-    return fn(1 - position);
-  };
-
-  /**
-   * Determines the relative position of the slider for the given resolution.  A
-   * relative position of 0 corresponds to the minimum view resolution.  A
-   * relative position of 1 corresponds to the maximum view resolution.
-   *
-   * @param {number} res The resolution.
-   * @return {number} The relative position value (between 0 and 1).
-   * @private
-   */
-  ZoomSlider.prototype.getPositionForResolution_ = function getPositionForResolution_ (res) {
-    var fn = this.getMap().getView().getValueForResolutionFunction();
-    return 1 - fn(res);
-  };
-
-  return ZoomSlider;
-}(_Control_js__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-
-/**
- * Update the zoomslider element.
- * @param {import("../MapEvent.js").default} mapEvent Map event.
- * @this {ZoomSlider}
- * @api
- */
-function render(mapEvent) {
-  if (!mapEvent.frameState) {
-    return;
-  }
-  if (!this.sliderInitialized_) {
-    this.initSlider_();
-  }
-  var res = mapEvent.frameState.viewState.resolution;
-  if (res !== this.currentResolution_) {
-    this.currentResolution_ = res;
-    this.setThumbPosition_(res);
-  }
-}
-
-
-/* harmony default export */ __webpack_exports__["default"] = (ZoomSlider);
-
-//# sourceMappingURL=ZoomSlider.js.map
-
-/***/ }),
-
-/***/ "./node_modules/ol/control/ZoomToExtent.js":
-/*!*************************************************!*\
-  !*** ./node_modules/ol/control/ZoomToExtent.js ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
-/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
-/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
-/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
-/**
- * @module ol/control/ZoomToExtent
- */
-
-
-
-
-
-
-/**
- * @typedef {Object} Options
- * @property {string} [className='ol-zoom-extent'] Class name.
- * @property {HTMLElement|string} [target] Specify a target if you want the control
- * to be rendered outside of the map's viewport.
- * @property {string|HTMLElement} [label='E'] Text label to use for the button.
- * Instead of text, also an element (e.g. a `span` element) can be used.
- * @property {string} [tipLabel='Fit to extent'] Text label to use for the button tip.
- * @property {import("../extent.js").Extent} [extent] The extent to zoom to. If undefined the validity
- * extent of the view projection is used.
- */
-
-
-/**
- * @classdesc
- * A button control which, when pressed, changes the map view to a specific
- * extent. To style this control use the css selector `.ol-zoom-extent`.
- *
- * @api
- */
-var ZoomToExtent = /*@__PURE__*/(function (Control) {
-  function ZoomToExtent(opt_options) {
-    var options = opt_options ? opt_options : {};
-
-    Control.call(this, {
-      element: document.createElement('div'),
-      target: options.target
-    });
-
-    /**
-     * @type {import("../extent.js").Extent}
-     * @protected
-     */
-    this.extent = options.extent ? options.extent : null;
-
-    var className = options.className !== undefined ? options.className : 'ol-zoom-extent';
-
-    var label = options.label !== undefined ? options.label : 'E';
-    var tipLabel = options.tipLabel !== undefined ? options.tipLabel : 'Fit to extent';
-    var button = document.createElement('button');
-    button.setAttribute('type', 'button');
-    button.title = tipLabel;
-    button.appendChild(
-      typeof label === 'string' ? document.createTextNode(label) : label
-    );
-
-    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(button, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].CLICK, this.handleClick_, this);
-
-    var cssClasses = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_UNSELECTABLE"] + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_CONTROL"];
-    var element = this.element;
-    element.className = cssClasses;
-    element.appendChild(button);
-  }
-
-  if ( Control ) ZoomToExtent.__proto__ = Control;
-  ZoomToExtent.prototype = Object.create( Control && Control.prototype );
-  ZoomToExtent.prototype.constructor = ZoomToExtent;
-
-  /**
-   * @param {MouseEvent} event The event to handle
-   * @private
-   */
-  ZoomToExtent.prototype.handleClick_ = function handleClick_ (event) {
-    event.preventDefault();
-    this.handleZoomToExtent();
-  };
-
-  /**
-   * @protected
-   */
-  ZoomToExtent.prototype.handleZoomToExtent = function handleZoomToExtent () {
-    var map = this.getMap();
-    var view = map.getView();
-    var extent = !this.extent ? view.getProjection().getExtent() : this.extent;
-    view.fit(extent);
-  };
-
-  return ZoomToExtent;
-}(_Control_js__WEBPACK_IMPORTED_MODULE_2__["default"]));
-
-/* harmony default export */ __webpack_exports__["default"] = (ZoomToExtent);
-
-//# sourceMappingURL=ZoomToExtent.js.map
 
 /***/ }),
 
@@ -30857,6 +28514,61 @@ function isEmpty(object) {
 }
 
 //# sourceMappingURL=obj.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/ol.css":
+/*!********************************!*\
+  !*** ./node_modules/ol/ol.css ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../css-loader/dist/cjs.js!../sass-loader/lib/loader.js!./ol.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/ol/ol.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(true) {
+	module.hot.accept(/*! !../css-loader/dist/cjs.js!../sass-loader/lib/loader.js!./ol.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/ol/ol.css", function() {
+		var newContent = __webpack_require__(/*! !../css-loader/dist/cjs.js!../sass-loader/lib/loader.js!./ol.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./node_modules/ol/ol.css");
+
+		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
+
+		var locals = (function(a, b) {
+			var key, idx = 0;
+
+			for(key in a) {
+				if(!b || a[key] !== b[key]) return false;
+				idx++;
+			}
+
+			for(key in b) idx--;
+
+			return idx === 0;
+		}(content.locals, newContent.locals));
+
+		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
+
+		update(newContent);
+	});
+
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 
@@ -58633,7 +56345,516 @@ function newImageData(data, width, height) {
 exports.newImageData = newImageData;
 
 
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
 /***/ })
 
 /******/ });
-//# sourceMappingURL=image-map.js.map
+//# sourceMappingURL=halo-animation.js.map

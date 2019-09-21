@@ -24,7 +24,7 @@ let map = new Map({
     })
 });
 
-fetch('../../data/sample.json', {
+fetch('data/sample.json', {
     method: "get"
 }).then((response) => {
     return response.json();

@@ -48,7 +48,7 @@ async function main(){
 }
 
 async function getData(){
-    let res = await fetch('../data/route.json', {
+    let res = await fetch('data/route.json', {
         method:"get"
     });
     return res.json();

@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "a358fc3fe1b158072316";
+/******/ 	var hotCurrentHash = "94639023a316c933471f";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -258,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "motion-track";
+/******/ 			var chunkId = "image-map";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -788,3539 +788,138 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./js/motion-track/motionTrackInit.js")(__webpack_require__.s = "./js/motion-track/motionTrackInit.js");
+/******/ 	return hotCreateRequire("./js/image-map/imageMap.js")(__webpack_require__.s = "./js/image-map/imageMap.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./css/mapCommon.scss":
-/*!****************************!*\
-  !*** ./css/mapCommon.scss ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/lib/loader.js!./mapCommon.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./css/mapCommon.scss");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(true) {
-	module.hot.accept(/*! !../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/lib/loader.js!./mapCommon.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./css/mapCommon.scss", function() {
-		var newContent = __webpack_require__(/*! !../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/lib/loader.js!./mapCommon.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./css/mapCommon.scss");
-
-		if(typeof newContent === 'string') newContent = [[module.i, newContent, '']];
-
-		var locals = (function(a, b) {
-			var key, idx = 0;
-
-			for(key in a) {
-				if(!b || a[key] !== b[key]) return false;
-				idx++;
-			}
-
-			for(key in b) idx--;
-
-			return idx === 0;
-		}(content.locals, newContent.locals));
-
-		if(!locals) throw new Error('Aborting CSS HMR due to changed css-modules locals.');
-
-		update(newContent);
-	});
-
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ "./js/motion-track/motionTrackInit.js":
-/*!********************************************!*\
-  !*** ./js/motion-track/motionTrackInit.js ***!
-  \********************************************/
+/***/ "./js/image-map/imageMap.js":
+/*!**********************************!*\
+  !*** ./js/image-map/imageMap.js ***!
+  \**********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _motionTrackLayer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./motionTrackLayer */ "./js/motion-track/motionTrackLayer.js");
-/* harmony import */ var _css_mapCommon_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/css/mapCommon.scss */ "./css/mapCommon.scss");
-/* harmony import */ var _css_mapCommon_scss__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_mapCommon_scss__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
-/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
-/* harmony import */ var ol_layer_Tile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/layer/Tile */ "./node_modules/ol/layer/Tile.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source.js");
-
-
-
-
-
-
-var routeArr = [[[120.0861, 36.3607], [120.0865, 36.3619]], [[120.0866, 36.3622], [120.0875, 36.3624]], [[120.0882, 36.3627], [120.0897, 36.3638]], [[120.0898, 36.3637], [120.0886, 36.3627]], [[120.0891, 36.3622], [120.0900, 36.3617], [120.0905, 36.3616]], [[120.0893, 36.3626], [120.0908, 36.3612], [120.0905, 36.3619]]];
-var view = new ol_View__WEBPACK_IMPORTED_MODULE_2__["default"]({
-  zoom: 14,
-  projection: 'EPSG:4326',
-  center: [120.08031547156963, 36.36778762724163]
-});
-var map = new ol_Map__WEBPACK_IMPORTED_MODULE_3__["default"]({
-  target: 'map',
-  // maxTilesLoading:96,
-  // loadTilesWhileAnimating:true,
-  // loadTilesWhileInteracting:true,
-  layers: [new ol_layer_Tile__WEBPACK_IMPORTED_MODULE_4__["default"]({
-    source: new ol_source__WEBPACK_IMPORTED_MODULE_5__["XYZ"]({
-      url: 'http://www.google.cn/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m3!1e0!2sm!3i342009817!3m9!2szh-CN!3sCN!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&token=32965'
-    })
-  })],
-  view: view
-});
-var source = new ol.source.Vector();
-routeArr.forEach(function (routeData) {
-  var feature = new ol.Feature({
-    geometry: new ol.geom.LineString(routeData)
-  });
-  source.addFeature(feature);
-});
-window.layer = new _motionTrackLayer__WEBPACK_IMPORTED_MODULE_0__["default"]({
-  source: source,
-  infinitePlay: false
-});
-map.addLayer(layer);
-
-/***/ }),
-
-/***/ "./js/motion-track/motionTrackLayer.js":
-/*!*********************************************!*\
-  !*** ./js/motion-track/motionTrackLayer.js ***!
-  \*********************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! bignumber.js */ "./node_modules/bignumber.js/bignumber.js");
-/* harmony import */ var bignumber_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(bignumber_js__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+/* harmony import */ var ol_style_Style__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/style/Style */ "./node_modules/ol/style/Style.js");
+/* harmony import */ var ol_style_Icon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/style/Icon */ "./node_modules/ol/style/Icon.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source.js");
+/* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/Feature */ "./node_modules/ol/Feature.js");
+/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/geom/Point */ "./node_modules/ol/geom/Point.js");
+/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
+/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer.js");
+/* harmony import */ var ol_control__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ol/control */ "./node_modules/ol/control.js");
+/* harmony import */ var ol_proj_Units__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ol/proj/Units */ "./node_modules/ol/proj/Units.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-var MotionTrackLayer =
+
+
+
+
+
+
+
+
+var Test =
 /*#__PURE__*/
-function (_ol$layer$Vector) {
-  _inherits(MotionTrackLayer, _ol$layer$Vector);
+function () {
+  function Test() {
+    _classCallCheck(this, Test);
 
-  function MotionTrackLayer(opt) {
-    var _this;
+    this.extend = [120.05, 36.32, 120.13, 36.4];
+  } // 初始化地图
 
-    _classCallCheck(this, MotionTrackLayer);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MotionTrackLayer).call(this, opt));
-    _this.infinitePlay = opt.infinitePlay === undefined ? true : opt.infinitePlay;
-    _this.animationKey = null;
-    _this.animationFrame = null;
-    _this.allCompleted = {};
-    _this.stepIndexMap = {};
-    _this.pathSegmentMap = {};
-    _this.frameCoordinatesMap = {};
-    _this.locationMarkerMap = {};
-    _this.sourceChangeKey = ol.events.listen(_this.getSource(), "addfeature", _this._composeNavigation, _assertThisInitialized(_this));
+  _createClass(Test, [{
+    key: "initMap",
+    value: function initMap() {
+      var _this = this;
 
-    _this._composeNavigation(null, true);
-
-    return _this;
-  }
-
-  _createClass(MotionTrackLayer, [{
-    key: "startNavigation",
-    value: function startNavigation() {
-      if (this.animationFrame) {
-        var _arr = Object.keys(this.stepIndexMap);
-
-        for (var _i = 0; _i < _arr.length; _i++) {
-          var key = _arr[_i];
-          this.stepIndexMap[key] = 0;
-          this.allCompleted[key] = false;
-        }
-
-        this.animationFrame();
-      }
-    }
-  }, {
-    key: "stopNavigation",
-    value: function stopNavigation() {
-      if (this.animationKey) {
-        cancelAnimationFrame(this.animationKey);
-        this.animationKey = null;
-      }
-    }
-  }, {
-    key: "setInfinitePlay",
-    value: function setInfinitePlay(infinitePlay) {
-      this.infinitePlay = infinitePlay;
-    }
-  }, {
-    key: "getInfinitePlay",
-    value: function getInfinitePlay() {
-      return this.infinitePlay;
-    }
-  }, {
-    key: "_composeNavigation",
-    value: function _composeNavigation(event, isInit) {
-      var _this2 = this;
-
-      if (!isInit && !event) return;
-      if (!isInit && event.feature.get("ignoreEvent")) return;
-      var routeSource = this.getSource();
-      if (!routeSource) return;
-      var routeFeatures = routeSource.getFeatures();
-      if (!routeFeatures || routeFeatures.length === 0) return;
-      routeFeatures.filter(function (feature) {
-        return feature.getGeometry().getType() === "LineString";
-      }).forEach(function (feature) {
-        var id = feature.ol_uid;
-        _this2.stepIndexMap[id] = 0;
-        _this2.allCompleted[id] = false;
-
-        _this2._drawStartEnd(feature, routeSource);
-
-        _this2._computeSegmentAngle(feature);
-
-        _this2._computeFrameCoordinates(feature);
-
-        var locationMarker = new ol.Feature({
-          name: "movingMarker",
-          ignoreEvent: true,
-          geometry: new ol.geom.Point([0, 0])
-        });
-        locationMarker.setStyle(function (feature, res) {
-          return new ol.style.Style({
-            image: new ol.style.Icon({
-              src: 'images/moving.png',
-              rotateWithView: true,
-              rotation: Math.PI / 2 - feature.get("angle")
-            })
-          });
-        });
-        routeSource.addFeatures([locationMarker]);
-        _this2.locationMarkerMap[id] = locationMarker;
+      // 车辆 飞行器 人员 图层
+      this.layer = new ol_layer__WEBPACK_IMPORTED_MODULE_7__["Vector"]({
+        source: new ol_source__WEBPACK_IMPORTED_MODULE_2__["Vector"](),
+        zIndex: 2
       });
-      this.setStyle(this._setLineStyle.bind(this));
+      this.map = new ol_Map__WEBPACK_IMPORTED_MODULE_6__["default"]({
+        target: 'map',
+        controls: Object(ol_control__WEBPACK_IMPORTED_MODULE_8__["defaults"])({
+          attribution: false,
+          rotation: false
+        }),
+        view: new ol_View__WEBPACK_IMPORTED_MODULE_5__["default"]({
+          center: [120.09, 36.36],
+          zoom: 15,
+          projection: 'EPSG:4326' // rotation: -(73 / 180) * Math.PI,
 
-      this.animationFrame = function () {
-        var _arr2 = Object.keys(_this2.stepIndexMap);
+        }),
+        layers: [this.layer, new ol_layer__WEBPACK_IMPORTED_MODULE_7__["Image"]({
+          source: new ol_source__WEBPACK_IMPORTED_MODULE_2__["ImageStatic"]({
+            url: 'images/airport_map.png',
+            // url: 'images/map.svg',
+            imageExtent: this.extend // imageSize: this.getImageSize(extend),
 
-        for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-          var key = _arr2[_i2];
-          var frameCoordinates = _this2.frameCoordinatesMap[key];
-          var pathSegment = _this2.pathSegmentMap[key];
-          var locationMarker = _this2.locationMarkerMap[key];
-          _this2.stepIndexMap[key]++;
-
-          if (_this2.stepIndexMap[key] >= frameCoordinates.length) {
-            if (_this2.infinitePlay) {
-              _this2.stepIndexMap[key] = 0;
-            } else {
-              _this2.allCompleted[key] = true;
-
-              if (_this2._checkIfAllCompleted()) {
-                _this2.stopNavigation();
-
-                return;
-              }
-
-              continue;
-            }
-          }
-
-          var step = 3;
-          var pathInDegree = new ol.geom.LineString([start, end]);
-          var pathInMeter = new ol.geom.LineString([ol.proj.fromLonLat(start), ol.proj.fromLonLat(end)]);
-          var length = ol.Sphere.getLength(pathInMeter);
-          var frameCount = Math.ceil(length / step);
-          var factor = step / length;
-
-          for (var j = 0; j < frameCount; j++) {
-            var frameCoor = pathInDegree.getCoordinateAt(j * factor); //处理js精度不够造成的计算数据不准确问题
-
-            frameCoor[0] = parseFloat(frameCoor[0].toFixed(8));
-            frameCoor[1] = parseFloat(frameCoor[1].toFixed(8));
-            frameCoordinateCollection.push(frameCoor);
-          }
-
-          for (var _j = 0; _j < pathSegment.length; _j++) {}
-
-          var angle = 0;
-
-          for (var _j2 = 0; _j2 < pathSegment.length; _j2++) {
-            if (MotionTrackLayer.lineContains(pathSegment[_j2].path, frameCoordinates[_this2.stepIndexMap[key]])) {
-              angle = pathSegment[_j2].angle;
-            }
-          }
-
-          locationMarker.set("angle", angle);
-          locationMarker.setGeometry(new ol.geom.Point(frameCoordinates[_this2.stepIndexMap[key]]));
-        }
-
-        _this2.animationKey = requestAnimationFrame(_this2.animationFrame);
-      };
-    }
-  }, {
-    key: "_checkIfAllCompleted",
-    value: function _checkIfAllCompleted() {
-      var _arr3 = Object.keys(this.allCompleted);
-
-      for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
-        var key = _arr3[_i3];
-
-        if (!this.allCompleted[key]) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-    /**
-     * 计算动画帧位置
-     * @param routeFeatures
-     * @private
-     */
-
-  }, {
-    key: "_computeFrameCoordinates",
-    value: function _computeFrameCoordinates(routeFeature) {
-      var id = routeFeature.ol_uid;
-      var frameCoordinateCollection = [];
-      routeFeature.getGeometry().forEachSegment(function (start, end) {
-        var step = 3;
-        var pathInDegree = new ol.geom.LineString([start, end]);
-        var pathInMeter = new ol.geom.LineString([ol.proj.fromLonLat(start), ol.proj.fromLonLat(end)]);
-        var length = ol.Sphere.getLength(pathInMeter);
-        var frameCount = Math.ceil(length / step);
-        var factor = step / length;
-
-        for (var j = 0; j < frameCount; j++) {
-          var frameCoor = pathInDegree.getCoordinateAt(j * factor); //处理js精度不够造成的计算数据不准确问题
-
-          frameCoor[0] = parseFloat(frameCoor[0].toFixed(8));
-          frameCoor[1] = parseFloat(frameCoor[1].toFixed(8));
-          frameCoordinateCollection.push(frameCoor);
-        }
+          }),
+          zIndex: 1
+        })]
       });
-      this.frameCoordinatesMap[id] = frameCoordinateCollection;
-    }
-  }, {
-    key: "_computeSegmentAngle",
-    value: function _computeSegmentAngle(routeFeature) {
-      var id = routeFeature.ol_uid;
-      var routeCoordinates = routeFeature.getGeometry().getCoordinates();
-      var pathSegmentCollection = [];
-
-      for (var i = 0; i < routeCoordinates.length - 1; i++) {
-        var segment = new ol.geom.LineString([routeCoordinates[i], routeCoordinates[i + 1]]);
-        var angle = MotionTrackLayer.computeXAngle(routeCoordinates[i], routeCoordinates[i + 1]);
-        pathSegmentCollection.push({
-          path: segment,
-          angle: angle
-        });
-      }
-
-      this.pathSegmentMap[id] = pathSegmentCollection;
-    }
-  }, {
-    key: "_setLineStyle",
-    value: function _setLineStyle(feature, res) {
-      if (feature.getGeometry().getType() !== "LineString") return;
-      var id = feature.ol_uid;
-      var pathSegment = this.pathSegmentMap[id];
-      var styles = [new ol.style.Style({
-        stroke: new ol.style.Stroke({
-          width: 12,
-          color: '#2E8B57'
+      var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_4__["default"]([120.08, 36.36]);
+      var feature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"](geom);
+      this.layer.getSource().addFeature(feature);
+      var flightStyle = new ol_style_Style__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_1__["default"]({
+          src: "../images/flight.svg",
+          scale: 0.1
         })
-      })];
-      var pathLine = feature.getGeometry();
-      var length = pathLine.getLength();
-      var signDistancePixel = 40;
-      var signDistanceMeter = signDistancePixel * res;
-      var signCount = Math.ceil(length / signDistanceMeter);
+      });
 
-      for (var i = 1; i < signCount; i++) {
-        var arrowCoor = pathLine.getCoordinateAt(i / signCount);
-        var angle = 0;
+      for (var i = 0; i < 100; i++) {
+        addRandomFeatureWithFlight(false, flightStyle);
+      }
 
-        for (var j = 0; j < pathSegment.length; j++) {
-          if (MotionTrackLayer.lineContains(pathSegment[j].path, arrowCoor)) {
-            angle = pathSegment[j].angle;
-          }
-        }
+      function addRandomFeatureWithFlight(enableAnimation, style) {
+        var x = Math.random() / 100 + 120.08;
+        var y = Math.random() / 100 + 36.35;
+        var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_4__["default"]([x, y]);
+        var feature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
+          geometry: geom,
+          animation: enableAnimation
+        }); // feature.setStyle(style);
 
-        styles.push(new ol.style.Style({
-          geometry: new ol.geom.Point(arrowCoor),
-          image: new ol.style.Icon({
-            src: 'images/arrow.png',
-            rotateWithView: true,
-            rotation: -angle
+        this.layer.getSource().addFeature(feature);
+      } // 根据分辨率设置飞机图片的大小
+
+
+      map.getView().on("change:resolution", function (e) {
+        var resolution = map.getView().getResolution();
+        var scaleRadio = 30 / (resolution * ol_proj_Units__WEBPACK_IMPORTED_MODULE_9__["METERS_PER_UNIT"].degrees) / 200;
+        var style = new ol_style_Style__WEBPACK_IMPORTED_MODULE_0__["default"]({
+          image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_1__["default"]({
+            src: "../images/flight.svg",
+            scale: scaleRadio
           })
-        }));
-      }
+        });
 
-      return styles;
-    }
-  }, {
-    key: "_drawStartEnd",
-    value: function _drawStartEnd(routeFeature, routeSource) {
-      var startMarkerStyle = new ol.style.Style({
-        image: new ol.style.Icon({
-          anchor: [0.4, 0.7],
-          scale: 1,
-          src: 'images/start.png'
-        })
+        _this.layer.getSource().getFeatures().forEach(function (feature) {
+          feature.setStyle(style);
+        });
       });
-      var endMarkerStyle = new ol.style.Style({
-        image: new ol.style.Icon({
-          anchor: [0.4, 0.7],
-          scale: 1,
-          src: 'images/end.png'
-        })
-      });
-      var featureGeometry = routeFeature.getGeometry();
-      var startMarker = new ol.Feature({
-        name: "startMarker",
-        ignoreEvent: true,
-        geometry: new ol.geom.Point(featureGeometry.getFirstCoordinate())
-      });
-      startMarker.setStyle(startMarkerStyle);
-      var endMarker = new ol.Feature({
-        name: "endMarker",
-        ignoreEvent: true,
-        geometry: new ol.geom.Point(featureGeometry.getLastCoordinate())
-      });
-      endMarker.setStyle(endMarkerStyle);
-      routeSource.addFeatures([startMarker, endMarker]);
-    }
-    /**
-     * 返回p1,p2构成的直线与x轴夹角的弧度
-     * @param p1
-     * @param p2
-     * @returns {number}
-     */
-
-  }], [{
-    key: "computeXAngle",
-    value: function computeXAngle(p1, p2) {
-      if (p1[0] - p2[0] === 0) return Math.PI / 2;
-      if (p1[1] - p2[1] === 0) return 0;
-      var angle = Math.atan2(p2[1] - p1[1], p2[0] - p1[0]); //弧度
-
-      if (p2[1] - p1[1] < 0) angle += Math.PI * 2; //let theta = angle*(180/Math.PI); //角度
-
-      return angle;
-    }
-    /**
-     * 判断点是否再线上。先通过line的extent判断point是否在bound内，
-     * 若在，则通过斜率判断点是否在线上。由于js浮点数计算的不确定性，引入BigNumber。
-     * ps：貌似bigNumber也不靠谱，还是需要做toFix运算。
-     * @param line
-     * @param point
-     */
-
-  }, {
-    key: "lineContains",
-    value: function lineContains(line, point) {
-      var extent = line.getExtent();
-      var linePoints = line.getCoordinates();
-      var first = linePoints[0];
-      var last = linePoints[1];
-
-      if (extent[0] <= point[0] && point[0] <= extent[2] && extent[1] <= point[1] && point[1] <= extent[3]) {
-        //进一步判断是否确实在线上
-        if (point[0] === first[0] && point[1] === first[1]) {
-          return true;
-        }
-
-        if (point[0] === last[0] && point[1] === last[1]) {
-          return true;
-        }
-
-        var a = {
-          x: new bignumber_js__WEBPACK_IMPORTED_MODULE_0___default.a(first[0]),
-          y: new bignumber_js__WEBPACK_IMPORTED_MODULE_0___default.a(first[1])
-        };
-        var b = {
-          x: new bignumber_js__WEBPACK_IMPORTED_MODULE_0___default.a(last[0]),
-          y: new bignumber_js__WEBPACK_IMPORTED_MODULE_0___default.a(last[1])
-        };
-        var c = {
-          x: new bignumber_js__WEBPACK_IMPORTED_MODULE_0___default.a(point[0]),
-          y: new bignumber_js__WEBPACK_IMPORTED_MODULE_0___default.a(point[1])
-        };
-        var k1 = b.y.minus(a.y).dividedBy(b.x.minus(a.x)).toFixed(2);
-        var k2 = c.y.minus(a.y).dividedBy(c.x.minus(a.x)).toFixed(2);
-        return k2 === k1;
-      }
-
-      return false;
     }
   }]);
 
-  return MotionTrackLayer;
-}(ol.layer.Vector);
-
-/* harmony default export */ __webpack_exports__["default"] = (MotionTrackLayer);
-
-/***/ }),
-
-/***/ "./node_modules/bignumber.js/bignumber.js":
-/*!************************************************!*\
-  !*** ./node_modules/bignumber.js/bignumber.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_RESULT__;;(function (globalObject) {
-  'use strict';
-
-/*
- *      bignumber.js v8.1.1
- *      A JavaScript library for arbitrary-precision arithmetic.
- *      https://github.com/MikeMcl/bignumber.js
- *      Copyright (c) 2019 Michael Mclaughlin <M8ch88l@gmail.com>
- *      MIT Licensed.
- *
- *      BigNumber.prototype methods     |  BigNumber methods
- *                                      |
- *      absoluteValue            abs    |  clone
- *      comparedTo                      |  config               set
- *      decimalPlaces            dp     |      DECIMAL_PLACES
- *      dividedBy                div    |      ROUNDING_MODE
- *      dividedToIntegerBy       idiv   |      EXPONENTIAL_AT
- *      exponentiatedBy          pow    |      RANGE
- *      integerValue                    |      CRYPTO
- *      isEqualTo                eq     |      MODULO_MODE
- *      isFinite                        |      POW_PRECISION
- *      isGreaterThan            gt     |      FORMAT
- *      isGreaterThanOrEqualTo   gte    |      ALPHABET
- *      isInteger                       |  isBigNumber
- *      isLessThan               lt     |  maximum              max
- *      isLessThanOrEqualTo      lte    |  minimum              min
- *      isNaN                           |  random
- *      isNegative                      |  sum
- *      isPositive                      |
- *      isZero                          |
- *      minus                           |
- *      modulo                   mod    |
- *      multipliedBy             times  |
- *      negated                         |
- *      plus                            |
- *      precision                sd     |
- *      shiftedBy                       |
- *      squareRoot               sqrt   |
- *      toExponential                   |
- *      toFixed                         |
- *      toFormat                        |
- *      toFraction                      |
- *      toJSON                          |
- *      toNumber                        |
- *      toPrecision                     |
- *      toString                        |
- *      valueOf                         |
- *
- */
-
-
-  var BigNumber,
-    isNumeric = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i,
-    hasSymbol = typeof Symbol == 'function' && typeof Symbol.iterator == 'symbol',
-
-    mathceil = Math.ceil,
-    mathfloor = Math.floor,
-
-    bignumberError = '[BigNumber Error] ',
-    tooManyDigits = bignumberError + 'Number primitive has more than 15 significant digits: ',
-
-    BASE = 1e14,
-    LOG_BASE = 14,
-    MAX_SAFE_INTEGER = 0x1fffffffffffff,         // 2^53 - 1
-    // MAX_INT32 = 0x7fffffff,                   // 2^31 - 1
-    POWS_TEN = [1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11, 1e12, 1e13],
-    SQRT_BASE = 1e7,
-
-    // EDITABLE
-    // The limit on the value of DECIMAL_PLACES, TO_EXP_NEG, TO_EXP_POS, MIN_EXP, MAX_EXP, and
-    // the arguments to toExponential, toFixed, toFormat, and toPrecision.
-    MAX = 1E9;                                   // 0 to MAX_INT32
-
-
-  /*
-   * Create and return a BigNumber constructor.
-   */
-  function clone(configObject) {
-    var div, convertBase, parseNumeric,
-      P = BigNumber.prototype = { constructor: BigNumber, toString: null, valueOf: null },
-      ONE = new BigNumber(1),
-
-
-      //----------------------------- EDITABLE CONFIG DEFAULTS -------------------------------
-
-
-      // The default values below must be integers within the inclusive ranges stated.
-      // The values can also be changed at run-time using BigNumber.set.
-
-      // The maximum number of decimal places for operations involving division.
-      DECIMAL_PLACES = 20,                     // 0 to MAX
-
-      // The rounding mode used when rounding to the above decimal places, and when using
-      // toExponential, toFixed, toFormat and toPrecision, and round (default value).
-      // UP         0 Away from zero.
-      // DOWN       1 Towards zero.
-      // CEIL       2 Towards +Infinity.
-      // FLOOR      3 Towards -Infinity.
-      // HALF_UP    4 Towards nearest neighbour. If equidistant, up.
-      // HALF_DOWN  5 Towards nearest neighbour. If equidistant, down.
-      // HALF_EVEN  6 Towards nearest neighbour. If equidistant, towards even neighbour.
-      // HALF_CEIL  7 Towards nearest neighbour. If equidistant, towards +Infinity.
-      // HALF_FLOOR 8 Towards nearest neighbour. If equidistant, towards -Infinity.
-      ROUNDING_MODE = 4,                       // 0 to 8
-
-      // EXPONENTIAL_AT : [TO_EXP_NEG , TO_EXP_POS]
-
-      // The exponent value at and beneath which toString returns exponential notation.
-      // Number type: -7
-      TO_EXP_NEG = -7,                         // 0 to -MAX
-
-      // The exponent value at and above which toString returns exponential notation.
-      // Number type: 21
-      TO_EXP_POS = 21,                         // 0 to MAX
-
-      // RANGE : [MIN_EXP, MAX_EXP]
-
-      // The minimum exponent value, beneath which underflow to zero occurs.
-      // Number type: -324  (5e-324)
-      MIN_EXP = -1e7,                          // -1 to -MAX
-
-      // The maximum exponent value, above which overflow to Infinity occurs.
-      // Number type:  308  (1.7976931348623157e+308)
-      // For MAX_EXP > 1e7, e.g. new BigNumber('1e100000000').plus(1) may be slow.
-      MAX_EXP = 1e7,                           // 1 to MAX
-
-      // Whether to use cryptographically-secure random number generation, if available.
-      CRYPTO = false,                          // true or false
-
-      // The modulo mode used when calculating the modulus: a mod n.
-      // The quotient (q = a / n) is calculated according to the corresponding rounding mode.
-      // The remainder (r) is calculated as: r = a - n * q.
-      //
-      // UP        0 The remainder is positive if the dividend is negative, else is negative.
-      // DOWN      1 The remainder has the same sign as the dividend.
-      //             This modulo mode is commonly known as 'truncated division' and is
-      //             equivalent to (a % n) in JavaScript.
-      // FLOOR     3 The remainder has the same sign as the divisor (Python %).
-      // HALF_EVEN 6 This modulo mode implements the IEEE 754 remainder function.
-      // EUCLID    9 Euclidian division. q = sign(n) * floor(a / abs(n)).
-      //             The remainder is always positive.
-      //
-      // The truncated division, floored division, Euclidian division and IEEE 754 remainder
-      // modes are commonly used for the modulus operation.
-      // Although the other rounding modes can also be used, they may not give useful results.
-      MODULO_MODE = 1,                         // 0 to 9
-
-      // The maximum number of significant digits of the result of the exponentiatedBy operation.
-      // If POW_PRECISION is 0, there will be unlimited significant digits.
-      POW_PRECISION = 0,                    // 0 to MAX
-
-      // The format specification used by the BigNumber.prototype.toFormat method.
-      FORMAT = {
-        prefix: '',
-        groupSize: 3,
-        secondaryGroupSize: 0,
-        groupSeparator: ',',
-        decimalSeparator: '.',
-        fractionGroupSize: 0,
-        fractionGroupSeparator: '\xA0',      // non-breaking space
-        suffix: ''
-      },
-
-      // The alphabet used for base conversion. It must be at least 2 characters long, with no '+',
-      // '-', '.', whitespace, or repeated character.
-      // '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_'
-      ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz';
-
-
-    //------------------------------------------------------------------------------------------
-
-
-    // CONSTRUCTOR
-
-
-    /*
-     * The BigNumber constructor and exported function.
-     * Create and return a new instance of a BigNumber object.
-     *
-     * v {number|string|BigNumber} A numeric value.
-     * [b] {number} The base of v. Integer, 2 to ALPHABET.length inclusive.
-     */
-    function BigNumber(v, b) {
-      var alphabet, c, caseChanged, e, i, isNum, len, str,
-        x = this;
-
-      // Enable constructor call without `new`.
-      if (!(x instanceof BigNumber)) return new BigNumber(v, b);
-
-      if (b == null) {
-
-        if (v && v._isBigNumber === true) {
-          x.s = v.s;
-
-          if (!v.c || v.e > MAX_EXP) {
-            x.c = x.e = null;
-          } else if (v.e < MIN_EXP) {
-            x.c = [x.e = 0];
-          } else {
-            x.e = v.e;
-            x.c = v.c.slice();
-          }
-
-          return;
-        }
-
-        if ((isNum = typeof v == 'number') && v * 0 == 0) {
-
-          // Use `1 / n` to handle minus zero also.
-          x.s = 1 / v < 0 ? (v = -v, -1) : 1;
-
-          // Fast path for integers, where n < 2147483648 (2**31).
-          if (v === ~~v) {
-            for (e = 0, i = v; i >= 10; i /= 10, e++);
-
-            if (e > MAX_EXP) {
-              x.c = x.e = null;
-            } else {
-              x.e = e;
-              x.c = [v];
-            }
-
-            return;
-          }
-
-          str = String(v);
-        } else {
-
-          if (!isNumeric.test(str = String(v))) return parseNumeric(x, str, isNum);
-
-          x.s = str.charCodeAt(0) == 45 ? (str = str.slice(1), -1) : 1;
-        }
-
-        // Decimal point?
-        if ((e = str.indexOf('.')) > -1) str = str.replace('.', '');
-
-        // Exponential form?
-        if ((i = str.search(/e/i)) > 0) {
-
-          // Determine exponent.
-          if (e < 0) e = i;
-          e += +str.slice(i + 1);
-          str = str.substring(0, i);
-        } else if (e < 0) {
-
-          // Integer.
-          e = str.length;
-        }
-
-      } else {
-
-        // '[BigNumber Error] Base {not a primitive number|not an integer|out of range}: {b}'
-        intCheck(b, 2, ALPHABET.length, 'Base');
-
-        // Allow exponential notation to be used with base 10 argument, while
-        // also rounding to DECIMAL_PLACES as with other bases.
-        if (b == 10) {
-          x = new BigNumber(v);
-          return round(x, DECIMAL_PLACES + x.e + 1, ROUNDING_MODE);
-        }
-
-        str = String(v);
-
-        if (isNum = typeof v == 'number') {
-
-          // Avoid potential interpretation of Infinity and NaN as base 44+ values.
-          if (v * 0 != 0) return parseNumeric(x, str, isNum, b);
-
-          x.s = 1 / v < 0 ? (str = str.slice(1), -1) : 1;
-
-          // '[BigNumber Error] Number primitive has more than 15 significant digits: {n}'
-          if (BigNumber.DEBUG && str.replace(/^0\.0*|\./, '').length > 15) {
-            throw Error
-             (tooManyDigits + v);
-          }
-        } else {
-          x.s = str.charCodeAt(0) === 45 ? (str = str.slice(1), -1) : 1;
-        }
-
-        alphabet = ALPHABET.slice(0, b);
-        e = i = 0;
-
-        // Check that str is a valid base b number.
-        // Don't use RegExp, so alphabet can contain special characters.
-        for (len = str.length; i < len; i++) {
-          if (alphabet.indexOf(c = str.charAt(i)) < 0) {
-            if (c == '.') {
-
-              // If '.' is not the first character and it has not be found before.
-              if (i > e) {
-                e = len;
-                continue;
-              }
-            } else if (!caseChanged) {
-
-              // Allow e.g. hexadecimal 'FF' as well as 'ff'.
-              if (str == str.toUpperCase() && (str = str.toLowerCase()) ||
-                  str == str.toLowerCase() && (str = str.toUpperCase())) {
-                caseChanged = true;
-                i = -1;
-                e = 0;
-                continue;
-              }
-            }
-
-            return parseNumeric(x, String(v), isNum, b);
-          }
-        }
-
-        // Prevent later check for length on converted number.
-        isNum = false;
-        str = convertBase(str, b, 10, x.s);
-
-        // Decimal point?
-        if ((e = str.indexOf('.')) > -1) str = str.replace('.', '');
-        else e = str.length;
-      }
-
-      // Determine leading zeros.
-      for (i = 0; str.charCodeAt(i) === 48; i++);
-
-      // Determine trailing zeros.
-      for (len = str.length; str.charCodeAt(--len) === 48;);
-
-      if (str = str.slice(i, ++len)) {
-        len -= i;
-
-        // '[BigNumber Error] Number primitive has more than 15 significant digits: {n}'
-        if (isNum && BigNumber.DEBUG &&
-          len > 15 && (v > MAX_SAFE_INTEGER || v !== mathfloor(v))) {
-            throw Error
-             (tooManyDigits + (x.s * v));
-        }
-
-         // Overflow?
-        if ((e = e - i - 1) > MAX_EXP) {
-
-          // Infinity.
-          x.c = x.e = null;
-
-        // Underflow?
-        } else if (e < MIN_EXP) {
-
-          // Zero.
-          x.c = [x.e = 0];
-        } else {
-          x.e = e;
-          x.c = [];
-
-          // Transform base
-
-          // e is the base 10 exponent.
-          // i is where to slice str to get the first element of the coefficient array.
-          i = (e + 1) % LOG_BASE;
-          if (e < 0) i += LOG_BASE;  // i < 1
-
-          if (i < len) {
-            if (i) x.c.push(+str.slice(0, i));
-
-            for (len -= LOG_BASE; i < len;) {
-              x.c.push(+str.slice(i, i += LOG_BASE));
-            }
-
-            i = LOG_BASE - (str = str.slice(i)).length;
-          } else {
-            i -= len;
-          }
-
-          for (; i--; str += '0');
-          x.c.push(+str);
-        }
-      } else {
-
-        // Zero.
-        x.c = [x.e = 0];
-      }
-    }
-
-
-    // CONSTRUCTOR PROPERTIES
-
-
-    BigNumber.clone = clone;
-
-    BigNumber.ROUND_UP = 0;
-    BigNumber.ROUND_DOWN = 1;
-    BigNumber.ROUND_CEIL = 2;
-    BigNumber.ROUND_FLOOR = 3;
-    BigNumber.ROUND_HALF_UP = 4;
-    BigNumber.ROUND_HALF_DOWN = 5;
-    BigNumber.ROUND_HALF_EVEN = 6;
-    BigNumber.ROUND_HALF_CEIL = 7;
-    BigNumber.ROUND_HALF_FLOOR = 8;
-    BigNumber.EUCLID = 9;
-
-
-    /*
-     * Configure infrequently-changing library-wide settings.
-     *
-     * Accept an object with the following optional properties (if the value of a property is
-     * a number, it must be an integer within the inclusive range stated):
-     *
-     *   DECIMAL_PLACES   {number}           0 to MAX
-     *   ROUNDING_MODE    {number}           0 to 8
-     *   EXPONENTIAL_AT   {number|number[]}  -MAX to MAX  or  [-MAX to 0, 0 to MAX]
-     *   RANGE            {number|number[]}  -MAX to MAX (not zero)  or  [-MAX to -1, 1 to MAX]
-     *   CRYPTO           {boolean}          true or false
-     *   MODULO_MODE      {number}           0 to 9
-     *   POW_PRECISION       {number}           0 to MAX
-     *   ALPHABET         {string}           A string of two or more unique characters which does
-     *                                       not contain '.'.
-     *   FORMAT           {object}           An object with some of the following properties:
-     *     prefix                 {string}
-     *     groupSize              {number}
-     *     secondaryGroupSize     {number}
-     *     groupSeparator         {string}
-     *     decimalSeparator       {string}
-     *     fractionGroupSize      {number}
-     *     fractionGroupSeparator {string}
-     *     suffix                 {string}
-     *
-     * (The values assigned to the above FORMAT object properties are not checked for validity.)
-     *
-     * E.g.
-     * BigNumber.config({ DECIMAL_PLACES : 20, ROUNDING_MODE : 4 })
-     *
-     * Ignore properties/parameters set to null or undefined, except for ALPHABET.
-     *
-     * Return an object with the properties current values.
-     */
-    BigNumber.config = BigNumber.set = function (obj) {
-      var p, v;
-
-      if (obj != null) {
-
-        if (typeof obj == 'object') {
-
-          // DECIMAL_PLACES {number} Integer, 0 to MAX inclusive.
-          // '[BigNumber Error] DECIMAL_PLACES {not a primitive number|not an integer|out of range}: {v}'
-          if (obj.hasOwnProperty(p = 'DECIMAL_PLACES')) {
-            v = obj[p];
-            intCheck(v, 0, MAX, p);
-            DECIMAL_PLACES = v;
-          }
-
-          // ROUNDING_MODE {number} Integer, 0 to 8 inclusive.
-          // '[BigNumber Error] ROUNDING_MODE {not a primitive number|not an integer|out of range}: {v}'
-          if (obj.hasOwnProperty(p = 'ROUNDING_MODE')) {
-            v = obj[p];
-            intCheck(v, 0, 8, p);
-            ROUNDING_MODE = v;
-          }
-
-          // EXPONENTIAL_AT {number|number[]}
-          // Integer, -MAX to MAX inclusive or
-          // [integer -MAX to 0 inclusive, 0 to MAX inclusive].
-          // '[BigNumber Error] EXPONENTIAL_AT {not a primitive number|not an integer|out of range}: {v}'
-          if (obj.hasOwnProperty(p = 'EXPONENTIAL_AT')) {
-            v = obj[p];
-            if (v && v.pop) {
-              intCheck(v[0], -MAX, 0, p);
-              intCheck(v[1], 0, MAX, p);
-              TO_EXP_NEG = v[0];
-              TO_EXP_POS = v[1];
-            } else {
-              intCheck(v, -MAX, MAX, p);
-              TO_EXP_NEG = -(TO_EXP_POS = v < 0 ? -v : v);
-            }
-          }
-
-          // RANGE {number|number[]} Non-zero integer, -MAX to MAX inclusive or
-          // [integer -MAX to -1 inclusive, integer 1 to MAX inclusive].
-          // '[BigNumber Error] RANGE {not a primitive number|not an integer|out of range|cannot be zero}: {v}'
-          if (obj.hasOwnProperty(p = 'RANGE')) {
-            v = obj[p];
-            if (v && v.pop) {
-              intCheck(v[0], -MAX, -1, p);
-              intCheck(v[1], 1, MAX, p);
-              MIN_EXP = v[0];
-              MAX_EXP = v[1];
-            } else {
-              intCheck(v, -MAX, MAX, p);
-              if (v) {
-                MIN_EXP = -(MAX_EXP = v < 0 ? -v : v);
-              } else {
-                throw Error
-                 (bignumberError + p + ' cannot be zero: ' + v);
-              }
-            }
-          }
-
-          // CRYPTO {boolean} true or false.
-          // '[BigNumber Error] CRYPTO not true or false: {v}'
-          // '[BigNumber Error] crypto unavailable'
-          if (obj.hasOwnProperty(p = 'CRYPTO')) {
-            v = obj[p];
-            if (v === !!v) {
-              if (v) {
-                if (typeof crypto != 'undefined' && crypto &&
-                 (crypto.getRandomValues || crypto.randomBytes)) {
-                  CRYPTO = v;
-                } else {
-                  CRYPTO = !v;
-                  throw Error
-                   (bignumberError + 'crypto unavailable');
-                }
-              } else {
-                CRYPTO = v;
-              }
-            } else {
-              throw Error
-               (bignumberError + p + ' not true or false: ' + v);
-            }
-          }
-
-          // MODULO_MODE {number} Integer, 0 to 9 inclusive.
-          // '[BigNumber Error] MODULO_MODE {not a primitive number|not an integer|out of range}: {v}'
-          if (obj.hasOwnProperty(p = 'MODULO_MODE')) {
-            v = obj[p];
-            intCheck(v, 0, 9, p);
-            MODULO_MODE = v;
-          }
-
-          // POW_PRECISION {number} Integer, 0 to MAX inclusive.
-          // '[BigNumber Error] POW_PRECISION {not a primitive number|not an integer|out of range}: {v}'
-          if (obj.hasOwnProperty(p = 'POW_PRECISION')) {
-            v = obj[p];
-            intCheck(v, 0, MAX, p);
-            POW_PRECISION = v;
-          }
-
-          // FORMAT {object}
-          // '[BigNumber Error] FORMAT not an object: {v}'
-          if (obj.hasOwnProperty(p = 'FORMAT')) {
-            v = obj[p];
-            if (typeof v == 'object') FORMAT = v;
-            else throw Error
-             (bignumberError + p + ' not an object: ' + v);
-          }
-
-          // ALPHABET {string}
-          // '[BigNumber Error] ALPHABET invalid: {v}'
-          if (obj.hasOwnProperty(p = 'ALPHABET')) {
-            v = obj[p];
-
-            // Disallow if only one character,
-            // or if it contains '+', '-', '.', whitespace, or a repeated character.
-            if (typeof v == 'string' && !/^.$|[+-.\s]|(.).*\1/.test(v)) {
-              ALPHABET = v;
-            } else {
-              throw Error
-               (bignumberError + p + ' invalid: ' + v);
-            }
-          }
-
-        } else {
-
-          // '[BigNumber Error] Object expected: {v}'
-          throw Error
-           (bignumberError + 'Object expected: ' + obj);
-        }
-      }
-
-      return {
-        DECIMAL_PLACES: DECIMAL_PLACES,
-        ROUNDING_MODE: ROUNDING_MODE,
-        EXPONENTIAL_AT: [TO_EXP_NEG, TO_EXP_POS],
-        RANGE: [MIN_EXP, MAX_EXP],
-        CRYPTO: CRYPTO,
-        MODULO_MODE: MODULO_MODE,
-        POW_PRECISION: POW_PRECISION,
-        FORMAT: FORMAT,
-        ALPHABET: ALPHABET
-      };
-    };
-
-
-    /*
-     * Return true if v is a BigNumber instance, otherwise return false.
-     *
-     * If BigNumber.DEBUG is true, throw if a BigNumber instance is not well-formed.
-     *
-     * v {any}
-     *
-     * '[BigNumber Error] Invalid BigNumber: {v}'
-     */
-    BigNumber.isBigNumber = function (v) {
-      if (!v || v._isBigNumber !== true) return false;
-      if (!BigNumber.DEBUG) return true;
-
-      var i, n,
-        c = v.c,
-        e = v.e,
-        s = v.s;
-
-      out: if ({}.toString.call(c) == '[object Array]') {
-
-        if ((s === 1 || s === -1) && e >= -MAX && e <= MAX && e === mathfloor(e)) {
-
-          // If the first element is zero, the BigNumber value must be zero.
-          if (c[0] === 0) {
-            if (e === 0 && c.length === 1) return true;
-            break out;
-          }
-
-          // Calculate number of digits that c[0] should have, based on the exponent.
-          i = (e + 1) % LOG_BASE;
-          if (i < 1) i += LOG_BASE;
-
-          // Calculate number of digits of c[0].
-          //if (Math.ceil(Math.log(c[0] + 1) / Math.LN10) == i) {
-          if (String(c[0]).length == i) {
-
-            for (i = 0; i < c.length; i++) {
-              n = c[i];
-              if (n < 0 || n >= BASE || n !== mathfloor(n)) break out;
-            }
-
-            // Last element cannot be zero, unless it is the only element.
-            if (n !== 0) return true;
-          }
-        }
-
-      // Infinity/NaN
-      } else if (c === null && e === null && (s === null || s === 1 || s === -1)) {
-        return true;
-      }
-
-      throw Error
-        (bignumberError + 'Invalid BigNumber: ' + v);
-    };
-
-
-    /*
-     * Return a new BigNumber whose value is the maximum of the arguments.
-     *
-     * arguments {number|string|BigNumber}
-     */
-    BigNumber.maximum = BigNumber.max = function () {
-      return maxOrMin(arguments, P.lt);
-    };
-
-
-    /*
-     * Return a new BigNumber whose value is the minimum of the arguments.
-     *
-     * arguments {number|string|BigNumber}
-     */
-    BigNumber.minimum = BigNumber.min = function () {
-      return maxOrMin(arguments, P.gt);
-    };
-
-
-    /*
-     * Return a new BigNumber with a random value equal to or greater than 0 and less than 1,
-     * and with dp, or DECIMAL_PLACES if dp is omitted, decimal places (or less if trailing
-     * zeros are produced).
-     *
-     * [dp] {number} Decimal places. Integer, 0 to MAX inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {dp}'
-     * '[BigNumber Error] crypto unavailable'
-     */
-    BigNumber.random = (function () {
-      var pow2_53 = 0x20000000000000;
-
-      // Return a 53 bit integer n, where 0 <= n < 9007199254740992.
-      // Check if Math.random() produces more than 32 bits of randomness.
-      // If it does, assume at least 53 bits are produced, otherwise assume at least 30 bits.
-      // 0x40000000 is 2^30, 0x800000 is 2^23, 0x1fffff is 2^21 - 1.
-      var random53bitInt = (Math.random() * pow2_53) & 0x1fffff
-       ? function () { return mathfloor(Math.random() * pow2_53); }
-       : function () { return ((Math.random() * 0x40000000 | 0) * 0x800000) +
-         (Math.random() * 0x800000 | 0); };
-
-      return function (dp) {
-        var a, b, e, k, v,
-          i = 0,
-          c = [],
-          rand = new BigNumber(ONE);
-
-        if (dp == null) dp = DECIMAL_PLACES;
-        else intCheck(dp, 0, MAX);
-
-        k = mathceil(dp / LOG_BASE);
-
-        if (CRYPTO) {
-
-          // Browsers supporting crypto.getRandomValues.
-          if (crypto.getRandomValues) {
-
-            a = crypto.getRandomValues(new Uint32Array(k *= 2));
-
-            for (; i < k;) {
-
-              // 53 bits:
-              // ((Math.pow(2, 32) - 1) * Math.pow(2, 21)).toString(2)
-              // 11111 11111111 11111111 11111111 11100000 00000000 00000000
-              // ((Math.pow(2, 32) - 1) >>> 11).toString(2)
-              //                                     11111 11111111 11111111
-              // 0x20000 is 2^21.
-              v = a[i] * 0x20000 + (a[i + 1] >>> 11);
-
-              // Rejection sampling:
-              // 0 <= v < 9007199254740992
-              // Probability that v >= 9e15, is
-              // 7199254740992 / 9007199254740992 ~= 0.0008, i.e. 1 in 1251
-              if (v >= 9e15) {
-                b = crypto.getRandomValues(new Uint32Array(2));
-                a[i] = b[0];
-                a[i + 1] = b[1];
-              } else {
-
-                // 0 <= v <= 8999999999999999
-                // 0 <= (v % 1e14) <= 99999999999999
-                c.push(v % 1e14);
-                i += 2;
-              }
-            }
-            i = k / 2;
-
-          // Node.js supporting crypto.randomBytes.
-          } else if (crypto.randomBytes) {
-
-            // buffer
-            a = crypto.randomBytes(k *= 7);
-
-            for (; i < k;) {
-
-              // 0x1000000000000 is 2^48, 0x10000000000 is 2^40
-              // 0x100000000 is 2^32, 0x1000000 is 2^24
-              // 11111 11111111 11111111 11111111 11111111 11111111 11111111
-              // 0 <= v < 9007199254740992
-              v = ((a[i] & 31) * 0x1000000000000) + (a[i + 1] * 0x10000000000) +
-                 (a[i + 2] * 0x100000000) + (a[i + 3] * 0x1000000) +
-                 (a[i + 4] << 16) + (a[i + 5] << 8) + a[i + 6];
-
-              if (v >= 9e15) {
-                crypto.randomBytes(7).copy(a, i);
-              } else {
-
-                // 0 <= (v % 1e14) <= 99999999999999
-                c.push(v % 1e14);
-                i += 7;
-              }
-            }
-            i = k / 7;
-          } else {
-            CRYPTO = false;
-            throw Error
-             (bignumberError + 'crypto unavailable');
-          }
-        }
-
-        // Use Math.random.
-        if (!CRYPTO) {
-
-          for (; i < k;) {
-            v = random53bitInt();
-            if (v < 9e15) c[i++] = v % 1e14;
-          }
-        }
-
-        k = c[--i];
-        dp %= LOG_BASE;
-
-        // Convert trailing digits to zeros according to dp.
-        if (k && dp) {
-          v = POWS_TEN[LOG_BASE - dp];
-          c[i] = mathfloor(k / v) * v;
-        }
-
-        // Remove trailing elements which are zero.
-        for (; c[i] === 0; c.pop(), i--);
-
-        // Zero?
-        if (i < 0) {
-          c = [e = 0];
-        } else {
-
-          // Remove leading elements which are zero and adjust exponent accordingly.
-          for (e = -1 ; c[0] === 0; c.splice(0, 1), e -= LOG_BASE);
-
-          // Count the digits of the first element of c to determine leading zeros, and...
-          for (i = 1, v = c[0]; v >= 10; v /= 10, i++);
-
-          // adjust the exponent accordingly.
-          if (i < LOG_BASE) e -= LOG_BASE - i;
-        }
-
-        rand.e = e;
-        rand.c = c;
-        return rand;
-      };
-    })();
-
-
-    /*
-     * Return a BigNumber whose value is the sum of the arguments.
-     *
-     * arguments {number|string|BigNumber}
-     */
-    BigNumber.sum = function () {
-      var i = 1,
-        args = arguments,
-        sum = new BigNumber(args[0]);
-      for (; i < args.length;) sum = sum.plus(args[i++]);
-      return sum;
-    };
-
-
-    // PRIVATE FUNCTIONS
-
-
-    // Called by BigNumber and BigNumber.prototype.toString.
-    convertBase = (function () {
-      var decimal = '0123456789';
-
-      /*
-       * Convert string of baseIn to an array of numbers of baseOut.
-       * Eg. toBaseOut('255', 10, 16) returns [15, 15].
-       * Eg. toBaseOut('ff', 16, 10) returns [2, 5, 5].
-       */
-      function toBaseOut(str, baseIn, baseOut, alphabet) {
-        var j,
-          arr = [0],
-          arrL,
-          i = 0,
-          len = str.length;
-
-        for (; i < len;) {
-          for (arrL = arr.length; arrL--; arr[arrL] *= baseIn);
-
-          arr[0] += alphabet.indexOf(str.charAt(i++));
-
-          for (j = 0; j < arr.length; j++) {
-
-            if (arr[j] > baseOut - 1) {
-              if (arr[j + 1] == null) arr[j + 1] = 0;
-              arr[j + 1] += arr[j] / baseOut | 0;
-              arr[j] %= baseOut;
-            }
-          }
-        }
-
-        return arr.reverse();
-      }
-
-      // Convert a numeric string of baseIn to a numeric string of baseOut.
-      // If the caller is toString, we are converting from base 10 to baseOut.
-      // If the caller is BigNumber, we are converting from baseIn to base 10.
-      return function (str, baseIn, baseOut, sign, callerIsToString) {
-        var alphabet, d, e, k, r, x, xc, y,
-          i = str.indexOf('.'),
-          dp = DECIMAL_PLACES,
-          rm = ROUNDING_MODE;
-
-        // Non-integer.
-        if (i >= 0) {
-          k = POW_PRECISION;
-
-          // Unlimited precision.
-          POW_PRECISION = 0;
-          str = str.replace('.', '');
-          y = new BigNumber(baseIn);
-          x = y.pow(str.length - i);
-          POW_PRECISION = k;
-
-          // Convert str as if an integer, then restore the fraction part by dividing the
-          // result by its base raised to a power.
-
-          y.c = toBaseOut(toFixedPoint(coeffToString(x.c), x.e, '0'),
-           10, baseOut, decimal);
-          y.e = y.c.length;
-        }
-
-        // Convert the number as integer.
-
-        xc = toBaseOut(str, baseIn, baseOut, callerIsToString
-         ? (alphabet = ALPHABET, decimal)
-         : (alphabet = decimal, ALPHABET));
-
-        // xc now represents str as an integer and converted to baseOut. e is the exponent.
-        e = k = xc.length;
-
-        // Remove trailing zeros.
-        for (; xc[--k] == 0; xc.pop());
-
-        // Zero?
-        if (!xc[0]) return alphabet.charAt(0);
-
-        // Does str represent an integer? If so, no need for the division.
-        if (i < 0) {
-          --e;
-        } else {
-          x.c = xc;
-          x.e = e;
-
-          // The sign is needed for correct rounding.
-          x.s = sign;
-          x = div(x, y, dp, rm, baseOut);
-          xc = x.c;
-          r = x.r;
-          e = x.e;
-        }
-
-        // xc now represents str converted to baseOut.
-
-        // THe index of the rounding digit.
-        d = e + dp + 1;
-
-        // The rounding digit: the digit to the right of the digit that may be rounded up.
-        i = xc[d];
-
-        // Look at the rounding digits and mode to determine whether to round up.
-
-        k = baseOut / 2;
-        r = r || d < 0 || xc[d + 1] != null;
-
-        r = rm < 4 ? (i != null || r) && (rm == 0 || rm == (x.s < 0 ? 3 : 2))
-              : i > k || i == k &&(rm == 4 || r || rm == 6 && xc[d - 1] & 1 ||
-               rm == (x.s < 0 ? 8 : 7));
-
-        // If the index of the rounding digit is not greater than zero, or xc represents
-        // zero, then the result of the base conversion is zero or, if rounding up, a value
-        // such as 0.00001.
-        if (d < 1 || !xc[0]) {
-
-          // 1^-dp or 0
-          str = r ? toFixedPoint(alphabet.charAt(1), -dp, alphabet.charAt(0)) : alphabet.charAt(0);
-        } else {
-
-          // Truncate xc to the required number of decimal places.
-          xc.length = d;
-
-          // Round up?
-          if (r) {
-
-            // Rounding up may mean the previous digit has to be rounded up and so on.
-            for (--baseOut; ++xc[--d] > baseOut;) {
-              xc[d] = 0;
-
-              if (!d) {
-                ++e;
-                xc = [1].concat(xc);
-              }
-            }
-          }
-
-          // Determine trailing zeros.
-          for (k = xc.length; !xc[--k];);
-
-          // E.g. [4, 11, 15] becomes 4bf.
-          for (i = 0, str = ''; i <= k; str += alphabet.charAt(xc[i++]));
-
-          // Add leading zeros, decimal point and trailing zeros as required.
-          str = toFixedPoint(str, e, alphabet.charAt(0));
-        }
-
-        // The caller will add the sign.
-        return str;
-      };
-    })();
-
-
-    // Perform division in the specified base. Called by div and convertBase.
-    div = (function () {
-
-      // Assume non-zero x and k.
-      function multiply(x, k, base) {
-        var m, temp, xlo, xhi,
-          carry = 0,
-          i = x.length,
-          klo = k % SQRT_BASE,
-          khi = k / SQRT_BASE | 0;
-
-        for (x = x.slice(); i--;) {
-          xlo = x[i] % SQRT_BASE;
-          xhi = x[i] / SQRT_BASE | 0;
-          m = khi * xlo + xhi * klo;
-          temp = klo * xlo + ((m % SQRT_BASE) * SQRT_BASE) + carry;
-          carry = (temp / base | 0) + (m / SQRT_BASE | 0) + khi * xhi;
-          x[i] = temp % base;
-        }
-
-        if (carry) x = [carry].concat(x);
-
-        return x;
-      }
-
-      function compare(a, b, aL, bL) {
-        var i, cmp;
-
-        if (aL != bL) {
-          cmp = aL > bL ? 1 : -1;
-        } else {
-
-          for (i = cmp = 0; i < aL; i++) {
-
-            if (a[i] != b[i]) {
-              cmp = a[i] > b[i] ? 1 : -1;
-              break;
-            }
-          }
-        }
-
-        return cmp;
-      }
-
-      function subtract(a, b, aL, base) {
-        var i = 0;
-
-        // Subtract b from a.
-        for (; aL--;) {
-          a[aL] -= i;
-          i = a[aL] < b[aL] ? 1 : 0;
-          a[aL] = i * base + a[aL] - b[aL];
-        }
-
-        // Remove leading zeros.
-        for (; !a[0] && a.length > 1; a.splice(0, 1));
-      }
-
-      // x: dividend, y: divisor.
-      return function (x, y, dp, rm, base) {
-        var cmp, e, i, more, n, prod, prodL, q, qc, rem, remL, rem0, xi, xL, yc0,
-          yL, yz,
-          s = x.s == y.s ? 1 : -1,
-          xc = x.c,
-          yc = y.c;
-
-        // Either NaN, Infinity or 0?
-        if (!xc || !xc[0] || !yc || !yc[0]) {
-
-          return new BigNumber(
-
-           // Return NaN if either NaN, or both Infinity or 0.
-           !x.s || !y.s || (xc ? yc && xc[0] == yc[0] : !yc) ? NaN :
-
-            // Return ±0 if x is ±0 or y is ±Infinity, or return ±Infinity as y is ±0.
-            xc && xc[0] == 0 || !yc ? s * 0 : s / 0
-         );
-        }
-
-        q = new BigNumber(s);
-        qc = q.c = [];
-        e = x.e - y.e;
-        s = dp + e + 1;
-
-        if (!base) {
-          base = BASE;
-          e = bitFloor(x.e / LOG_BASE) - bitFloor(y.e / LOG_BASE);
-          s = s / LOG_BASE | 0;
-        }
-
-        // Result exponent may be one less then the current value of e.
-        // The coefficients of the BigNumbers from convertBase may have trailing zeros.
-        for (i = 0; yc[i] == (xc[i] || 0); i++);
-
-        if (yc[i] > (xc[i] || 0)) e--;
-
-        if (s < 0) {
-          qc.push(1);
-          more = true;
-        } else {
-          xL = xc.length;
-          yL = yc.length;
-          i = 0;
-          s += 2;
-
-          // Normalise xc and yc so highest order digit of yc is >= base / 2.
-
-          n = mathfloor(base / (yc[0] + 1));
-
-          // Not necessary, but to handle odd bases where yc[0] == (base / 2) - 1.
-          // if (n > 1 || n++ == 1 && yc[0] < base / 2) {
-          if (n > 1) {
-            yc = multiply(yc, n, base);
-            xc = multiply(xc, n, base);
-            yL = yc.length;
-            xL = xc.length;
-          }
-
-          xi = yL;
-          rem = xc.slice(0, yL);
-          remL = rem.length;
-
-          // Add zeros to make remainder as long as divisor.
-          for (; remL < yL; rem[remL++] = 0);
-          yz = yc.slice();
-          yz = [0].concat(yz);
-          yc0 = yc[0];
-          if (yc[1] >= base / 2) yc0++;
-          // Not necessary, but to prevent trial digit n > base, when using base 3.
-          // else if (base == 3 && yc0 == 1) yc0 = 1 + 1e-15;
-
-          do {
-            n = 0;
-
-            // Compare divisor and remainder.
-            cmp = compare(yc, rem, yL, remL);
-
-            // If divisor < remainder.
-            if (cmp < 0) {
-
-              // Calculate trial digit, n.
-
-              rem0 = rem[0];
-              if (yL != remL) rem0 = rem0 * base + (rem[1] || 0);
-
-              // n is how many times the divisor goes into the current remainder.
-              n = mathfloor(rem0 / yc0);
-
-              //  Algorithm:
-              //  product = divisor multiplied by trial digit (n).
-              //  Compare product and remainder.
-              //  If product is greater than remainder:
-              //    Subtract divisor from product, decrement trial digit.
-              //  Subtract product from remainder.
-              //  If product was less than remainder at the last compare:
-              //    Compare new remainder and divisor.
-              //    If remainder is greater than divisor:
-              //      Subtract divisor from remainder, increment trial digit.
-
-              if (n > 1) {
-
-                // n may be > base only when base is 3.
-                if (n >= base) n = base - 1;
-
-                // product = divisor * trial digit.
-                prod = multiply(yc, n, base);
-                prodL = prod.length;
-                remL = rem.length;
-
-                // Compare product and remainder.
-                // If product > remainder then trial digit n too high.
-                // n is 1 too high about 5% of the time, and is not known to have
-                // ever been more than 1 too high.
-                while (compare(prod, rem, prodL, remL) == 1) {
-                  n--;
-
-                  // Subtract divisor from product.
-                  subtract(prod, yL < prodL ? yz : yc, prodL, base);
-                  prodL = prod.length;
-                  cmp = 1;
-                }
-              } else {
-
-                // n is 0 or 1, cmp is -1.
-                // If n is 0, there is no need to compare yc and rem again below,
-                // so change cmp to 1 to avoid it.
-                // If n is 1, leave cmp as -1, so yc and rem are compared again.
-                if (n == 0) {
-
-                  // divisor < remainder, so n must be at least 1.
-                  cmp = n = 1;
-                }
-
-                // product = divisor
-                prod = yc.slice();
-                prodL = prod.length;
-              }
-
-              if (prodL < remL) prod = [0].concat(prod);
-
-              // Subtract product from remainder.
-              subtract(rem, prod, remL, base);
-              remL = rem.length;
-
-               // If product was < remainder.
-              if (cmp == -1) {
-
-                // Compare divisor and new remainder.
-                // If divisor < new remainder, subtract divisor from remainder.
-                // Trial digit n too low.
-                // n is 1 too low about 5% of the time, and very rarely 2 too low.
-                while (compare(yc, rem, yL, remL) < 1) {
-                  n++;
-
-                  // Subtract divisor from remainder.
-                  subtract(rem, yL < remL ? yz : yc, remL, base);
-                  remL = rem.length;
-                }
-              }
-            } else if (cmp === 0) {
-              n++;
-              rem = [0];
-            } // else cmp === 1 and n will be 0
-
-            // Add the next digit, n, to the result array.
-            qc[i++] = n;
-
-            // Update the remainder.
-            if (rem[0]) {
-              rem[remL++] = xc[xi] || 0;
-            } else {
-              rem = [xc[xi]];
-              remL = 1;
-            }
-          } while ((xi++ < xL || rem[0] != null) && s--);
-
-          more = rem[0] != null;
-
-          // Leading zero?
-          if (!qc[0]) qc.splice(0, 1);
-        }
-
-        if (base == BASE) {
-
-          // To calculate q.e, first get the number of digits of qc[0].
-          for (i = 1, s = qc[0]; s >= 10; s /= 10, i++);
-
-          round(q, dp + (q.e = i + e * LOG_BASE - 1) + 1, rm, more);
-
-        // Caller is convertBase.
-        } else {
-          q.e = e;
-          q.r = +more;
-        }
-
-        return q;
-      };
-    })();
-
-
-    /*
-     * Return a string representing the value of BigNumber n in fixed-point or exponential
-     * notation rounded to the specified decimal places or significant digits.
-     *
-     * n: a BigNumber.
-     * i: the index of the last digit required (i.e. the digit that may be rounded up).
-     * rm: the rounding mode.
-     * id: 1 (toExponential) or 2 (toPrecision).
-     */
-    function format(n, i, rm, id) {
-      var c0, e, ne, len, str;
-
-      if (rm == null) rm = ROUNDING_MODE;
-      else intCheck(rm, 0, 8);
-
-      if (!n.c) return n.toString();
-
-      c0 = n.c[0];
-      ne = n.e;
-
-      if (i == null) {
-        str = coeffToString(n.c);
-        str = id == 1 || id == 2 && (ne <= TO_EXP_NEG || ne >= TO_EXP_POS)
-         ? toExponential(str, ne)
-         : toFixedPoint(str, ne, '0');
-      } else {
-        n = round(new BigNumber(n), i, rm);
-
-        // n.e may have changed if the value was rounded up.
-        e = n.e;
-
-        str = coeffToString(n.c);
-        len = str.length;
-
-        // toPrecision returns exponential notation if the number of significant digits
-        // specified is less than the number of digits necessary to represent the integer
-        // part of the value in fixed-point notation.
-
-        // Exponential notation.
-        if (id == 1 || id == 2 && (i <= e || e <= TO_EXP_NEG)) {
-
-          // Append zeros?
-          for (; len < i; str += '0', len++);
-          str = toExponential(str, e);
-
-        // Fixed-point notation.
-        } else {
-          i -= ne;
-          str = toFixedPoint(str, e, '0');
-
-          // Append zeros?
-          if (e + 1 > len) {
-            if (--i > 0) for (str += '.'; i--; str += '0');
-          } else {
-            i += e - len;
-            if (i > 0) {
-              if (e + 1 == len) str += '.';
-              for (; i--; str += '0');
-            }
-          }
-        }
-      }
-
-      return n.s < 0 && c0 ? '-' + str : str;
-    }
-
-
-    // Handle BigNumber.max and BigNumber.min.
-    function maxOrMin(args, method) {
-      var n,
-        i = 1,
-        m = new BigNumber(args[0]);
-
-      for (; i < args.length; i++) {
-        n = new BigNumber(args[i]);
-
-        // If any number is NaN, return NaN.
-        if (!n.s) {
-          m = n;
-          break;
-        } else if (method.call(m, n)) {
-          m = n;
-        }
-      }
-
-      return m;
-    }
-
-
-    /*
-     * Strip trailing zeros, calculate base 10 exponent and check against MIN_EXP and MAX_EXP.
-     * Called by minus, plus and times.
-     */
-    function normalise(n, c, e) {
-      var i = 1,
-        j = c.length;
-
-       // Remove trailing zeros.
-      for (; !c[--j]; c.pop());
-
-      // Calculate the base 10 exponent. First get the number of digits of c[0].
-      for (j = c[0]; j >= 10; j /= 10, i++);
-
-      // Overflow?
-      if ((e = i + e * LOG_BASE - 1) > MAX_EXP) {
-
-        // Infinity.
-        n.c = n.e = null;
-
-      // Underflow?
-      } else if (e < MIN_EXP) {
-
-        // Zero.
-        n.c = [n.e = 0];
-      } else {
-        n.e = e;
-        n.c = c;
-      }
-
-      return n;
-    }
-
-
-    // Handle values that fail the validity test in BigNumber.
-    parseNumeric = (function () {
-      var basePrefix = /^(-?)0([xbo])(?=\w[\w.]*$)/i,
-        dotAfter = /^([^.]+)\.$/,
-        dotBefore = /^\.([^.]+)$/,
-        isInfinityOrNaN = /^-?(Infinity|NaN)$/,
-        whitespaceOrPlus = /^\s*\+(?=[\w.])|^\s+|\s+$/g;
-
-      return function (x, str, isNum, b) {
-        var base,
-          s = isNum ? str : str.replace(whitespaceOrPlus, '');
-
-        // No exception on ±Infinity or NaN.
-        if (isInfinityOrNaN.test(s)) {
-          x.s = isNaN(s) ? null : s < 0 ? -1 : 1;
-        } else {
-          if (!isNum) {
-
-            // basePrefix = /^(-?)0([xbo])(?=\w[\w.]*$)/i
-            s = s.replace(basePrefix, function (m, p1, p2) {
-              base = (p2 = p2.toLowerCase()) == 'x' ? 16 : p2 == 'b' ? 2 : 8;
-              return !b || b == base ? p1 : m;
-            });
-
-            if (b) {
-              base = b;
-
-              // E.g. '1.' to '1', '.1' to '0.1'
-              s = s.replace(dotAfter, '$1').replace(dotBefore, '0.$1');
-            }
-
-            if (str != s) return new BigNumber(s, base);
-          }
-
-          // '[BigNumber Error] Not a number: {n}'
-          // '[BigNumber Error] Not a base {b} number: {n}'
-          if (BigNumber.DEBUG) {
-            throw Error
-              (bignumberError + 'Not a' + (b ? ' base ' + b : '') + ' number: ' + str);
-          }
-
-          // NaN
-          x.s = null;
-        }
-
-        x.c = x.e = null;
-      }
-    })();
-
-
-    /*
-     * Round x to sd significant digits using rounding mode rm. Check for over/under-flow.
-     * If r is truthy, it is known that there are more digits after the rounding digit.
-     */
-    function round(x, sd, rm, r) {
-      var d, i, j, k, n, ni, rd,
-        xc = x.c,
-        pows10 = POWS_TEN;
-
-      // if x is not Infinity or NaN...
-      if (xc) {
-
-        // rd is the rounding digit, i.e. the digit after the digit that may be rounded up.
-        // n is a base 1e14 number, the value of the element of array x.c containing rd.
-        // ni is the index of n within x.c.
-        // d is the number of digits of n.
-        // i is the index of rd within n including leading zeros.
-        // j is the actual index of rd within n (if < 0, rd is a leading zero).
-        out: {
-
-          // Get the number of digits of the first element of xc.
-          for (d = 1, k = xc[0]; k >= 10; k /= 10, d++);
-          i = sd - d;
-
-          // If the rounding digit is in the first element of xc...
-          if (i < 0) {
-            i += LOG_BASE;
-            j = sd;
-            n = xc[ni = 0];
-
-            // Get the rounding digit at index j of n.
-            rd = n / pows10[d - j - 1] % 10 | 0;
-          } else {
-            ni = mathceil((i + 1) / LOG_BASE);
-
-            if (ni >= xc.length) {
-
-              if (r) {
-
-                // Needed by sqrt.
-                for (; xc.length <= ni; xc.push(0));
-                n = rd = 0;
-                d = 1;
-                i %= LOG_BASE;
-                j = i - LOG_BASE + 1;
-              } else {
-                break out;
-              }
-            } else {
-              n = k = xc[ni];
-
-              // Get the number of digits of n.
-              for (d = 1; k >= 10; k /= 10, d++);
-
-              // Get the index of rd within n.
-              i %= LOG_BASE;
-
-              // Get the index of rd within n, adjusted for leading zeros.
-              // The number of leading zeros of n is given by LOG_BASE - d.
-              j = i - LOG_BASE + d;
-
-              // Get the rounding digit at index j of n.
-              rd = j < 0 ? 0 : n / pows10[d - j - 1] % 10 | 0;
-            }
-          }
-
-          r = r || sd < 0 ||
-
-          // Are there any non-zero digits after the rounding digit?
-          // The expression  n % pows10[d - j - 1]  returns all digits of n to the right
-          // of the digit at j, e.g. if n is 908714 and j is 2, the expression gives 714.
-           xc[ni + 1] != null || (j < 0 ? n : n % pows10[d - j - 1]);
-
-          r = rm < 4
-           ? (rd || r) && (rm == 0 || rm == (x.s < 0 ? 3 : 2))
-           : rd > 5 || rd == 5 && (rm == 4 || r || rm == 6 &&
-
-            // Check whether the digit to the left of the rounding digit is odd.
-            ((i > 0 ? j > 0 ? n / pows10[d - j] : 0 : xc[ni - 1]) % 10) & 1 ||
-             rm == (x.s < 0 ? 8 : 7));
-
-          if (sd < 1 || !xc[0]) {
-            xc.length = 0;
-
-            if (r) {
-
-              // Convert sd to decimal places.
-              sd -= x.e + 1;
-
-              // 1, 0.1, 0.01, 0.001, 0.0001 etc.
-              xc[0] = pows10[(LOG_BASE - sd % LOG_BASE) % LOG_BASE];
-              x.e = -sd || 0;
-            } else {
-
-              // Zero.
-              xc[0] = x.e = 0;
-            }
-
-            return x;
-          }
-
-          // Remove excess digits.
-          if (i == 0) {
-            xc.length = ni;
-            k = 1;
-            ni--;
-          } else {
-            xc.length = ni + 1;
-            k = pows10[LOG_BASE - i];
-
-            // E.g. 56700 becomes 56000 if 7 is the rounding digit.
-            // j > 0 means i > number of leading zeros of n.
-            xc[ni] = j > 0 ? mathfloor(n / pows10[d - j] % pows10[j]) * k : 0;
-          }
-
-          // Round up?
-          if (r) {
-
-            for (; ;) {
-
-              // If the digit to be rounded up is in the first element of xc...
-              if (ni == 0) {
-
-                // i will be the length of xc[0] before k is added.
-                for (i = 1, j = xc[0]; j >= 10; j /= 10, i++);
-                j = xc[0] += k;
-                for (k = 1; j >= 10; j /= 10, k++);
-
-                // if i != k the length has increased.
-                if (i != k) {
-                  x.e++;
-                  if (xc[0] == BASE) xc[0] = 1;
-                }
-
-                break;
-              } else {
-                xc[ni] += k;
-                if (xc[ni] != BASE) break;
-                xc[ni--] = 0;
-                k = 1;
-              }
-            }
-          }
-
-          // Remove trailing zeros.
-          for (i = xc.length; xc[--i] === 0; xc.pop());
-        }
-
-        // Overflow? Infinity.
-        if (x.e > MAX_EXP) {
-          x.c = x.e = null;
-
-        // Underflow? Zero.
-        } else if (x.e < MIN_EXP) {
-          x.c = [x.e = 0];
-        }
-      }
-
-      return x;
-    }
-
-
-    function valueOf(n) {
-      var str,
-        e = n.e;
-
-      if (e === null) return n.toString();
-
-      str = coeffToString(n.c);
-
-      str = e <= TO_EXP_NEG || e >= TO_EXP_POS
-        ? toExponential(str, e)
-        : toFixedPoint(str, e, '0');
-
-      return n.s < 0 ? '-' + str : str;
-    }
-
-
-    // PROTOTYPE/INSTANCE METHODS
-
-
-    /*
-     * Return a new BigNumber whose value is the absolute value of this BigNumber.
-     */
-    P.absoluteValue = P.abs = function () {
-      var x = new BigNumber(this);
-      if (x.s < 0) x.s = 1;
-      return x;
-    };
-
-
-    /*
-     * Return
-     *   1 if the value of this BigNumber is greater than the value of BigNumber(y, b),
-     *   -1 if the value of this BigNumber is less than the value of BigNumber(y, b),
-     *   0 if they have the same value,
-     *   or null if the value of either is NaN.
-     */
-    P.comparedTo = function (y, b) {
-      return compare(this, new BigNumber(y, b));
-    };
-
-
-    /*
-     * If dp is undefined or null or true or false, return the number of decimal places of the
-     * value of this BigNumber, or null if the value of this BigNumber is ±Infinity or NaN.
-     *
-     * Otherwise, if dp is a number, return a new BigNumber whose value is the value of this
-     * BigNumber rounded to a maximum of dp decimal places using rounding mode rm, or
-     * ROUNDING_MODE if rm is omitted.
-     *
-     * [dp] {number} Decimal places: integer, 0 to MAX inclusive.
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {dp|rm}'
-     */
-    P.decimalPlaces = P.dp = function (dp, rm) {
-      var c, n, v,
-        x = this;
-
-      if (dp != null) {
-        intCheck(dp, 0, MAX);
-        if (rm == null) rm = ROUNDING_MODE;
-        else intCheck(rm, 0, 8);
-
-        return round(new BigNumber(x), dp + x.e + 1, rm);
-      }
-
-      if (!(c = x.c)) return null;
-      n = ((v = c.length - 1) - bitFloor(this.e / LOG_BASE)) * LOG_BASE;
-
-      // Subtract the number of trailing zeros of the last number.
-      if (v = c[v]) for (; v % 10 == 0; v /= 10, n--);
-      if (n < 0) n = 0;
-
-      return n;
-    };
-
-
-    /*
-     *  n / 0 = I
-     *  n / N = N
-     *  n / I = 0
-     *  0 / n = 0
-     *  0 / 0 = N
-     *  0 / N = N
-     *  0 / I = 0
-     *  N / n = N
-     *  N / 0 = N
-     *  N / N = N
-     *  N / I = N
-     *  I / n = I
-     *  I / 0 = I
-     *  I / N = N
-     *  I / I = N
-     *
-     * Return a new BigNumber whose value is the value of this BigNumber divided by the value of
-     * BigNumber(y, b), rounded according to DECIMAL_PLACES and ROUNDING_MODE.
-     */
-    P.dividedBy = P.div = function (y, b) {
-      return div(this, new BigNumber(y, b), DECIMAL_PLACES, ROUNDING_MODE);
-    };
-
-
-    /*
-     * Return a new BigNumber whose value is the integer part of dividing the value of this
-     * BigNumber by the value of BigNumber(y, b).
-     */
-    P.dividedToIntegerBy = P.idiv = function (y, b) {
-      return div(this, new BigNumber(y, b), 0, 1);
-    };
-
-
-    /*
-     * Return a BigNumber whose value is the value of this BigNumber exponentiated by n.
-     *
-     * If m is present, return the result modulo m.
-     * If n is negative round according to DECIMAL_PLACES and ROUNDING_MODE.
-     * If POW_PRECISION is non-zero and m is not present, round to POW_PRECISION using ROUNDING_MODE.
-     *
-     * The modular power operation works efficiently when x, n, and m are integers, otherwise it
-     * is equivalent to calculating x.exponentiatedBy(n).modulo(m) with a POW_PRECISION of 0.
-     *
-     * n {number|string|BigNumber} The exponent. An integer.
-     * [m] {number|string|BigNumber} The modulus.
-     *
-     * '[BigNumber Error] Exponent not an integer: {n}'
-     */
-    P.exponentiatedBy = P.pow = function (n, m) {
-      var half, isModExp, i, k, more, nIsBig, nIsNeg, nIsOdd, y,
-        x = this;
-
-      n = new BigNumber(n);
-
-      // Allow NaN and ±Infinity, but not other non-integers.
-      if (n.c && !n.isInteger()) {
-        throw Error
-          (bignumberError + 'Exponent not an integer: ' + valueOf(n));
-      }
-
-      if (m != null) m = new BigNumber(m);
-
-      // Exponent of MAX_SAFE_INTEGER is 15.
-      nIsBig = n.e > 14;
-
-      // If x is NaN, ±Infinity, ±0 or ±1, or n is ±Infinity, NaN or ±0.
-      if (!x.c || !x.c[0] || x.c[0] == 1 && !x.e && x.c.length == 1 || !n.c || !n.c[0]) {
-
-        // The sign of the result of pow when x is negative depends on the evenness of n.
-        // If +n overflows to ±Infinity, the evenness of n would be not be known.
-        y = new BigNumber(Math.pow(+valueOf(x), nIsBig ? 2 - isOdd(n) : +valueOf(n)));
-        return m ? y.mod(m) : y;
-      }
-
-      nIsNeg = n.s < 0;
-
-      if (m) {
-
-        // x % m returns NaN if abs(m) is zero, or m is NaN.
-        if (m.c ? !m.c[0] : !m.s) return new BigNumber(NaN);
-
-        isModExp = !nIsNeg && x.isInteger() && m.isInteger();
-
-        if (isModExp) x = x.mod(m);
-
-      // Overflow to ±Infinity: >=2**1e10 or >=1.0000024**1e15.
-      // Underflow to ±0: <=0.79**1e10 or <=0.9999975**1e15.
-      } else if (n.e > 9 && (x.e > 0 || x.e < -1 || (x.e == 0
-        // [1, 240000000]
-        ? x.c[0] > 1 || nIsBig && x.c[1] >= 24e7
-        // [80000000000000]  [99999750000000]
-        : x.c[0] < 8e13 || nIsBig && x.c[0] <= 9999975e7))) {
-
-        // If x is negative and n is odd, k = -0, else k = 0.
-        k = x.s < 0 && isOdd(n) ? -0 : 0;
-
-        // If x >= 1, k = ±Infinity.
-        if (x.e > -1) k = 1 / k;
-
-        // If n is negative return ±0, else return ±Infinity.
-        return new BigNumber(nIsNeg ? 1 / k : k);
-
-      } else if (POW_PRECISION) {
-
-        // Truncating each coefficient array to a length of k after each multiplication
-        // equates to truncating significant digits to POW_PRECISION + [28, 41],
-        // i.e. there will be a minimum of 28 guard digits retained.
-        k = mathceil(POW_PRECISION / LOG_BASE + 2);
-      }
-
-      if (nIsBig) {
-        half = new BigNumber(0.5);
-        if (nIsNeg) n.s = 1;
-        nIsOdd = isOdd(n);
-      } else {
-        i = Math.abs(+valueOf(n));
-        nIsOdd = i % 2;
-      }
-
-      y = new BigNumber(ONE);
-
-      // Performs 54 loop iterations for n of 9007199254740991.
-      for (; ;) {
-
-        if (nIsOdd) {
-          y = y.times(x);
-          if (!y.c) break;
-
-          if (k) {
-            if (y.c.length > k) y.c.length = k;
-          } else if (isModExp) {
-            y = y.mod(m);    //y = y.minus(div(y, m, 0, MODULO_MODE).times(m));
-          }
-        }
-
-        if (i) {
-          i = mathfloor(i / 2);
-          if (i === 0) break;
-          nIsOdd = i % 2;
-        } else {
-          n = n.times(half);
-          round(n, n.e + 1, 1);
-
-          if (n.e > 14) {
-            nIsOdd = isOdd(n);
-          } else {
-            i = +valueOf(n);
-            if (i === 0) break;
-            nIsOdd = i % 2;
-          }
-        }
-
-        x = x.times(x);
-
-        if (k) {
-          if (x.c && x.c.length > k) x.c.length = k;
-        } else if (isModExp) {
-          x = x.mod(m);    //x = x.minus(div(x, m, 0, MODULO_MODE).times(m));
-        }
-      }
-
-      if (isModExp) return y;
-      if (nIsNeg) y = ONE.div(y);
-
-      return m ? y.mod(m) : k ? round(y, POW_PRECISION, ROUNDING_MODE, more) : y;
-    };
-
-
-    /*
-     * Return a new BigNumber whose value is the value of this BigNumber rounded to an integer
-     * using rounding mode rm, or ROUNDING_MODE if rm is omitted.
-     *
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {rm}'
-     */
-    P.integerValue = function (rm) {
-      var n = new BigNumber(this);
-      if (rm == null) rm = ROUNDING_MODE;
-      else intCheck(rm, 0, 8);
-      return round(n, n.e + 1, rm);
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is equal to the value of BigNumber(y, b),
-     * otherwise return false.
-     */
-    P.isEqualTo = P.eq = function (y, b) {
-      return compare(this, new BigNumber(y, b)) === 0;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is a finite number, otherwise return false.
-     */
-    P.isFinite = function () {
-      return !!this.c;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is greater than the value of BigNumber(y, b),
-     * otherwise return false.
-     */
-    P.isGreaterThan = P.gt = function (y, b) {
-      return compare(this, new BigNumber(y, b)) > 0;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is greater than or equal to the value of
-     * BigNumber(y, b), otherwise return false.
-     */
-    P.isGreaterThanOrEqualTo = P.gte = function (y, b) {
-      return (b = compare(this, new BigNumber(y, b))) === 1 || b === 0;
-
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is an integer, otherwise return false.
-     */
-    P.isInteger = function () {
-      return !!this.c && bitFloor(this.e / LOG_BASE) > this.c.length - 2;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is less than the value of BigNumber(y, b),
-     * otherwise return false.
-     */
-    P.isLessThan = P.lt = function (y, b) {
-      return compare(this, new BigNumber(y, b)) < 0;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is less than or equal to the value of
-     * BigNumber(y, b), otherwise return false.
-     */
-    P.isLessThanOrEqualTo = P.lte = function (y, b) {
-      return (b = compare(this, new BigNumber(y, b))) === -1 || b === 0;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is NaN, otherwise return false.
-     */
-    P.isNaN = function () {
-      return !this.s;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is negative, otherwise return false.
-     */
-    P.isNegative = function () {
-      return this.s < 0;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is positive, otherwise return false.
-     */
-    P.isPositive = function () {
-      return this.s > 0;
-    };
-
-
-    /*
-     * Return true if the value of this BigNumber is 0 or -0, otherwise return false.
-     */
-    P.isZero = function () {
-      return !!this.c && this.c[0] == 0;
-    };
-
-
-    /*
-     *  n - 0 = n
-     *  n - N = N
-     *  n - I = -I
-     *  0 - n = -n
-     *  0 - 0 = 0
-     *  0 - N = N
-     *  0 - I = -I
-     *  N - n = N
-     *  N - 0 = N
-     *  N - N = N
-     *  N - I = N
-     *  I - n = I
-     *  I - 0 = I
-     *  I - N = N
-     *  I - I = N
-     *
-     * Return a new BigNumber whose value is the value of this BigNumber minus the value of
-     * BigNumber(y, b).
-     */
-    P.minus = function (y, b) {
-      var i, j, t, xLTy,
-        x = this,
-        a = x.s;
-
-      y = new BigNumber(y, b);
-      b = y.s;
-
-      // Either NaN?
-      if (!a || !b) return new BigNumber(NaN);
-
-      // Signs differ?
-      if (a != b) {
-        y.s = -b;
-        return x.plus(y);
-      }
-
-      var xe = x.e / LOG_BASE,
-        ye = y.e / LOG_BASE,
-        xc = x.c,
-        yc = y.c;
-
-      if (!xe || !ye) {
-
-        // Either Infinity?
-        if (!xc || !yc) return xc ? (y.s = -b, y) : new BigNumber(yc ? x : NaN);
-
-        // Either zero?
-        if (!xc[0] || !yc[0]) {
-
-          // Return y if y is non-zero, x if x is non-zero, or zero if both are zero.
-          return yc[0] ? (y.s = -b, y) : new BigNumber(xc[0] ? x :
-
-           // IEEE 754 (2008) 6.3: n - n = -0 when rounding to -Infinity
-           ROUNDING_MODE == 3 ? -0 : 0);
-        }
-      }
-
-      xe = bitFloor(xe);
-      ye = bitFloor(ye);
-      xc = xc.slice();
-
-      // Determine which is the bigger number.
-      if (a = xe - ye) {
-
-        if (xLTy = a < 0) {
-          a = -a;
-          t = xc;
-        } else {
-          ye = xe;
-          t = yc;
-        }
-
-        t.reverse();
-
-        // Prepend zeros to equalise exponents.
-        for (b = a; b--; t.push(0));
-        t.reverse();
-      } else {
-
-        // Exponents equal. Check digit by digit.
-        j = (xLTy = (a = xc.length) < (b = yc.length)) ? a : b;
-
-        for (a = b = 0; b < j; b++) {
-
-          if (xc[b] != yc[b]) {
-            xLTy = xc[b] < yc[b];
-            break;
-          }
-        }
-      }
-
-      // x < y? Point xc to the array of the bigger number.
-      if (xLTy) t = xc, xc = yc, yc = t, y.s = -y.s;
-
-      b = (j = yc.length) - (i = xc.length);
-
-      // Append zeros to xc if shorter.
-      // No need to add zeros to yc if shorter as subtract only needs to start at yc.length.
-      if (b > 0) for (; b--; xc[i++] = 0);
-      b = BASE - 1;
-
-      // Subtract yc from xc.
-      for (; j > a;) {
-
-        if (xc[--j] < yc[j]) {
-          for (i = j; i && !xc[--i]; xc[i] = b);
-          --xc[i];
-          xc[j] += BASE;
-        }
-
-        xc[j] -= yc[j];
-      }
-
-      // Remove leading zeros and adjust exponent accordingly.
-      for (; xc[0] == 0; xc.splice(0, 1), --ye);
-
-      // Zero?
-      if (!xc[0]) {
-
-        // Following IEEE 754 (2008) 6.3,
-        // n - n = +0  but  n - n = -0  when rounding towards -Infinity.
-        y.s = ROUNDING_MODE == 3 ? -1 : 1;
-        y.c = [y.e = 0];
-        return y;
-      }
-
-      // No need to check for Infinity as +x - +y != Infinity && -x - -y != Infinity
-      // for finite x and y.
-      return normalise(y, xc, ye);
-    };
-
-
-    /*
-     *   n % 0 =  N
-     *   n % N =  N
-     *   n % I =  n
-     *   0 % n =  0
-     *  -0 % n = -0
-     *   0 % 0 =  N
-     *   0 % N =  N
-     *   0 % I =  0
-     *   N % n =  N
-     *   N % 0 =  N
-     *   N % N =  N
-     *   N % I =  N
-     *   I % n =  N
-     *   I % 0 =  N
-     *   I % N =  N
-     *   I % I =  N
-     *
-     * Return a new BigNumber whose value is the value of this BigNumber modulo the value of
-     * BigNumber(y, b). The result depends on the value of MODULO_MODE.
-     */
-    P.modulo = P.mod = function (y, b) {
-      var q, s,
-        x = this;
-
-      y = new BigNumber(y, b);
-
-      // Return NaN if x is Infinity or NaN, or y is NaN or zero.
-      if (!x.c || !y.s || y.c && !y.c[0]) {
-        return new BigNumber(NaN);
-
-      // Return x if y is Infinity or x is zero.
-      } else if (!y.c || x.c && !x.c[0]) {
-        return new BigNumber(x);
-      }
-
-      if (MODULO_MODE == 9) {
-
-        // Euclidian division: q = sign(y) * floor(x / abs(y))
-        // r = x - qy    where  0 <= r < abs(y)
-        s = y.s;
-        y.s = 1;
-        q = div(x, y, 0, 3);
-        y.s = s;
-        q.s *= s;
-      } else {
-        q = div(x, y, 0, MODULO_MODE);
-      }
-
-      y = x.minus(q.times(y));
-
-      // To match JavaScript %, ensure sign of zero is sign of dividend.
-      if (!y.c[0] && MODULO_MODE == 1) y.s = x.s;
-
-      return y;
-    };
-
-
-    /*
-     *  n * 0 = 0
-     *  n * N = N
-     *  n * I = I
-     *  0 * n = 0
-     *  0 * 0 = 0
-     *  0 * N = N
-     *  0 * I = N
-     *  N * n = N
-     *  N * 0 = N
-     *  N * N = N
-     *  N * I = N
-     *  I * n = I
-     *  I * 0 = N
-     *  I * N = N
-     *  I * I = I
-     *
-     * Return a new BigNumber whose value is the value of this BigNumber multiplied by the value
-     * of BigNumber(y, b).
-     */
-    P.multipliedBy = P.times = function (y, b) {
-      var c, e, i, j, k, m, xcL, xlo, xhi, ycL, ylo, yhi, zc,
-        base, sqrtBase,
-        x = this,
-        xc = x.c,
-        yc = (y = new BigNumber(y, b)).c;
-
-      // Either NaN, ±Infinity or ±0?
-      if (!xc || !yc || !xc[0] || !yc[0]) {
-
-        // Return NaN if either is NaN, or one is 0 and the other is Infinity.
-        if (!x.s || !y.s || xc && !xc[0] && !yc || yc && !yc[0] && !xc) {
-          y.c = y.e = y.s = null;
-        } else {
-          y.s *= x.s;
-
-          // Return ±Infinity if either is ±Infinity.
-          if (!xc || !yc) {
-            y.c = y.e = null;
-
-          // Return ±0 if either is ±0.
-          } else {
-            y.c = [0];
-            y.e = 0;
-          }
-        }
-
-        return y;
-      }
-
-      e = bitFloor(x.e / LOG_BASE) + bitFloor(y.e / LOG_BASE);
-      y.s *= x.s;
-      xcL = xc.length;
-      ycL = yc.length;
-
-      // Ensure xc points to longer array and xcL to its length.
-      if (xcL < ycL) zc = xc, xc = yc, yc = zc, i = xcL, xcL = ycL, ycL = i;
-
-      // Initialise the result array with zeros.
-      for (i = xcL + ycL, zc = []; i--; zc.push(0));
-
-      base = BASE;
-      sqrtBase = SQRT_BASE;
-
-      for (i = ycL; --i >= 0;) {
-        c = 0;
-        ylo = yc[i] % sqrtBase;
-        yhi = yc[i] / sqrtBase | 0;
-
-        for (k = xcL, j = i + k; j > i;) {
-          xlo = xc[--k] % sqrtBase;
-          xhi = xc[k] / sqrtBase | 0;
-          m = yhi * xlo + xhi * ylo;
-          xlo = ylo * xlo + ((m % sqrtBase) * sqrtBase) + zc[j] + c;
-          c = (xlo / base | 0) + (m / sqrtBase | 0) + yhi * xhi;
-          zc[j--] = xlo % base;
-        }
-
-        zc[j] = c;
-      }
-
-      if (c) {
-        ++e;
-      } else {
-        zc.splice(0, 1);
-      }
-
-      return normalise(y, zc, e);
-    };
-
-
-    /*
-     * Return a new BigNumber whose value is the value of this BigNumber negated,
-     * i.e. multiplied by -1.
-     */
-    P.negated = function () {
-      var x = new BigNumber(this);
-      x.s = -x.s || null;
-      return x;
-    };
-
-
-    /*
-     *  n + 0 = n
-     *  n + N = N
-     *  n + I = I
-     *  0 + n = n
-     *  0 + 0 = 0
-     *  0 + N = N
-     *  0 + I = I
-     *  N + n = N
-     *  N + 0 = N
-     *  N + N = N
-     *  N + I = N
-     *  I + n = I
-     *  I + 0 = I
-     *  I + N = N
-     *  I + I = I
-     *
-     * Return a new BigNumber whose value is the value of this BigNumber plus the value of
-     * BigNumber(y, b).
-     */
-    P.plus = function (y, b) {
-      var t,
-        x = this,
-        a = x.s;
-
-      y = new BigNumber(y, b);
-      b = y.s;
-
-      // Either NaN?
-      if (!a || !b) return new BigNumber(NaN);
-
-      // Signs differ?
-       if (a != b) {
-        y.s = -b;
-        return x.minus(y);
-      }
-
-      var xe = x.e / LOG_BASE,
-        ye = y.e / LOG_BASE,
-        xc = x.c,
-        yc = y.c;
-
-      if (!xe || !ye) {
-
-        // Return ±Infinity if either ±Infinity.
-        if (!xc || !yc) return new BigNumber(a / 0);
-
-        // Either zero?
-        // Return y if y is non-zero, x if x is non-zero, or zero if both are zero.
-        if (!xc[0] || !yc[0]) return yc[0] ? y : new BigNumber(xc[0] ? x : a * 0);
-      }
-
-      xe = bitFloor(xe);
-      ye = bitFloor(ye);
-      xc = xc.slice();
-
-      // Prepend zeros to equalise exponents. Faster to use reverse then do unshifts.
-      if (a = xe - ye) {
-        if (a > 0) {
-          ye = xe;
-          t = yc;
-        } else {
-          a = -a;
-          t = xc;
-        }
-
-        t.reverse();
-        for (; a--; t.push(0));
-        t.reverse();
-      }
-
-      a = xc.length;
-      b = yc.length;
-
-      // Point xc to the longer array, and b to the shorter length.
-      if (a - b < 0) t = yc, yc = xc, xc = t, b = a;
-
-      // Only start adding at yc.length - 1 as the further digits of xc can be ignored.
-      for (a = 0; b;) {
-        a = (xc[--b] = xc[b] + yc[b] + a) / BASE | 0;
-        xc[b] = BASE === xc[b] ? 0 : xc[b] % BASE;
-      }
-
-      if (a) {
-        xc = [a].concat(xc);
-        ++ye;
-      }
-
-      // No need to check for zero, as +x + +y != 0 && -x + -y != 0
-      // ye = MAX_EXP + 1 possible
-      return normalise(y, xc, ye);
-    };
-
-
-    /*
-     * If sd is undefined or null or true or false, return the number of significant digits of
-     * the value of this BigNumber, or null if the value of this BigNumber is ±Infinity or NaN.
-     * If sd is true include integer-part trailing zeros in the count.
-     *
-     * Otherwise, if sd is a number, return a new BigNumber whose value is the value of this
-     * BigNumber rounded to a maximum of sd significant digits using rounding mode rm, or
-     * ROUNDING_MODE if rm is omitted.
-     *
-     * sd {number|boolean} number: significant digits: integer, 1 to MAX inclusive.
-     *                     boolean: whether to count integer-part trailing zeros: true or false.
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {sd|rm}'
-     */
-    P.precision = P.sd = function (sd, rm) {
-      var c, n, v,
-        x = this;
-
-      if (sd != null && sd !== !!sd) {
-        intCheck(sd, 1, MAX);
-        if (rm == null) rm = ROUNDING_MODE;
-        else intCheck(rm, 0, 8);
-
-        return round(new BigNumber(x), sd, rm);
-      }
-
-      if (!(c = x.c)) return null;
-      v = c.length - 1;
-      n = v * LOG_BASE + 1;
-
-      if (v = c[v]) {
-
-        // Subtract the number of trailing zeros of the last element.
-        for (; v % 10 == 0; v /= 10, n--);
-
-        // Add the number of digits of the first element.
-        for (v = c[0]; v >= 10; v /= 10, n++);
-      }
-
-      if (sd && x.e + 1 > n) n = x.e + 1;
-
-      return n;
-    };
-
-
-    /*
-     * Return a new BigNumber whose value is the value of this BigNumber shifted by k places
-     * (powers of 10). Shift to the right if n > 0, and to the left if n < 0.
-     *
-     * k {number} Integer, -MAX_SAFE_INTEGER to MAX_SAFE_INTEGER inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {k}'
-     */
-    P.shiftedBy = function (k) {
-      intCheck(k, -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER);
-      return this.times('1e' + k);
-    };
-
-
-    /*
-     *  sqrt(-n) =  N
-     *  sqrt(N) =  N
-     *  sqrt(-I) =  N
-     *  sqrt(I) =  I
-     *  sqrt(0) =  0
-     *  sqrt(-0) = -0
-     *
-     * Return a new BigNumber whose value is the square root of the value of this BigNumber,
-     * rounded according to DECIMAL_PLACES and ROUNDING_MODE.
-     */
-    P.squareRoot = P.sqrt = function () {
-      var m, n, r, rep, t,
-        x = this,
-        c = x.c,
-        s = x.s,
-        e = x.e,
-        dp = DECIMAL_PLACES + 4,
-        half = new BigNumber('0.5');
-
-      // Negative/NaN/Infinity/zero?
-      if (s !== 1 || !c || !c[0]) {
-        return new BigNumber(!s || s < 0 && (!c || c[0]) ? NaN : c ? x : 1 / 0);
-      }
-
-      // Initial estimate.
-      s = Math.sqrt(+valueOf(x));
-
-      // Math.sqrt underflow/overflow?
-      // Pass x to Math.sqrt as integer, then adjust the exponent of the result.
-      if (s == 0 || s == 1 / 0) {
-        n = coeffToString(c);
-        if ((n.length + e) % 2 == 0) n += '0';
-        s = Math.sqrt(+n);
-        e = bitFloor((e + 1) / 2) - (e < 0 || e % 2);
-
-        if (s == 1 / 0) {
-          n = '1e' + e;
-        } else {
-          n = s.toExponential();
-          n = n.slice(0, n.indexOf('e') + 1) + e;
-        }
-
-        r = new BigNumber(n);
-      } else {
-        r = new BigNumber(s + '');
-      }
-
-      // Check for zero.
-      // r could be zero if MIN_EXP is changed after the this value was created.
-      // This would cause a division by zero (x/t) and hence Infinity below, which would cause
-      // coeffToString to throw.
-      if (r.c[0]) {
-        e = r.e;
-        s = e + dp;
-        if (s < 3) s = 0;
-
-        // Newton-Raphson iteration.
-        for (; ;) {
-          t = r;
-          r = half.times(t.plus(div(x, t, dp, 1)));
-
-          if (coeffToString(t.c).slice(0, s) === (n = coeffToString(r.c)).slice(0, s)) {
-
-            // The exponent of r may here be one less than the final result exponent,
-            // e.g 0.0009999 (e-4) --> 0.001 (e-3), so adjust s so the rounding digits
-            // are indexed correctly.
-            if (r.e < e) --s;
-            n = n.slice(s - 3, s + 1);
-
-            // The 4th rounding digit may be in error by -1 so if the 4 rounding digits
-            // are 9999 or 4999 (i.e. approaching a rounding boundary) continue the
-            // iteration.
-            if (n == '9999' || !rep && n == '4999') {
-
-              // On the first iteration only, check to see if rounding up gives the
-              // exact result as the nines may infinitely repeat.
-              if (!rep) {
-                round(t, t.e + DECIMAL_PLACES + 2, 0);
-
-                if (t.times(t).eq(x)) {
-                  r = t;
-                  break;
-                }
-              }
-
-              dp += 4;
-              s += 4;
-              rep = 1;
-            } else {
-
-              // If rounding digits are null, 0{0,4} or 50{0,3}, check for exact
-              // result. If not, then there are further digits and m will be truthy.
-              if (!+n || !+n.slice(1) && n.charAt(0) == '5') {
-
-                // Truncate to the first rounding digit.
-                round(r, r.e + DECIMAL_PLACES + 2, 1);
-                m = !r.times(r).eq(x);
-              }
-
-              break;
-            }
-          }
-        }
-      }
-
-      return round(r, r.e + DECIMAL_PLACES + 1, ROUNDING_MODE, m);
-    };
-
-
-    /*
-     * Return a string representing the value of this BigNumber in exponential notation and
-     * rounded using ROUNDING_MODE to dp fixed decimal places.
-     *
-     * [dp] {number} Decimal places. Integer, 0 to MAX inclusive.
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {dp|rm}'
-     */
-    P.toExponential = function (dp, rm) {
-      if (dp != null) {
-        intCheck(dp, 0, MAX);
-        dp++;
-      }
-      return format(this, dp, rm, 1);
-    };
-
-
-    /*
-     * Return a string representing the value of this BigNumber in fixed-point notation rounding
-     * to dp fixed decimal places using rounding mode rm, or ROUNDING_MODE if rm is omitted.
-     *
-     * Note: as with JavaScript's number type, (-0).toFixed(0) is '0',
-     * but e.g. (-0.00001).toFixed(0) is '-0'.
-     *
-     * [dp] {number} Decimal places. Integer, 0 to MAX inclusive.
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {dp|rm}'
-     */
-    P.toFixed = function (dp, rm) {
-      if (dp != null) {
-        intCheck(dp, 0, MAX);
-        dp = dp + this.e + 1;
-      }
-      return format(this, dp, rm);
-    };
-
-
-    /*
-     * Return a string representing the value of this BigNumber in fixed-point notation rounded
-     * using rm or ROUNDING_MODE to dp decimal places, and formatted according to the properties
-     * of the format or FORMAT object (see BigNumber.set).
-     *
-     * The formatting object may contain some or all of the properties shown below.
-     *
-     * FORMAT = {
-     *   prefix: '',
-     *   groupSize: 3,
-     *   secondaryGroupSize: 0,
-     *   groupSeparator: ',',
-     *   decimalSeparator: '.',
-     *   fractionGroupSize: 0,
-     *   fractionGroupSeparator: '\xA0',      // non-breaking space
-     *   suffix: ''
-     * };
-     *
-     * [dp] {number} Decimal places. Integer, 0 to MAX inclusive.
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     * [format] {object} Formatting options. See FORMAT pbject above.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {dp|rm}'
-     * '[BigNumber Error] Argument not an object: {format}'
-     */
-    P.toFormat = function (dp, rm, format) {
-      var str,
-        x = this;
-
-      if (format == null) {
-        if (dp != null && rm && typeof rm == 'object') {
-          format = rm;
-          rm = null;
-        } else if (dp && typeof dp == 'object') {
-          format = dp;
-          dp = rm = null;
-        } else {
-          format = FORMAT;
-        }
-      } else if (typeof format != 'object') {
-        throw Error
-          (bignumberError + 'Argument not an object: ' + format);
-      }
-
-      str = x.toFixed(dp, rm);
-
-      if (x.c) {
-        var i,
-          arr = str.split('.'),
-          g1 = +format.groupSize,
-          g2 = +format.secondaryGroupSize,
-          groupSeparator = format.groupSeparator || '',
-          intPart = arr[0],
-          fractionPart = arr[1],
-          isNeg = x.s < 0,
-          intDigits = isNeg ? intPart.slice(1) : intPart,
-          len = intDigits.length;
-
-        if (g2) i = g1, g1 = g2, g2 = i, len -= i;
-
-        if (g1 > 0 && len > 0) {
-          i = len % g1 || g1;
-          intPart = intDigits.substr(0, i);
-          for (; i < len; i += g1) intPart += groupSeparator + intDigits.substr(i, g1);
-          if (g2 > 0) intPart += groupSeparator + intDigits.slice(i);
-          if (isNeg) intPart = '-' + intPart;
-        }
-
-        str = fractionPart
-         ? intPart + (format.decimalSeparator || '') + ((g2 = +format.fractionGroupSize)
-          ? fractionPart.replace(new RegExp('\\d{' + g2 + '}\\B', 'g'),
-           '$&' + (format.fractionGroupSeparator || ''))
-          : fractionPart)
-         : intPart;
-      }
-
-      return (format.prefix || '') + str + (format.suffix || '');
-    };
-
-
-    /*
-     * Return an array of two BigNumbers representing the value of this BigNumber as a simple
-     * fraction with an integer numerator and an integer denominator.
-     * The denominator will be a positive non-zero value less than or equal to the specified
-     * maximum denominator. If a maximum denominator is not specified, the denominator will be
-     * the lowest value necessary to represent the number exactly.
-     *
-     * [md] {number|string|BigNumber} Integer >= 1, or Infinity. The maximum denominator.
-     *
-     * '[BigNumber Error] Argument {not an integer|out of range} : {md}'
-     */
-    P.toFraction = function (md) {
-      var d, d0, d1, d2, e, exp, n, n0, n1, q, r, s,
-        x = this,
-        xc = x.c;
-
-      if (md != null) {
-        n = new BigNumber(md);
-
-        // Throw if md is less than one or is not an integer, unless it is Infinity.
-        if (!n.isInteger() && (n.c || n.s !== 1) || n.lt(ONE)) {
-          throw Error
-            (bignumberError + 'Argument ' +
-              (n.isInteger() ? 'out of range: ' : 'not an integer: ') + valueOf(n));
-        }
-      }
-
-      if (!xc) return new BigNumber(x);
-
-      d = new BigNumber(ONE);
-      n1 = d0 = new BigNumber(ONE);
-      d1 = n0 = new BigNumber(ONE);
-      s = coeffToString(xc);
-
-      // Determine initial denominator.
-      // d is a power of 10 and the minimum max denominator that specifies the value exactly.
-      e = d.e = s.length - x.e - 1;
-      d.c[0] = POWS_TEN[(exp = e % LOG_BASE) < 0 ? LOG_BASE + exp : exp];
-      md = !md || n.comparedTo(d) > 0 ? (e > 0 ? d : n1) : n;
-
-      exp = MAX_EXP;
-      MAX_EXP = 1 / 0;
-      n = new BigNumber(s);
-
-      // n0 = d1 = 0
-      n0.c[0] = 0;
-
-      for (; ;)  {
-        q = div(n, d, 0, 1);
-        d2 = d0.plus(q.times(d1));
-        if (d2.comparedTo(md) == 1) break;
-        d0 = d1;
-        d1 = d2;
-        n1 = n0.plus(q.times(d2 = n1));
-        n0 = d2;
-        d = n.minus(q.times(d2 = d));
-        n = d2;
-      }
-
-      d2 = div(md.minus(d0), d1, 0, 1);
-      n0 = n0.plus(d2.times(n1));
-      d0 = d0.plus(d2.times(d1));
-      n0.s = n1.s = x.s;
-      e = e * 2;
-
-      // Determine which fraction is closer to x, n0/d0 or n1/d1
-      r = div(n1, d1, e, ROUNDING_MODE).minus(x).abs().comparedTo(
-          div(n0, d0, e, ROUNDING_MODE).minus(x).abs()) < 1 ? [n1, d1] : [n0, d0];
-
-      MAX_EXP = exp;
-
-      return r;
-    };
-
-
-    /*
-     * Return the value of this BigNumber converted to a number primitive.
-     */
-    P.toNumber = function () {
-      return +valueOf(this);
-    };
-
-
-    /*
-     * Return a string representing the value of this BigNumber rounded to sd significant digits
-     * using rounding mode rm or ROUNDING_MODE. If sd is less than the number of digits
-     * necessary to represent the integer part of the value in fixed-point notation, then use
-     * exponential notation.
-     *
-     * [sd] {number} Significant digits. Integer, 1 to MAX inclusive.
-     * [rm] {number} Rounding mode. Integer, 0 to 8 inclusive.
-     *
-     * '[BigNumber Error] Argument {not a primitive number|not an integer|out of range}: {sd|rm}'
-     */
-    P.toPrecision = function (sd, rm) {
-      if (sd != null) intCheck(sd, 1, MAX);
-      return format(this, sd, rm, 2);
-    };
-
-
-    /*
-     * Return a string representing the value of this BigNumber in base b, or base 10 if b is
-     * omitted. If a base is specified, including base 10, round according to DECIMAL_PLACES and
-     * ROUNDING_MODE. If a base is not specified, and this BigNumber has a positive exponent
-     * that is equal to or greater than TO_EXP_POS, or a negative exponent equal to or less than
-     * TO_EXP_NEG, return exponential notation.
-     *
-     * [b] {number} Integer, 2 to ALPHABET.length inclusive.
-     *
-     * '[BigNumber Error] Base {not a primitive number|not an integer|out of range}: {b}'
-     */
-    P.toString = function (b) {
-      var str,
-        n = this,
-        s = n.s,
-        e = n.e;
-
-      // Infinity or NaN?
-      if (e === null) {
-        if (s) {
-          str = 'Infinity';
-          if (s < 0) str = '-' + str;
-        } else {
-          str = 'NaN';
-        }
-      } else {
-        if (b == null) {
-          str = e <= TO_EXP_NEG || e >= TO_EXP_POS
-           ? toExponential(coeffToString(n.c), e)
-           : toFixedPoint(coeffToString(n.c), e, '0');
-        } else if (b === 10) {
-          n = round(new BigNumber(n), DECIMAL_PLACES + e + 1, ROUNDING_MODE);
-          str = toFixedPoint(coeffToString(n.c), n.e, '0');
-        } else {
-          intCheck(b, 2, ALPHABET.length, 'Base');
-          str = convertBase(toFixedPoint(coeffToString(n.c), e, '0'), 10, b, s, true);
-        }
-
-        if (s < 0 && n.c[0]) str = '-' + str;
-      }
-
-      return str;
-    };
-
-
-    /*
-     * Return as toString, but do not accept a base argument, and include the minus sign for
-     * negative zero.
-     */
-    P.valueOf = P.toJSON = function () {
-      return valueOf(this);
-    };
-
-
-    P._isBigNumber = true;
-
-    if (hasSymbol) {
-      P[Symbol.toStringTag] = 'BigNumber';
-
-      // Node.js v10.12.0+
-      P[Symbol.for('nodejs.util.inspect.custom')] = P.valueOf;
-    }
-
-    if (configObject != null) BigNumber.set(configObject);
-
-    return BigNumber;
-  }
-
-
-  // PRIVATE HELPER FUNCTIONS
-
-  // These functions don't need access to variables,
-  // e.g. DECIMAL_PLACES, in the scope of the `clone` function above.
-
-
-  function bitFloor(n) {
-    var i = n | 0;
-    return n > 0 || n === i ? i : i - 1;
-  }
-
-
-  // Return a coefficient array as a string of base 10 digits.
-  function coeffToString(a) {
-    var s, z,
-      i = 1,
-      j = a.length,
-      r = a[0] + '';
-
-    for (; i < j;) {
-      s = a[i++] + '';
-      z = LOG_BASE - s.length;
-      for (; z--; s = '0' + s);
-      r += s;
-    }
-
-    // Determine trailing zeros.
-    for (j = r.length; r.charCodeAt(--j) === 48;);
-
-    return r.slice(0, j + 1 || 1);
-  }
-
-
-  // Compare the value of BigNumbers x and y.
-  function compare(x, y) {
-    var a, b,
-      xc = x.c,
-      yc = y.c,
-      i = x.s,
-      j = y.s,
-      k = x.e,
-      l = y.e;
-
-    // Either NaN?
-    if (!i || !j) return null;
-
-    a = xc && !xc[0];
-    b = yc && !yc[0];
-
-    // Either zero?
-    if (a || b) return a ? b ? 0 : -j : i;
-
-    // Signs differ?
-    if (i != j) return i;
-
-    a = i < 0;
-    b = k == l;
-
-    // Either Infinity?
-    if (!xc || !yc) return b ? 0 : !xc ^ a ? 1 : -1;
-
-    // Compare exponents.
-    if (!b) return k > l ^ a ? 1 : -1;
-
-    j = (k = xc.length) < (l = yc.length) ? k : l;
-
-    // Compare digit by digit.
-    for (i = 0; i < j; i++) if (xc[i] != yc[i]) return xc[i] > yc[i] ^ a ? 1 : -1;
-
-    // Compare lengths.
-    return k == l ? 0 : k > l ^ a ? 1 : -1;
-  }
-
-
-  /*
-   * Check that n is a primitive number, an integer, and in range, otherwise throw.
-   */
-  function intCheck(n, min, max, name) {
-    if (n < min || n > max || n !== mathfloor(n)) {
-      throw Error
-       (bignumberError + (name || 'Argument') + (typeof n == 'number'
-         ? n < min || n > max ? ' out of range: ' : ' not an integer: '
-         : ' not a primitive number: ') + String(n));
-    }
-  }
-
-
-  // Assumes finite n.
-  function isOdd(n) {
-    var k = n.c.length - 1;
-    return bitFloor(n.e / LOG_BASE) == k && n.c[k] % 2 != 0;
-  }
-
-
-  function toExponential(str, e) {
-    return (str.length > 1 ? str.charAt(0) + '.' + str.slice(1) : str) +
-     (e < 0 ? 'e' : 'e+') + e;
-  }
-
-
-  function toFixedPoint(str, e, z) {
-    var len, zs;
-
-    // Negative exponent?
-    if (e < 0) {
-
-      // Prepend zeros.
-      for (zs = z + '.'; ++e; zs += z);
-      str = zs + str;
-
-    // Positive exponent
-    } else {
-      len = str.length;
-
-      // Append zeros.
-      if (++e > len) {
-        for (zs = z, e -= len; --e; zs += z);
-        str += zs;
-      } else if (e < len) {
-        str = str.slice(0, e) + '.' + str.slice(e);
-      }
-    }
-
-    return str;
-  }
-
-
-  // EXPORT
-
-
-  BigNumber = clone();
-  BigNumber['default'] = BigNumber.BigNumber = BigNumber;
-
-  // AMD.
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_RESULT__ = (function () { return BigNumber; }).call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-
-  // Node.js and other environments that support module.exports.
-  } else {}
-})(this);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./css/mapCommon.scss":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./css/mapCommon.scss ***!
-  \***********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
-// Module
-exports.push([module.i, ".map {\n  height: 100%;\n  width: 100%; }\n\n.floorSwitcher {\n  position: absolute;\n  height: 15rem;\n  width: 4rem;\n  left: 1rem;\n  top: 35%;\n  z-index: 99;\n  transform: translateY(-50%); }\n\n.floorBtnPanel {\n  list-style: none;\n  text-align: center;\n  padding: 0;\n  margin: 0; }\n\n.floorBtn {\n  color: #444444;\n  font-family: sans-serif;\n  font-size: 1.5rem;\n  width: 4rem;\n  height: 4rem;\n  text-align: center;\n  line-height: 4rem;\n  background: white;\n  border-radius: 0.5rem;\n  border: none;\n  margin-top: 1.5rem; }\n\n.floorBtnSelected {\n  color: white;\n  width: 4.5rem;\n  background: #5d9ffa;\n  transition: width 0.5s; }\n", ""]);
-
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function (useSourceMap) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = cssWithMappingToString(item, useSourceMap);
-
-      if (item[2]) {
-        return '@media ' + item[2] + '{' + content + '}';
-      } else {
-        return content;
-      }
-    }).join('');
-  }; // import a list of modules into the list
-
-
-  list.i = function (modules, mediaQuery) {
-    if (typeof modules === 'string') {
-      modules = [[null, modules, '']];
-    }
-
-    var alreadyImportedModules = {};
-
-    for (var i = 0; i < this.length; i++) {
-      var id = this[i][0];
-
-      if (id != null) {
-        alreadyImportedModules[id] = true;
-      }
-    }
-
-    for (i = 0; i < modules.length; i++) {
-      var item = modules[i]; // skip already imported module
-      // this implementation is not 100% perfect for weird media query combinations
-      // when a module is imported multiple times with different media queries.
-      // I hope this will never occur (Hey this way we have smaller bundles)
-
-      if (item[0] == null || !alreadyImportedModules[item[0]]) {
-        if (mediaQuery && !item[2]) {
-          item[2] = mediaQuery;
-        } else if (mediaQuery) {
-          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
-        }
-
-        list.push(item);
-      }
-    }
-  };
-
-  return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-  var content = item[1] || '';
-  var cssMapping = item[3];
-
-  if (!cssMapping) {
-    return content;
-  }
-
-  if (useSourceMap && typeof btoa === 'function') {
-    var sourceMapping = toComment(cssMapping);
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-  }
-
-  return [content].join('\n');
-} // Adapted from convert-source-map (MIT)
-
-
-function toComment(sourceMap) {
-  // eslint-disable-next-line no-undef
-  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-  return '/*# ' + data + ' */';
-}
+  return Test;
+}();
+
+var test = new Test();
+test.initMap();
 
 /***/ }),
 
@@ -7097,6 +3696,649 @@ function unByKey(key) {
 /* harmony default export */ __webpack_exports__["default"] = (Observable);
 
 //# sourceMappingURL=Observable.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/Overlay.js":
+/*!************************************!*\
+  !*** ./node_modules/ol/Overlay.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MapEventType.js */ "./node_modules/ol/MapEventType.js");
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Object.js */ "./node_modules/ol/Object.js");
+/* harmony import */ var _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./OverlayPositioning.js */ "./node_modules/ol/OverlayPositioning.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./extent.js */ "./node_modules/ol/extent.js");
+/**
+ * @module ol/Overlay
+ */
+
+
+
+
+
+
+
+
+
+/**
+ * @typedef {Object} Options
+ * @property {number|string} [id] Set the overlay id. The overlay id can be used
+ * with the {@link module:ol/Map~Map#getOverlayById} method.
+ * @property {HTMLElement} [element] The overlay element.
+ * @property {Array<number>} [offset=[0, 0]] Offsets in pixels used when positioning
+ * the overlay. The first element in the
+ * array is the horizontal offset. A positive value shifts the overlay right.
+ * The second element in the array is the vertical offset. A positive value
+ * shifts the overlay down.
+ * @property {import("./coordinate.js").Coordinate} [position] The overlay position
+ * in map projection.
+ * @property {OverlayPositioning} [positioning='top-left'] Defines how
+ * the overlay is actually positioned with respect to its `position` property.
+ * Possible values are `'bottom-left'`, `'bottom-center'`, `'bottom-right'`,
+ * `'center-left'`, `'center-center'`, `'center-right'`, `'top-left'`,
+ * `'top-center'`, and `'top-right'`.
+ * @property {boolean} [stopEvent=true] Whether event propagation to the map
+ * viewport should be stopped. If `true` the overlay is placed in the same
+ * container as that of the controls (CSS class name
+ * `ol-overlaycontainer-stopevent`); if `false` it is placed in the container
+ * with CSS class name specified by the `className` property.
+ * @property {boolean} [insertFirst=true] Whether the overlay is inserted first
+ * in the overlay container, or appended. If the overlay is placed in the same
+ * container as that of the controls (see the `stopEvent` option) you will
+ * probably set `insertFirst` to `true` so the overlay is displayed below the
+ * controls.
+ * @property {boolean} [autoPan=false] If set to `true` the map is panned when
+ * calling `setPosition`, so that the overlay is entirely visible in the current
+ * viewport.
+ * @property {PanOptions} [autoPanAnimation] The
+ * animation options used to pan the overlay into view. This animation is only
+ * used when `autoPan` is enabled. A `duration` and `easing` may be provided to
+ * customize the animation.
+ * @property {number} [autoPanMargin=20] The margin (in pixels) between the
+ * overlay and the borders of the map when autopanning.
+ * @property {string} [className='ol-overlay-container ol-selectable'] CSS class
+ * name.
+ */
+
+
+/**
+ * @typedef {Object} PanOptions
+ * @property {number} [duration=1000] The duration of the animation in
+ * milliseconds.
+ * @property {function(number):number} [easing] The easing function to use. Can
+ * be one from {@link module:ol/easing} or a custom function.
+ * Default is {@link module:ol/easing~inAndOut}.
+ */
+
+
+/**
+ * @enum {string}
+ * @protected
+ */
+var Property = {
+  ELEMENT: 'element',
+  MAP: 'map',
+  OFFSET: 'offset',
+  POSITION: 'position',
+  POSITIONING: 'positioning'
+};
+
+
+/**
+ * @classdesc
+ * An element to be displayed over the map and attached to a single map
+ * location.  Like {@link module:ol/control/Control~Control}, Overlays are
+ * visible widgets. Unlike Controls, they are not in a fixed position on the
+ * screen, but are tied to a geographical coordinate, so panning the map will
+ * move an Overlay but not a Control.
+ *
+ * Example:
+ *
+ *     import Overlay from 'ol/Overlay';
+ *
+ *     var popup = new Overlay({
+ *       element: document.getElementById('popup')
+ *     });
+ *     popup.setPosition(coordinate);
+ *     map.addOverlay(popup);
+ *
+ * @api
+ */
+var Overlay = /*@__PURE__*/(function (BaseObject) {
+  function Overlay(options) {
+
+    BaseObject.call(this);
+
+    /**
+     * @protected
+     * @type {Options}
+     */
+    this.options = options;
+
+    /**
+     * @protected
+     * @type {number|string|undefined}
+     */
+    this.id = options.id;
+
+    /**
+     * @protected
+     * @type {boolean}
+     */
+    this.insertFirst = options.insertFirst !== undefined ?
+      options.insertFirst : true;
+
+    /**
+     * @protected
+     * @type {boolean}
+     */
+    this.stopEvent = options.stopEvent !== undefined ? options.stopEvent : true;
+
+    /**
+     * @protected
+     * @type {HTMLElement}
+     */
+    this.element = document.createElement('div');
+    this.element.className = options.className !== undefined ?
+      options.className : 'ol-overlay-container ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_SELECTABLE"];
+    this.element.style.position = 'absolute';
+
+    /**
+     * @protected
+     * @type {boolean}
+     */
+    this.autoPan = options.autoPan !== undefined ? options.autoPan : false;
+
+    /**
+     * @protected
+     * @type {PanOptions}
+     */
+    this.autoPanAnimation = options.autoPanAnimation || /** @type {PanOptions} */ ({});
+
+    /**
+     * @protected
+     * @type {number}
+     */
+    this.autoPanMargin = options.autoPanMargin !== undefined ?
+      options.autoPanMargin : 20;
+
+    /**
+     * @protected
+     * @type {{bottom_: string,
+     *         left_: string,
+     *         right_: string,
+     *         top_: string,
+     *         visible: boolean}}
+     */
+    this.rendered = {
+      bottom_: '',
+      left_: '',
+      right_: '',
+      top_: '',
+      visible: true
+    };
+
+    /**
+     * @protected
+     * @type {?import("./events.js").EventsKey}
+     */
+    this.mapPostrenderListenerKey = null;
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
+      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.ELEMENT),
+      this.handleElementChanged, this);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
+      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.MAP),
+      this.handleMapChanged, this);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
+      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.OFFSET),
+      this.handleOffsetChanged, this);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
+      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.POSITION),
+      this.handlePositionChanged, this);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(
+      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.POSITIONING),
+      this.handlePositioningChanged, this);
+
+    if (options.element !== undefined) {
+      this.setElement(options.element);
+    }
+
+    this.setOffset(options.offset !== undefined ? options.offset : [0, 0]);
+
+    this.setPositioning(options.positioning !== undefined ?
+      /** @type {OverlayPositioning} */ (options.positioning) :
+      _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].TOP_LEFT);
+
+    if (options.position !== undefined) {
+      this.setPosition(options.position);
+    }
+
+  }
+
+  if ( BaseObject ) Overlay.__proto__ = BaseObject;
+  Overlay.prototype = Object.create( BaseObject && BaseObject.prototype );
+  Overlay.prototype.constructor = Overlay;
+
+  /**
+   * Get the DOM element of this overlay.
+   * @return {HTMLElement|undefined} The Element containing the overlay.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.getElement = function getElement () {
+    return /** @type {HTMLElement|undefined} */ (this.get(Property.ELEMENT));
+  };
+
+  /**
+   * Get the overlay identifier which is set on constructor.
+   * @return {number|string|undefined} Id.
+   * @api
+   */
+  Overlay.prototype.getId = function getId () {
+    return this.id;
+  };
+
+  /**
+   * Get the map associated with this overlay.
+   * @return {import("./PluggableMap.js").default|undefined} The map that the
+   * overlay is part of.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.getMap = function getMap () {
+    return (
+      /** @type {import("./PluggableMap.js").default|undefined} */ (this.get(Property.MAP))
+    );
+  };
+
+  /**
+   * Get the offset of this overlay.
+   * @return {Array<number>} The offset.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.getOffset = function getOffset () {
+    return /** @type {Array<number>} */ (this.get(Property.OFFSET));
+  };
+
+  /**
+   * Get the current position of this overlay.
+   * @return {import("./coordinate.js").Coordinate|undefined} The spatial point that the overlay is
+   *     anchored at.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.getPosition = function getPosition () {
+    return (
+      /** @type {import("./coordinate.js").Coordinate|undefined} */ (this.get(Property.POSITION))
+    );
+  };
+
+  /**
+   * Get the current positioning of this overlay.
+   * @return {OverlayPositioning} How the overlay is positioned
+   *     relative to its point on the map.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.getPositioning = function getPositioning () {
+    return (
+      /** @type {OverlayPositioning} */ (this.get(Property.POSITIONING))
+    );
+  };
+
+  /**
+   * @protected
+   */
+  Overlay.prototype.handleElementChanged = function handleElementChanged () {
+    Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["removeChildren"])(this.element);
+    var element = this.getElement();
+    if (element) {
+      this.element.appendChild(element);
+    }
+  };
+
+  /**
+   * @protected
+   */
+  Overlay.prototype.handleMapChanged = function handleMapChanged () {
+    if (this.mapPostrenderListenerKey) {
+      Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["removeNode"])(this.element);
+      Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["unlistenByKey"])(this.mapPostrenderListenerKey);
+      this.mapPostrenderListenerKey = null;
+    }
+    var map = this.getMap();
+    if (map) {
+      this.mapPostrenderListenerKey = Object(_events_js__WEBPACK_IMPORTED_MODULE_5__["listen"])(map,
+        _MapEventType_js__WEBPACK_IMPORTED_MODULE_0__["default"].POSTRENDER, this.render, this);
+      this.updatePixelPosition();
+      var container = this.stopEvent ?
+        map.getOverlayContainerStopEvent() : map.getOverlayContainer();
+      if (this.insertFirst) {
+        container.insertBefore(this.element, container.childNodes[0] || null);
+      } else {
+        container.appendChild(this.element);
+      }
+    }
+  };
+
+  /**
+   * @protected
+   */
+  Overlay.prototype.render = function render () {
+    this.updatePixelPosition();
+  };
+
+  /**
+   * @protected
+   */
+  Overlay.prototype.handleOffsetChanged = function handleOffsetChanged () {
+    this.updatePixelPosition();
+  };
+
+  /**
+   * @protected
+   */
+  Overlay.prototype.handlePositionChanged = function handlePositionChanged () {
+    this.updatePixelPosition();
+    if (this.get(Property.POSITION) && this.autoPan) {
+      this.panIntoView();
+    }
+  };
+
+  /**
+   * @protected
+   */
+  Overlay.prototype.handlePositioningChanged = function handlePositioningChanged () {
+    this.updatePixelPosition();
+  };
+
+  /**
+   * Set the DOM element to be associated with this overlay.
+   * @param {HTMLElement|undefined} element The Element containing the overlay.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.setElement = function setElement (element) {
+    this.set(Property.ELEMENT, element);
+  };
+
+  /**
+   * Set the map to be associated with this overlay.
+   * @param {import("./PluggableMap.js").default|undefined} map The map that the
+   * overlay is part of.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.setMap = function setMap (map) {
+    this.set(Property.MAP, map);
+  };
+
+  /**
+   * Set the offset for this overlay.
+   * @param {Array<number>} offset Offset.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.setOffset = function setOffset (offset) {
+    this.set(Property.OFFSET, offset);
+  };
+
+  /**
+   * Set the position for this overlay. If the position is `undefined` the
+   * overlay is hidden.
+   * @param {import("./coordinate.js").Coordinate|undefined} position The spatial point that the overlay
+   *     is anchored at.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.setPosition = function setPosition (position) {
+    this.set(Property.POSITION, position);
+  };
+
+  /**
+   * Pan the map so that the overlay is entirely visible in the current viewport
+   * (if necessary).
+   * @protected
+   */
+  Overlay.prototype.panIntoView = function panIntoView () {
+    var map = this.getMap();
+
+    if (!map || !map.getTargetElement()) {
+      return;
+    }
+
+    var mapRect = this.getRect(map.getTargetElement(), map.getSize());
+    var element = this.getElement();
+    var overlayRect = this.getRect(element, [Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["outerWidth"])(element), Object(_dom_js__WEBPACK_IMPORTED_MODULE_4__["outerHeight"])(element)]);
+
+    var margin = this.autoPanMargin;
+    if (!Object(_extent_js__WEBPACK_IMPORTED_MODULE_6__["containsExtent"])(mapRect, overlayRect)) {
+      // the overlay is not completely inside the viewport, so pan the map
+      var offsetLeft = overlayRect[0] - mapRect[0];
+      var offsetRight = mapRect[2] - overlayRect[2];
+      var offsetTop = overlayRect[1] - mapRect[1];
+      var offsetBottom = mapRect[3] - overlayRect[3];
+
+      var delta = [0, 0];
+      if (offsetLeft < 0) {
+        // move map to the left
+        delta[0] = offsetLeft - margin;
+      } else if (offsetRight < 0) {
+        // move map to the right
+        delta[0] = Math.abs(offsetRight) + margin;
+      }
+      if (offsetTop < 0) {
+        // move map up
+        delta[1] = offsetTop - margin;
+      } else if (offsetBottom < 0) {
+        // move map down
+        delta[1] = Math.abs(offsetBottom) + margin;
+      }
+
+      if (delta[0] !== 0 || delta[1] !== 0) {
+        var center = /** @type {import("./coordinate.js").Coordinate} */ (map.getView().getCenter());
+        var centerPx = map.getPixelFromCoordinate(center);
+        var newCenterPx = [
+          centerPx[0] + delta[0],
+          centerPx[1] + delta[1]
+        ];
+
+        map.getView().animate({
+          center: map.getCoordinateFromPixel(newCenterPx),
+          duration: this.autoPanAnimation.duration,
+          easing: this.autoPanAnimation.easing
+        });
+      }
+    }
+  };
+
+  /**
+   * Get the extent of an element relative to the document
+   * @param {HTMLElement|undefined} element The element.
+   * @param {import("./size.js").Size|undefined} size The size of the element.
+   * @return {import("./extent.js").Extent} The extent.
+   * @protected
+   */
+  Overlay.prototype.getRect = function getRect (element, size) {
+    var box = element.getBoundingClientRect();
+    var offsetX = box.left + window.pageXOffset;
+    var offsetY = box.top + window.pageYOffset;
+    return [
+      offsetX,
+      offsetY,
+      offsetX + size[0],
+      offsetY + size[1]
+    ];
+  };
+
+  /**
+   * Set the positioning for this overlay.
+   * @param {OverlayPositioning} positioning how the overlay is
+   *     positioned relative to its point on the map.
+   * @observable
+   * @api
+   */
+  Overlay.prototype.setPositioning = function setPositioning (positioning) {
+    this.set(Property.POSITIONING, positioning);
+  };
+
+  /**
+   * Modify the visibility of the element.
+   * @param {boolean} visible Element visibility.
+   * @protected
+   */
+  Overlay.prototype.setVisible = function setVisible (visible) {
+    if (this.rendered.visible !== visible) {
+      this.element.style.display = visible ? '' : 'none';
+      this.rendered.visible = visible;
+    }
+  };
+
+  /**
+   * Update pixel position.
+   * @protected
+   */
+  Overlay.prototype.updatePixelPosition = function updatePixelPosition () {
+    var map = this.getMap();
+    var position = this.getPosition();
+    if (!map || !map.isRendered() || !position) {
+      this.setVisible(false);
+      return;
+    }
+
+    var pixel = map.getPixelFromCoordinate(position);
+    var mapSize = map.getSize();
+    this.updateRenderedPosition(pixel, mapSize);
+  };
+
+  /**
+   * @param {import("./pixel.js").Pixel} pixel The pixel location.
+   * @param {import("./size.js").Size|undefined} mapSize The map size.
+   * @protected
+   */
+  Overlay.prototype.updateRenderedPosition = function updateRenderedPosition (pixel, mapSize) {
+    var style = this.element.style;
+    var offset = this.getOffset();
+
+    var positioning = this.getPositioning();
+
+    this.setVisible(true);
+
+    var offsetX = offset[0];
+    var offsetY = offset[1];
+    if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_RIGHT ||
+        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_RIGHT ||
+        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].TOP_RIGHT) {
+      if (this.rendered.left_ !== '') {
+        this.rendered.left_ = style.left = '';
+      }
+      var right = Math.round(mapSize[0] - pixel[0] - offsetX) + 'px';
+      if (this.rendered.right_ != right) {
+        this.rendered.right_ = style.right = right;
+      }
+    } else {
+      if (this.rendered.right_ !== '') {
+        this.rendered.right_ = style.right = '';
+      }
+      if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_CENTER ||
+          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_CENTER ||
+          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].TOP_CENTER) {
+        offsetX -= this.element.offsetWidth / 2;
+      }
+      var left = Math.round(pixel[0] + offsetX) + 'px';
+      if (this.rendered.left_ != left) {
+        this.rendered.left_ = style.left = left;
+      }
+    }
+    if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_LEFT ||
+        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_CENTER ||
+        positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].BOTTOM_RIGHT) {
+      if (this.rendered.top_ !== '') {
+        this.rendered.top_ = style.top = '';
+      }
+      var bottom = Math.round(mapSize[1] - pixel[1] - offsetY) + 'px';
+      if (this.rendered.bottom_ != bottom) {
+        this.rendered.bottom_ = style.bottom = bottom;
+      }
+    } else {
+      if (this.rendered.bottom_ !== '') {
+        this.rendered.bottom_ = style.bottom = '';
+      }
+      if (positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_LEFT ||
+          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_CENTER ||
+          positioning == _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_2__["default"].CENTER_RIGHT) {
+        offsetY -= this.element.offsetHeight / 2;
+      }
+      var top = Math.round(pixel[1] + offsetY) + 'px';
+      if (this.rendered.top_ != top) {
+        this.rendered.top_ = style.top = top;
+      }
+    }
+  };
+
+  /**
+   * returns the options this Overlay has been created with
+   * @return {Options} overlay options
+   */
+  Overlay.prototype.getOptions = function getOptions () {
+    return this.options;
+  };
+
+  return Overlay;
+}(_Object_js__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Overlay);
+
+//# sourceMappingURL=Overlay.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/OverlayPositioning.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/OverlayPositioning.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @module ol/OverlayPositioning
+ */
+
+/**
+ * Overlay position: `'bottom-left'`, `'bottom-center'`,  `'bottom-right'`,
+ * `'center-left'`, `'center-center'`, `'center-right'`, `'top-left'`,
+ * `'top-center'`, `'top-right'`
+ * @enum {string}
+ */
+/* harmony default export */ __webpack_exports__["default"] = ({
+  BOTTOM_LEFT: 'bottom-left',
+  BOTTOM_CENTER: 'bottom-center',
+  BOTTOM_RIGHT: 'bottom-right',
+  CENTER_LEFT: 'center-left',
+  CENTER_CENTER: 'center-center',
+  CENTER_RIGHT: 'center-right',
+  TOP_LEFT: 'top-left',
+  TOP_CENTER: 'top-center',
+  TOP_RIGHT: 'top-right'
+});
+
+//# sourceMappingURL=OverlayPositioning.js.map
 
 /***/ }),
 
@@ -11978,6 +9220,68 @@ function asColorLike(color) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/control.js":
+/*!************************************!*\
+  !*** ./node_modules/ol/control.js ***!
+  \************************************/
+/*! exports provided: Attribution, Control, FullScreen, MousePosition, OverviewMap, Rotate, ScaleLine, Zoom, ZoomSlider, ZoomToExtent, defaults */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _control_Attribution_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./control/Attribution.js */ "./node_modules/ol/control/Attribution.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Attribution", function() { return _control_Attribution_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _control_Control_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./control/Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Control", function() { return _control_Control_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _control_FullScreen_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./control/FullScreen.js */ "./node_modules/ol/control/FullScreen.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "FullScreen", function() { return _control_FullScreen_js__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _control_MousePosition_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./control/MousePosition.js */ "./node_modules/ol/control/MousePosition.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MousePosition", function() { return _control_MousePosition_js__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _control_OverviewMap_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./control/OverviewMap.js */ "./node_modules/ol/control/OverviewMap.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "OverviewMap", function() { return _control_OverviewMap_js__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _control_Rotate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./control/Rotate.js */ "./node_modules/ol/control/Rotate.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Rotate", function() { return _control_Rotate_js__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+/* harmony import */ var _control_ScaleLine_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./control/ScaleLine.js */ "./node_modules/ol/control/ScaleLine.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ScaleLine", function() { return _control_ScaleLine_js__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+/* harmony import */ var _control_Zoom_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./control/Zoom.js */ "./node_modules/ol/control/Zoom.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Zoom", function() { return _control_Zoom_js__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+
+/* harmony import */ var _control_ZoomSlider_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./control/ZoomSlider.js */ "./node_modules/ol/control/ZoomSlider.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ZoomSlider", function() { return _control_ZoomSlider_js__WEBPACK_IMPORTED_MODULE_8__["default"]; });
+
+/* harmony import */ var _control_ZoomToExtent_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./control/ZoomToExtent.js */ "./node_modules/ol/control/ZoomToExtent.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ZoomToExtent", function() { return _control_ZoomToExtent_js__WEBPACK_IMPORTED_MODULE_9__["default"]; });
+
+/* harmony import */ var _control_util_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./control/util.js */ "./node_modules/ol/control/util.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "defaults", function() { return _control_util_js__WEBPACK_IMPORTED_MODULE_10__["defaults"]; });
+
+/**
+ * @module ol/control
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=control.js.map
+
+/***/ }),
+
 /***/ "./node_modules/ol/control/Attribution.js":
 /*!************************************************!*\
   !*** ./node_modules/ol/control/Attribution.js ***!
@@ -12514,6 +9818,1231 @@ var Control = /*@__PURE__*/(function (BaseObject) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/control/FullScreen.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/control/FullScreen.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/**
+ * @module ol/control/FullScreen
+ */
+
+
+
+
+
+
+
+/**
+ * @return {string} Change type.
+ */
+var getChangeType = (function() {
+  var changeType;
+  return function() {
+    if (!changeType) {
+      var body = document.body;
+      if (body.webkitRequestFullscreen) {
+        changeType = 'webkitfullscreenchange';
+      } else if (body.mozRequestFullScreen) {
+        changeType = 'mozfullscreenchange';
+      } else if (body.msRequestFullscreen) {
+        changeType = 'MSFullscreenChange';
+      } else if (body.requestFullscreen) {
+        changeType = 'fullscreenchange';
+      }
+    }
+    return changeType;
+  };
+})();
+
+
+/**
+ * @typedef {Object} Options
+ * @property {string} [className='ol-full-screen'] CSS class name.
+ * @property {string|Text} [label='\u2922'] Text label to use for the button.
+ * Instead of text, also an element (e.g. a `span` element) can be used.
+ * @property {string|Text} [labelActive='\u00d7'] Text label to use for the
+ * button when full-screen is active.
+ * Instead of text, also an element (e.g. a `span` element) can be used.
+ * @property {string} [tipLabel='Toggle full-screen'] Text label to use for the button tip.
+ * @property {boolean} [keys=false] Full keyboard access.
+ * @property {HTMLElement|string} [target] Specify a target if you want the
+ * control to be rendered outside of the map's viewport.
+ * @property {HTMLElement|string} [source] The element to be displayed
+ * fullscreen. When not provided, the element containing the map viewport will
+ * be displayed fullscreen.
+ */
+
+
+/**
+ * @classdesc
+ * Provides a button that when clicked fills up the full screen with the map.
+ * The full screen source element is by default the element containing the map viewport unless
+ * overridden by providing the `source` option. In which case, the dom
+ * element introduced using this parameter will be displayed in full screen.
+ *
+ * When in full screen mode, a close button is shown to exit full screen mode.
+ * The [Fullscreen API](http://www.w3.org/TR/fullscreen/) is used to
+ * toggle the map in full screen mode.
+ *
+ * @api
+ */
+var FullScreen = /*@__PURE__*/(function (Control) {
+  function FullScreen(opt_options) {
+
+    var options = opt_options ? opt_options : {};
+
+    Control.call(this, {
+      element: document.createElement('div'),
+      target: options.target
+    });
+
+    /**
+     * @private
+     * @type {string}
+     */
+    this.cssClassName_ = options.className !== undefined ? options.className :
+      'ol-full-screen';
+
+    var label = options.label !== undefined ? options.label : '\u2922';
+
+    /**
+     * @private
+     * @type {Text}
+     */
+    this.labelNode_ = typeof label === 'string' ?
+      document.createTextNode(label) : label;
+
+    var labelActive = options.labelActive !== undefined ? options.labelActive : '\u00d7';
+
+    /**
+     * @private
+     * @type {Text}
+     */
+    this.labelActiveNode_ = typeof labelActive === 'string' ?
+      document.createTextNode(labelActive) : labelActive;
+
+    /**
+     * @private
+     * @type {HTMLElement}
+     */
+    this.button_ = document.createElement('button');
+
+    var tipLabel = options.tipLabel ? options.tipLabel : 'Toggle full-screen';
+    this.setClassName_(this.button_, isFullScreen());
+    this.button_.setAttribute('type', 'button');
+    this.button_.title = tipLabel;
+    this.button_.appendChild(this.labelNode_);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_3__["listen"])(this.button_, _events_EventType_js__WEBPACK_IMPORTED_MODULE_4__["default"].CLICK,
+      this.handleClick_, this);
+
+    var cssClasses = this.cssClassName_ + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_1__["CLASS_UNSELECTABLE"] +
+        ' ' + _css_js__WEBPACK_IMPORTED_MODULE_1__["CLASS_CONTROL"] + ' ' +
+        (!isFullScreenSupported() ? _css_js__WEBPACK_IMPORTED_MODULE_1__["CLASS_UNSUPPORTED"] : '');
+    var element = this.element;
+    element.className = cssClasses;
+    element.appendChild(this.button_);
+
+    /**
+     * @private
+     * @type {boolean}
+     */
+    this.keys_ = options.keys !== undefined ? options.keys : false;
+
+    /**
+     * @private
+     * @type {HTMLElement|string|undefined}
+     */
+    this.source_ = options.source;
+
+  }
+
+  if ( Control ) FullScreen.__proto__ = Control;
+  FullScreen.prototype = Object.create( Control && Control.prototype );
+  FullScreen.prototype.constructor = FullScreen;
+
+  /**
+   * @param {MouseEvent} event The event to handle
+   * @private
+   */
+  FullScreen.prototype.handleClick_ = function handleClick_ (event) {
+    event.preventDefault();
+    this.handleFullScreen_();
+  };
+
+  /**
+   * @private
+   */
+  FullScreen.prototype.handleFullScreen_ = function handleFullScreen_ () {
+    if (!isFullScreenSupported()) {
+      return;
+    }
+    var map = this.getMap();
+    if (!map) {
+      return;
+    }
+    if (isFullScreen()) {
+      exitFullScreen();
+    } else {
+      var element;
+      if (this.source_) {
+        element = typeof this.source_ === 'string' ?
+          document.getElementById(this.source_) :
+          this.source_;
+      } else {
+        element = map.getTargetElement();
+      }
+      if (this.keys_) {
+        requestFullScreenWithKeys(element);
+
+      } else {
+        requestFullScreen(element);
+      }
+    }
+  };
+
+  /**
+   * @private
+   */
+  FullScreen.prototype.handleFullScreenChange_ = function handleFullScreenChange_ () {
+    var map = this.getMap();
+    if (isFullScreen()) {
+      this.setClassName_(this.button_, true);
+      Object(_dom_js__WEBPACK_IMPORTED_MODULE_2__["replaceNode"])(this.labelActiveNode_, this.labelNode_);
+    } else {
+      this.setClassName_(this.button_, false);
+      Object(_dom_js__WEBPACK_IMPORTED_MODULE_2__["replaceNode"])(this.labelNode_, this.labelActiveNode_);
+    }
+    if (map) {
+      map.updateSize();
+    }
+  };
+
+  /**
+   * @param {HTMLElement} element Target element
+   * @param {boolean} fullscreen True if fullscreen class name should be active
+   * @private
+   */
+  FullScreen.prototype.setClassName_ = function setClassName_ (element, fullscreen) {
+    var activeClassName = this.cssClassName_ + '-true';
+    var inactiveClassName = this.cssClassName_ + '-false';
+    var nextClassName = fullscreen ? activeClassName : inactiveClassName;
+    element.classList.remove(activeClassName);
+    element.classList.remove(inactiveClassName);
+    element.classList.add(nextClassName);
+  };
+
+  /**
+   * @inheritDoc
+   * @api
+   */
+  FullScreen.prototype.setMap = function setMap (map) {
+    Control.prototype.setMap.call(this, map);
+    if (map) {
+      this.listenerKeys.push(Object(_events_js__WEBPACK_IMPORTED_MODULE_3__["listen"])(document,
+        getChangeType(),
+        this.handleFullScreenChange_, this)
+      );
+    }
+  };
+
+  return FullScreen;
+}(_Control_js__WEBPACK_IMPORTED_MODULE_0__["default"]));
+
+
+/**
+ * @return {boolean} Fullscreen is supported by the current platform.
+ */
+function isFullScreenSupported() {
+  var body = document.body;
+  return !!(
+    body.webkitRequestFullscreen ||
+    (body.mozRequestFullScreen && document.mozFullScreenEnabled) ||
+    (body.msRequestFullscreen && document.msFullscreenEnabled) ||
+    (body.requestFullscreen && document.fullscreenEnabled)
+  );
+}
+
+/**
+ * @return {boolean} Element is currently in fullscreen.
+ */
+function isFullScreen() {
+  return !!(
+    document.webkitIsFullScreen || document.mozFullScreen ||
+    document.msFullscreenElement || document.fullscreenElement
+  );
+}
+
+/**
+ * Request to fullscreen an element.
+ * @param {HTMLElement} element Element to request fullscreen
+ */
+function requestFullScreen(element) {
+  if (element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if (element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  } else if (element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  }
+}
+
+/**
+ * Request to fullscreen an element with keyboard input.
+ * @param {HTMLElement} element Element to request fullscreen
+ */
+function requestFullScreenWithKeys(element) {
+  if (element.mozRequestFullScreenWithKeys) {
+    element.mozRequestFullScreenWithKeys();
+  } else if (element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else {
+    requestFullScreen(element);
+  }
+}
+
+/**
+ * Exit fullscreen.
+ */
+function exitFullScreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (FullScreen);
+
+//# sourceMappingURL=FullScreen.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/MousePosition.js":
+/*!**************************************************!*\
+  !*** ./node_modules/ol/control/MousePosition.js ***!
+  \**************************************************/
+/*! exports provided: render, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
+/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
+/**
+ * @module ol/control/MousePosition
+ */
+
+
+
+
+
+
+
+/**
+ * @type {string}
+ */
+var PROJECTION = 'projection';
+
+/**
+ * @type {string}
+ */
+var COORDINATE_FORMAT = 'coordinateFormat';
+
+
+/**
+ * @typedef {Object} Options
+ * @property {string} [className='ol-mouse-position'] CSS class name.
+ * @property {import("../coordinate.js").CoordinateFormat} [coordinateFormat] Coordinate format.
+ * @property {import("../proj.js").ProjectionLike} [projection] Projection. Default is the view projection.
+ * @property {function(import("../MapEvent.js").default)} [render] Function called when the
+ * control should be re-rendered. This is called in a `requestAnimationFrame`
+ * callback.
+ * @property {HTMLElement|string} [target] Specify a target if you want the
+ * control to be rendered outside of the map's viewport.
+ * @property {string} [undefinedHTML='&#160;'] Markup to show when coordinates are not
+ * available (e.g. when the pointer leaves the map viewport).  By default, the last position
+ * will be replaced with `'&#160;'` (`&nbsp;`) when the pointer leaves the viewport.  To
+ * retain the last rendered position, set this option to something falsey (like an empty
+ * string `''`).
+ */
+
+
+/**
+ * @classdesc
+ * A control to show the 2D coordinates of the mouse cursor. By default, these
+ * are in the view projection, but can be in any supported projection.
+ * By default the control is shown in the top right corner of the map, but this
+ * can be changed by using the css selector `.ol-mouse-position`.
+ *
+ * On touch devices, which usually do not have a mouse cursor, the coordinates
+ * of the currently touched position are shown.
+ *
+ * @api
+ */
+var MousePosition = /*@__PURE__*/(function (Control) {
+  function MousePosition(opt_options) {
+
+    var options = opt_options ? opt_options : {};
+
+    var element = document.createElement('div');
+    element.className = options.className !== undefined ? options.className : 'ol-mouse-position';
+
+    Control.call(this, {
+      element: element,
+      render: options.render || render,
+      target: options.target
+    });
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(this,
+      Object(_Object_js__WEBPACK_IMPORTED_MODULE_2__["getChangeEventType"])(PROJECTION),
+      this.handleProjectionChanged_, this);
+
+    if (options.coordinateFormat) {
+      this.setCoordinateFormat(options.coordinateFormat);
+    }
+    if (options.projection) {
+      this.setProjection(options.projection);
+    }
+
+    /**
+     * @private
+     * @type {string}
+     */
+    this.undefinedHTML_ = options.undefinedHTML !== undefined ? options.undefinedHTML : '&#160;';
+
+    /**
+     * @private
+     * @type {boolean}
+     */
+    this.renderOnMouseOut_ = !!this.undefinedHTML_;
+
+    /**
+     * @private
+     * @type {string}
+     */
+    this.renderedHTML_ = element.innerHTML;
+
+    /**
+     * @private
+     * @type {import("../proj/Projection.js").default}
+     */
+    this.mapProjection_ = null;
+
+    /**
+     * @private
+     * @type {?import("../proj.js").TransformFunction}
+     */
+    this.transform_ = null;
+
+    /**
+     * @private
+     * @type {import("../pixel.js").Pixel}
+     */
+    this.lastMouseMovePixel_ = null;
+
+  }
+
+  if ( Control ) MousePosition.__proto__ = Control;
+  MousePosition.prototype = Object.create( Control && Control.prototype );
+  MousePosition.prototype.constructor = MousePosition;
+
+  /**
+   * @private
+   */
+  MousePosition.prototype.handleProjectionChanged_ = function handleProjectionChanged_ () {
+    this.transform_ = null;
+  };
+
+  /**
+   * Return the coordinate format type used to render the current position or
+   * undefined.
+   * @return {import("../coordinate.js").CoordinateFormat|undefined} The format to render the current
+   *     position in.
+   * @observable
+   * @api
+   */
+  MousePosition.prototype.getCoordinateFormat = function getCoordinateFormat () {
+    return (
+      /** @type {import("../coordinate.js").CoordinateFormat|undefined} */ (this.get(COORDINATE_FORMAT))
+    );
+  };
+
+  /**
+   * Return the projection that is used to report the mouse position.
+   * @return {import("../proj/Projection.js").default|undefined} The projection to report mouse
+   *     position in.
+   * @observable
+   * @api
+   */
+  MousePosition.prototype.getProjection = function getProjection () {
+    return (
+      /** @type {import("../proj/Projection.js").default|undefined} */ (this.get(PROJECTION))
+    );
+  };
+
+  /**
+   * @param {Event} event Browser event.
+   * @protected
+   */
+  MousePosition.prototype.handleMouseMove = function handleMouseMove (event) {
+    var map = this.getMap();
+    this.lastMouseMovePixel_ = map.getEventPixel(event);
+    this.updateHTML_(this.lastMouseMovePixel_);
+  };
+
+  /**
+   * @param {Event} event Browser event.
+   * @protected
+   */
+  MousePosition.prototype.handleMouseOut = function handleMouseOut (event) {
+    this.updateHTML_(null);
+    this.lastMouseMovePixel_ = null;
+  };
+
+  /**
+   * @inheritDoc
+   * @api
+   */
+  MousePosition.prototype.setMap = function setMap (map) {
+    Control.prototype.setMap.call(this, map);
+    if (map) {
+      var viewport = map.getViewport();
+      this.listenerKeys.push(
+        Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].MOUSEMOVE, this.handleMouseMove, this),
+        Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].TOUCHSTART, this.handleMouseMove, this)
+      );
+      if (this.renderOnMouseOut_) {
+        this.listenerKeys.push(
+          Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].MOUSEOUT, this.handleMouseOut, this),
+          Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(viewport, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].TOUCHEND, this.handleMouseOut, this)
+        );
+      }
+    }
+  };
+
+  /**
+   * Set the coordinate format type used to render the current position.
+   * @param {import("../coordinate.js").CoordinateFormat} format The format to render the current
+   *     position in.
+   * @observable
+   * @api
+   */
+  MousePosition.prototype.setCoordinateFormat = function setCoordinateFormat (format) {
+    this.set(COORDINATE_FORMAT, format);
+  };
+
+  /**
+   * Set the projection that is used to report the mouse position.
+   * @param {import("../proj.js").ProjectionLike} projection The projection to report mouse
+   *     position in.
+   * @observable
+   * @api
+   */
+  MousePosition.prototype.setProjection = function setProjection (projection) {
+    this.set(PROJECTION, Object(_proj_js__WEBPACK_IMPORTED_MODULE_4__["get"])(projection));
+  };
+
+  /**
+   * @param {?import("../pixel.js").Pixel} pixel Pixel.
+   * @private
+   */
+  MousePosition.prototype.updateHTML_ = function updateHTML_ (pixel) {
+    var html = this.undefinedHTML_;
+    if (pixel && this.mapProjection_) {
+      if (!this.transform_) {
+        var projection = this.getProjection();
+        if (projection) {
+          this.transform_ = Object(_proj_js__WEBPACK_IMPORTED_MODULE_4__["getTransformFromProjections"])(
+            this.mapProjection_, projection);
+        } else {
+          this.transform_ = _proj_js__WEBPACK_IMPORTED_MODULE_4__["identityTransform"];
+        }
+      }
+      var map = this.getMap();
+      var coordinate = map.getCoordinateFromPixel(pixel);
+      if (coordinate) {
+        this.transform_(coordinate, coordinate);
+        var coordinateFormat = this.getCoordinateFormat();
+        if (coordinateFormat) {
+          html = coordinateFormat(coordinate);
+        } else {
+          html = coordinate.toString();
+        }
+      }
+    }
+    if (!this.renderedHTML_ || html !== this.renderedHTML_) {
+      this.element.innerHTML = html;
+      this.renderedHTML_ = html;
+    }
+  };
+
+  return MousePosition;
+}(_Control_js__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+
+/**
+ * Update the projection. Rendering of the coordinates is done in
+ * `handleMouseMove` and `handleMouseUp`.
+ * @param {import("../MapEvent.js").default} mapEvent Map event.
+ * @this {MousePosition}
+ * @api
+ */
+function render(mapEvent) {
+  var frameState = mapEvent.frameState;
+  if (!frameState) {
+    this.mapProjection_ = null;
+  } else {
+    if (this.mapProjection_ != frameState.viewState.projection) {
+      this.mapProjection_ = frameState.viewState.projection;
+      this.transform_ = null;
+    }
+  }
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (MousePosition);
+
+//# sourceMappingURL=MousePosition.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/OverviewMap.js":
+/*!************************************************!*\
+  !*** ./node_modules/ol/control/OverviewMap.js ***!
+  \************************************************/
+/*! exports provided: render, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony import */ var _Collection_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Collection.js */ "./node_modules/ol/Collection.js");
+/* harmony import */ var _Map_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Map.js */ "./node_modules/ol/Map.js");
+/* harmony import */ var _MapEventType_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../MapEventType.js */ "./node_modules/ol/MapEventType.js");
+/* harmony import */ var _MapProperty_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../MapProperty.js */ "./node_modules/ol/MapProperty.js");
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
+/* harmony import */ var _ObjectEventType_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ObjectEventType.js */ "./node_modules/ol/ObjectEventType.js");
+/* harmony import */ var _Overlay_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Overlay.js */ "./node_modules/ol/Overlay.js");
+/* harmony import */ var _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../OverlayPositioning.js */ "./node_modules/ol/OverlayPositioning.js");
+/* harmony import */ var _ViewProperty_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../ViewProperty.js */ "./node_modules/ol/ViewProperty.js");
+/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony import */ var _coordinate_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../coordinate.js */ "./node_modules/ol/coordinate.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/* harmony import */ var _extent_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../extent.js */ "./node_modules/ol/extent.js");
+/**
+ * @module ol/control/OverviewMap
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Maximum width and/or height extent ratio that determines when the overview
+ * map should be zoomed out.
+ * @type {number}
+ */
+var MAX_RATIO = 0.75;
+
+
+/**
+ * Minimum width and/or height extent ratio that determines when the overview
+ * map should be zoomed in.
+ * @type {number}
+ */
+var MIN_RATIO = 0.1;
+
+
+/**
+ * @typedef {Object} Options
+ * @property {string} [className='ol-overviewmap'] CSS class name.
+ * @property {boolean} [collapsed=true] Whether the control should start collapsed or not (expanded).
+ * @property {string|HTMLElement} [collapseLabel='«'] Text label to use for the
+ * expanded overviewmap button. Instead of text, also an element (e.g. a `span` element) can be used.
+ * @property {boolean} [collapsible=true] Whether the control can be collapsed or not.
+ * @property {string|HTMLElement} [label='»'] Text label to use for the collapsed
+ * overviewmap button. Instead of text, also an element (e.g. a `span` element) can be used.
+ * @property {Array<import("../layer/Layer.js").default>|import("../Collection.js").default<import("../layer/Layer.js").default>} [layers]
+ * Layers for the overview map. If not set, then all main map layers are used
+ * instead.
+ * @property {function(import("../MapEvent.js").default)} [render] Function called when the control
+ * should be re-rendered. This is called in a `requestAnimationFrame` callback.
+ * @property {HTMLElement|string} [target] Specify a target if you want the control
+ * to be rendered outside of the map's viewport.
+ * @property {string} [tipLabel='Overview map'] Text label to use for the button tip.
+ * @property {import("../View.js").default} [view] Custom view for the overview map. If not provided,
+ * a default view with an EPSG:3857 projection will be used.
+ */
+
+
+/**
+ * Create a new control with a map acting as an overview map for an other
+ * defined map.
+ *
+ * @api
+ */
+var OverviewMap = /*@__PURE__*/(function (Control) {
+  function OverviewMap(opt_options) {
+
+    var options = opt_options ? opt_options : {};
+
+    Control.call(this, {
+      element: document.createElement('div'),
+      render: options.render || render,
+      target: options.target
+    });
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this.collapsed_ = options.collapsed !== undefined ? options.collapsed : true;
+
+    /**
+     * @private
+     * @type {boolean}
+     */
+    this.collapsible_ = options.collapsible !== undefined ?
+      options.collapsible : true;
+
+    if (!this.collapsible_) {
+      this.collapsed_ = false;
+    }
+
+    var className = options.className !== undefined ? options.className : 'ol-overviewmap';
+
+    var tipLabel = options.tipLabel !== undefined ? options.tipLabel : 'Overview map';
+
+    var collapseLabel = options.collapseLabel !== undefined ? options.collapseLabel : '\u00AB';
+
+    if (typeof collapseLabel === 'string') {
+      /**
+       * @private
+       * @type {HTMLElement}
+       */
+      this.collapseLabel_ = document.createElement('span');
+      this.collapseLabel_.textContent = collapseLabel;
+    } else {
+      this.collapseLabel_ = collapseLabel;
+    }
+
+    var label = options.label !== undefined ? options.label : '\u00BB';
+
+
+    if (typeof label === 'string') {
+      /**
+       * @private
+       * @type {HTMLElement}
+       */
+      this.label_ = document.createElement('span');
+      this.label_.textContent = label;
+    } else {
+      this.label_ = label;
+    }
+
+    var activeLabel = (this.collapsible_ && !this.collapsed_) ?
+      this.collapseLabel_ : this.label_;
+    var button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.title = tipLabel;
+    button.appendChild(activeLabel);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listen"])(button, _events_EventType_js__WEBPACK_IMPORTED_MODULE_14__["default"].CLICK,
+      this.handleClick_, this);
+
+    /**
+     * @type {HTMLElement}
+     * @private
+     */
+    this.ovmapDiv_ = document.createElement('div');
+    this.ovmapDiv_.className = 'ol-overviewmap-map';
+
+    /**
+     * @type {import("../Map.js").default}
+     * @private
+     */
+    this.ovmap_ = new _Map_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
+      controls: new _Collection_js__WEBPACK_IMPORTED_MODULE_0__["default"](),
+      interactions: new _Collection_js__WEBPACK_IMPORTED_MODULE_0__["default"](),
+      view: options.view
+    });
+    var ovmap = this.ovmap_;
+
+    if (options.layers) {
+      /** @type {Array<import("../layer/Layer.js").default>} */ (options.layers).forEach(
+        /**
+         * @param {import("../layer/Layer.js").default} layer Layer.
+         */
+        (function(layer) {
+          ovmap.addLayer(layer);
+        }).bind(this));
+    }
+
+    var box = document.createElement('div');
+    box.className = 'ol-overviewmap-box';
+    box.style.boxSizing = 'border-box';
+
+    /**
+     * @type {import("../Overlay.js").default}
+     * @private
+     */
+    this.boxOverlay_ = new _Overlay_js__WEBPACK_IMPORTED_MODULE_6__["default"]({
+      position: [0, 0],
+      positioning: _OverlayPositioning_js__WEBPACK_IMPORTED_MODULE_7__["default"].BOTTOM_LEFT,
+      element: box
+    });
+    this.ovmap_.addOverlay(this.boxOverlay_);
+
+    var cssClasses = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_UNSELECTABLE"] + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_CONTROL"] +
+        (this.collapsed_ && this.collapsible_ ? ' ' + _css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_COLLAPSED"] : '') +
+        (this.collapsible_ ? '' : ' ol-uncollapsible');
+    var element = this.element;
+    element.className = cssClasses;
+    element.appendChild(this.ovmapDiv_);
+    element.appendChild(button);
+
+    /* Interactive map */
+
+    var scope = this;
+
+    var overlay = this.boxOverlay_;
+    var overlayBox = this.boxOverlay_.getElement();
+
+    /* Functions definition */
+
+    var computeDesiredMousePosition = function(mousePosition) {
+      return {
+        clientX: mousePosition.clientX - (overlayBox.offsetWidth / 2),
+        clientY: mousePosition.clientY + (overlayBox.offsetHeight / 2)
+      };
+    };
+
+    var move = function(event) {
+      var position = /** @type {?} */ (computeDesiredMousePosition(event));
+      var coordinates = ovmap.getEventCoordinate(/** @type {Event} */ (position));
+
+      overlay.setPosition(coordinates);
+    };
+
+    var endMoving = function(event) {
+      var coordinates = ovmap.getEventCoordinate(event);
+
+      scope.getMap().getView().setCenter(coordinates);
+
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', endMoving);
+    };
+
+    /* Binding */
+
+    overlayBox.addEventListener('mousedown', function() {
+      window.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', endMoving);
+    });
+  }
+
+  if ( Control ) OverviewMap.__proto__ = Control;
+  OverviewMap.prototype = Object.create( Control && Control.prototype );
+  OverviewMap.prototype.constructor = OverviewMap;
+
+  /**
+   * @inheritDoc
+   * @api
+   */
+  OverviewMap.prototype.setMap = function setMap (map) {
+    var oldMap = this.getMap();
+    if (map === oldMap) {
+      return;
+    }
+    if (oldMap) {
+      var oldView = oldMap.getView();
+      if (oldView) {
+        this.unbindView_(oldView);
+      }
+      this.ovmap_.setTarget(null);
+    }
+    Control.prototype.setMap.call(this, map);
+
+    if (map) {
+      this.ovmap_.setTarget(this.ovmapDiv_);
+      this.listenerKeys.push(Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listen"])(
+        map, _ObjectEventType_js__WEBPACK_IMPORTED_MODULE_5__["default"].PROPERTYCHANGE,
+        this.handleMapPropertyChange_, this));
+
+      // TODO: to really support map switching, this would need to be reworked
+      if (this.ovmap_.getLayers().getLength() === 0) {
+        this.ovmap_.setLayerGroup(map.getLayerGroup());
+      }
+
+      var view = map.getView();
+      if (view) {
+        this.bindView_(view);
+        if (view.isDef()) {
+          this.ovmap_.updateSize();
+          this.resetExtent_();
+        }
+      }
+    }
+  };
+
+  /**
+   * Handle map property changes.  This only deals with changes to the map's view.
+   * @param {import("../Object.js").ObjectEvent} event The propertychange event.
+   * @private
+   */
+  OverviewMap.prototype.handleMapPropertyChange_ = function handleMapPropertyChange_ (event) {
+    if (event.key === _MapProperty_js__WEBPACK_IMPORTED_MODULE_3__["default"].VIEW) {
+      var oldView = /** @type {import("../View.js").default} */ (event.oldValue);
+      if (oldView) {
+        this.unbindView_(oldView);
+      }
+      var newView = this.getMap().getView();
+      this.bindView_(newView);
+    }
+  };
+
+  /**
+   * Register listeners for view property changes.
+   * @param {import("../View.js").default} view The view.
+   * @private
+   */
+  OverviewMap.prototype.bindView_ = function bindView_ (view) {
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listen"])(view,
+      Object(_Object_js__WEBPACK_IMPORTED_MODULE_4__["getChangeEventType"])(_ViewProperty_js__WEBPACK_IMPORTED_MODULE_8__["default"].ROTATION),
+      this.handleRotationChanged_, this);
+  };
+
+  /**
+   * Unregister listeners for view property changes.
+   * @param {import("../View.js").default} view The view.
+   * @private
+   */
+  OverviewMap.prototype.unbindView_ = function unbindView_ (view) {
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["unlisten"])(view,
+      Object(_Object_js__WEBPACK_IMPORTED_MODULE_4__["getChangeEventType"])(_ViewProperty_js__WEBPACK_IMPORTED_MODULE_8__["default"].ROTATION),
+      this.handleRotationChanged_, this);
+  };
+
+  /**
+   * Handle rotation changes to the main map.
+   * TODO: This should rotate the extent rectrangle instead of the
+   * overview map's view.
+   * @private
+   */
+  OverviewMap.prototype.handleRotationChanged_ = function handleRotationChanged_ () {
+    this.ovmap_.getView().setRotation(this.getMap().getView().getRotation());
+  };
+
+  /**
+   * Reset the overview map extent if the box size (width or
+   * height) is less than the size of the overview map size times minRatio
+   * or is greater than the size of the overview size times maxRatio.
+   *
+   * If the map extent was not reset, the box size can fits in the defined
+   * ratio sizes. This method then checks if is contained inside the overview
+   * map current extent. If not, recenter the overview map to the current
+   * main map center location.
+   * @private
+   */
+  OverviewMap.prototype.validateExtent_ = function validateExtent_ () {
+    var map = this.getMap();
+    var ovmap = this.ovmap_;
+
+    if (!map.isRendered() || !ovmap.isRendered()) {
+      return;
+    }
+
+    var mapSize = /** @type {import("../size.js").Size} */ (map.getSize());
+
+    var view = map.getView();
+    var extent = view.calculateExtent(mapSize);
+
+    var ovmapSize = /** @type {import("../size.js").Size} */ (ovmap.getSize());
+
+    var ovview = ovmap.getView();
+    var ovextent = ovview.calculateExtent(ovmapSize);
+
+    var topLeftPixel =
+        ovmap.getPixelFromCoordinate(Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getTopLeft"])(extent));
+    var bottomRightPixel =
+        ovmap.getPixelFromCoordinate(Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getBottomRight"])(extent));
+
+    var boxWidth = Math.abs(topLeftPixel[0] - bottomRightPixel[0]);
+    var boxHeight = Math.abs(topLeftPixel[1] - bottomRightPixel[1]);
+
+    var ovmapWidth = ovmapSize[0];
+    var ovmapHeight = ovmapSize[1];
+
+    if (boxWidth < ovmapWidth * MIN_RATIO ||
+        boxHeight < ovmapHeight * MIN_RATIO ||
+        boxWidth > ovmapWidth * MAX_RATIO ||
+        boxHeight > ovmapHeight * MAX_RATIO) {
+      this.resetExtent_();
+    } else if (!Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["containsExtent"])(ovextent, extent)) {
+      this.recenter_();
+    }
+  };
+
+  /**
+   * Reset the overview map extent to half calculated min and max ratio times
+   * the extent of the main map.
+   * @private
+   */
+  OverviewMap.prototype.resetExtent_ = function resetExtent_ () {
+    if (MAX_RATIO === 0 || MIN_RATIO === 0) {
+      return;
+    }
+
+    var map = this.getMap();
+    var ovmap = this.ovmap_;
+
+    var mapSize = /** @type {import("../size.js").Size} */ (map.getSize());
+
+    var view = map.getView();
+    var extent = view.calculateExtent(mapSize);
+
+    var ovview = ovmap.getView();
+
+    // get how many times the current map overview could hold different
+    // box sizes using the min and max ratio, pick the step in the middle used
+    // to calculate the extent from the main map to set it to the overview map,
+    var steps = Math.log(
+      MAX_RATIO / MIN_RATIO) / Math.LN2;
+    var ratio = 1 / (Math.pow(2, steps / 2) * MIN_RATIO);
+    Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["scaleFromCenter"])(extent, ratio);
+    ovview.fit(extent);
+  };
+
+  /**
+   * Set the center of the overview map to the map center without changing its
+   * resolution.
+   * @private
+   */
+  OverviewMap.prototype.recenter_ = function recenter_ () {
+    var map = this.getMap();
+    var ovmap = this.ovmap_;
+
+    var view = map.getView();
+
+    var ovview = ovmap.getView();
+
+    ovview.setCenter(view.getCenter());
+  };
+
+  /**
+   * Update the box using the main map extent
+   * @private
+   */
+  OverviewMap.prototype.updateBox_ = function updateBox_ () {
+    var map = this.getMap();
+    var ovmap = this.ovmap_;
+
+    if (!map.isRendered() || !ovmap.isRendered()) {
+      return;
+    }
+
+    var mapSize = /** @type {import("../size.js").Size} */ (map.getSize());
+
+    var view = map.getView();
+
+    var ovview = ovmap.getView();
+
+    var rotation = view.getRotation();
+
+    var overlay = this.boxOverlay_;
+    var box = this.boxOverlay_.getElement();
+    var extent = view.calculateExtent(mapSize);
+    var ovresolution = ovview.getResolution();
+    var bottomLeft = Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getBottomLeft"])(extent);
+    var topRight = Object(_extent_js__WEBPACK_IMPORTED_MODULE_15__["getTopRight"])(extent);
+
+    // set position using bottom left coordinates
+    var rotateBottomLeft = this.calculateCoordinateRotate_(rotation, bottomLeft);
+    overlay.setPosition(rotateBottomLeft);
+
+    // set box size calculated from map extent size and overview map resolution
+    if (box) {
+      box.style.width = Math.abs((bottomLeft[0] - topRight[0]) / ovresolution) + 'px';
+      box.style.height = Math.abs((topRight[1] - bottomLeft[1]) / ovresolution) + 'px';
+    }
+  };
+
+  /**
+   * @param {number} rotation Target rotation.
+   * @param {import("../coordinate.js").Coordinate} coordinate Coordinate.
+   * @return {import("../coordinate.js").Coordinate|undefined} Coordinate for rotation and center anchor.
+   * @private
+   */
+  OverviewMap.prototype.calculateCoordinateRotate_ = function calculateCoordinateRotate_ (rotation, coordinate) {
+    var coordinateRotate;
+
+    var map = this.getMap();
+    var view = map.getView();
+
+    var currentCenter = view.getCenter();
+
+    if (currentCenter) {
+      coordinateRotate = [
+        coordinate[0] - currentCenter[0],
+        coordinate[1] - currentCenter[1]
+      ];
+      Object(_coordinate_js__WEBPACK_IMPORTED_MODULE_10__["rotate"])(coordinateRotate, rotation);
+      Object(_coordinate_js__WEBPACK_IMPORTED_MODULE_10__["add"])(coordinateRotate, currentCenter);
+    }
+    return coordinateRotate;
+  };
+
+  /**
+   * @param {MouseEvent} event The event to handle
+   * @private
+   */
+  OverviewMap.prototype.handleClick_ = function handleClick_ (event) {
+    event.preventDefault();
+    this.handleToggle_();
+  };
+
+  /**
+   * @private
+   */
+  OverviewMap.prototype.handleToggle_ = function handleToggle_ () {
+    this.element.classList.toggle(_css_js__WEBPACK_IMPORTED_MODULE_11__["CLASS_COLLAPSED"]);
+    if (this.collapsed_) {
+      Object(_dom_js__WEBPACK_IMPORTED_MODULE_12__["replaceNode"])(this.collapseLabel_, this.label_);
+    } else {
+      Object(_dom_js__WEBPACK_IMPORTED_MODULE_12__["replaceNode"])(this.label_, this.collapseLabel_);
+    }
+    this.collapsed_ = !this.collapsed_;
+
+    // manage overview map if it had not been rendered before and control
+    // is expanded
+    var ovmap = this.ovmap_;
+    if (!this.collapsed_ && !ovmap.isRendered()) {
+      ovmap.updateSize();
+      this.resetExtent_();
+      Object(_events_js__WEBPACK_IMPORTED_MODULE_13__["listenOnce"])(ovmap, _MapEventType_js__WEBPACK_IMPORTED_MODULE_2__["default"].POSTRENDER,
+        function(event) {
+          this.updateBox_();
+        },
+        this);
+    }
+  };
+
+  /**
+   * Return `true` if the overview map is collapsible, `false` otherwise.
+   * @return {boolean} True if the widget is collapsible.
+   * @api
+   */
+  OverviewMap.prototype.getCollapsible = function getCollapsible () {
+    return this.collapsible_;
+  };
+
+  /**
+   * Set whether the overview map should be collapsible.
+   * @param {boolean} collapsible True if the widget is collapsible.
+   * @api
+   */
+  OverviewMap.prototype.setCollapsible = function setCollapsible (collapsible) {
+    if (this.collapsible_ === collapsible) {
+      return;
+    }
+    this.collapsible_ = collapsible;
+    this.element.classList.toggle('ol-uncollapsible');
+    if (!collapsible && this.collapsed_) {
+      this.handleToggle_();
+    }
+  };
+
+  /**
+   * Collapse or expand the overview map according to the passed parameter. Will
+   * not do anything if the overview map isn't collapsible or if the current
+   * collapsed state is already the one requested.
+   * @param {boolean} collapsed True if the widget is collapsed.
+   * @api
+   */
+  OverviewMap.prototype.setCollapsed = function setCollapsed (collapsed) {
+    if (!this.collapsible_ || this.collapsed_ === collapsed) {
+      return;
+    }
+    this.handleToggle_();
+  };
+
+  /**
+   * Determine if the overview map is collapsed.
+   * @return {boolean} The overview map is collapsed.
+   * @api
+   */
+  OverviewMap.prototype.getCollapsed = function getCollapsed () {
+    return this.collapsed_;
+  };
+
+  /**
+   * Return the overview map.
+   * @return {import("../PluggableMap.js").default} Overview map.
+   * @api
+   */
+  OverviewMap.prototype.getOverviewMap = function getOverviewMap () {
+    return this.ovmap_;
+  };
+
+  return OverviewMap;
+}(_Control_js__WEBPACK_IMPORTED_MODULE_9__["default"]));
+
+
+/**
+ * Update the overview map element.
+ * @param {import("../MapEvent.js").default} mapEvent Map event.
+ * @this {OverviewMap}
+ * @api
+ */
+function render(mapEvent) {
+  this.validateExtent_();
+  this.updateBox_();
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (OverviewMap);
+
+//# sourceMappingURL=OverviewMap.js.map
+
+/***/ }),
+
 /***/ "./node_modules/ol/control/Rotate.js":
 /*!*******************************************!*\
   !*** ./node_modules/ol/control/Rotate.js ***!
@@ -12715,6 +11244,328 @@ function render(mapEvent) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/control/ScaleLine.js":
+/*!**********************************************!*\
+  !*** ./node_modules/ol/control/ScaleLine.js ***!
+  \**********************************************/
+/*! exports provided: Units, render, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Units", function() { return Units; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
+/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../asserts.js */ "./node_modules/ol/asserts.js");
+/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _proj_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../proj.js */ "./node_modules/ol/proj.js");
+/* harmony import */ var _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../proj/Units.js */ "./node_modules/ol/proj/Units.js");
+/**
+ * @module ol/control/ScaleLine
+ */
+
+
+
+
+
+
+
+
+
+/**
+ * @type {string}
+ */
+var UNITS_PROP = 'units';
+
+/**
+ * Units for the scale line. Supported values are `'degrees'`, `'imperial'`,
+ * `'nautical'`, `'metric'`, `'us'`.
+ * @enum {string}
+ */
+var Units = {
+  DEGREES: 'degrees',
+  IMPERIAL: 'imperial',
+  NAUTICAL: 'nautical',
+  METRIC: 'metric',
+  US: 'us'
+};
+
+
+/**
+ * @const
+ * @type {Array<number>}
+ */
+var LEADING_DIGITS = [1, 2, 5];
+
+
+/**
+ * @typedef {Object} Options
+ * @property {string} [className='ol-scale-line'] CSS Class name.
+ * @property {number} [minWidth=64] Minimum width in pixels.
+ * @property {function(import("../MapEvent.js").default)} [render] Function called when the control
+ * should be re-rendered. This is called in a `requestAnimationFrame` callback.
+ * @property {HTMLElement|string} [target] Specify a target if you want the control
+ * to be rendered outside of the map's viewport.
+ * @property {Units|string} [units='metric'] Units.
+ */
+
+
+/**
+ * @classdesc
+ * A control displaying rough y-axis distances, calculated for the center of the
+ * viewport. For conformal projections (e.g. EPSG:3857, the default view
+ * projection in OpenLayers), the scale is valid for all directions.
+ * No scale line will be shown when the y-axis distance of a pixel at the
+ * viewport center cannot be calculated in the view projection.
+ * By default the scale line will show in the bottom left portion of the map,
+ * but this can be changed by using the css selector `.ol-scale-line`.
+ *
+ * @api
+ */
+var ScaleLine = /*@__PURE__*/(function (Control) {
+  function ScaleLine(opt_options) {
+
+    var options = opt_options ? opt_options : {};
+
+    var className = options.className !== undefined ? options.className : 'ol-scale-line';
+
+    Control.call(this, {
+      element: document.createElement('div'),
+      render: options.render || render,
+      target: options.target
+    });
+
+    /**
+     * @private
+     * @type {HTMLElement}
+     */
+    this.innerElement_ = document.createElement('div');
+    this.innerElement_.className = className + '-inner';
+
+    this.element.className = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_UNSELECTABLE"];
+    this.element.appendChild(this.innerElement_);
+
+    /**
+     * @private
+     * @type {?import("../View.js").State}
+     */
+    this.viewState_ = null;
+
+    /**
+     * @private
+     * @type {number}
+     */
+    this.minWidth_ = options.minWidth !== undefined ? options.minWidth : 64;
+
+    /**
+     * @private
+     * @type {boolean}
+     */
+    this.renderedVisible_ = false;
+
+    /**
+     * @private
+     * @type {number|undefined}
+     */
+    this.renderedWidth_ = undefined;
+
+    /**
+     * @private
+     * @type {string}
+     */
+    this.renderedHTML_ = '';
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(
+      this, Object(_Object_js__WEBPACK_IMPORTED_MODULE_0__["getChangeEventType"])(UNITS_PROP),
+      this.handleUnitsChanged_, this);
+
+    this.setUnits(/** @type {Units} */ (options.units) || Units.METRIC);
+
+  }
+
+  if ( Control ) ScaleLine.__proto__ = Control;
+  ScaleLine.prototype = Object.create( Control && Control.prototype );
+  ScaleLine.prototype.constructor = ScaleLine;
+
+  /**
+   * Return the units to use in the scale line.
+   * @return {Units} The units
+   * to use in the scale line.
+   * @observable
+   * @api
+   */
+  ScaleLine.prototype.getUnits = function getUnits () {
+    return this.get(UNITS_PROP);
+  };
+
+  /**
+   * @private
+   */
+  ScaleLine.prototype.handleUnitsChanged_ = function handleUnitsChanged_ () {
+    this.updateElement_();
+  };
+
+  /**
+   * Set the units to use in the scale line.
+   * @param {Units} units The units to use in the scale line.
+   * @observable
+   * @api
+   */
+  ScaleLine.prototype.setUnits = function setUnits (units) {
+    this.set(UNITS_PROP, units);
+  };
+
+  /**
+   * @private
+   */
+  ScaleLine.prototype.updateElement_ = function updateElement_ () {
+    var viewState = this.viewState_;
+
+    if (!viewState) {
+      if (this.renderedVisible_) {
+        this.element.style.display = 'none';
+        this.renderedVisible_ = false;
+      }
+      return;
+    }
+
+    var center = viewState.center;
+    var projection = viewState.projection;
+    var units = this.getUnits();
+    var pointResolutionUnits = units == Units.DEGREES ?
+      _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES :
+      _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].METERS;
+    var pointResolution =
+        Object(_proj_js__WEBPACK_IMPORTED_MODULE_5__["getPointResolution"])(projection, viewState.resolution, center, pointResolutionUnits);
+    if (projection.getUnits() != _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES && projection.getMetersPerUnit()
+      && pointResolutionUnits == _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].METERS) {
+      pointResolution *= projection.getMetersPerUnit();
+    }
+
+    var nominalCount = this.minWidth_ * pointResolution;
+    var suffix = '';
+    if (units == Units.DEGREES) {
+      var metersPerDegree = _proj_js__WEBPACK_IMPORTED_MODULE_5__["METERS_PER_UNIT"][_proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES];
+      if (projection.getUnits() == _proj_Units_js__WEBPACK_IMPORTED_MODULE_6__["default"].DEGREES) {
+        nominalCount *= metersPerDegree;
+      } else {
+        pointResolution /= metersPerDegree;
+      }
+      if (nominalCount < metersPerDegree / 60) {
+        suffix = '\u2033'; // seconds
+        pointResolution *= 3600;
+      } else if (nominalCount < metersPerDegree) {
+        suffix = '\u2032'; // minutes
+        pointResolution *= 60;
+      } else {
+        suffix = '\u00b0'; // degrees
+      }
+    } else if (units == Units.IMPERIAL) {
+      if (nominalCount < 0.9144) {
+        suffix = 'in';
+        pointResolution /= 0.0254;
+      } else if (nominalCount < 1609.344) {
+        suffix = 'ft';
+        pointResolution /= 0.3048;
+      } else {
+        suffix = 'mi';
+        pointResolution /= 1609.344;
+      }
+    } else if (units == Units.NAUTICAL) {
+      pointResolution /= 1852;
+      suffix = 'nm';
+    } else if (units == Units.METRIC) {
+      if (nominalCount < 0.001) {
+        suffix = 'μm';
+        pointResolution *= 1000000;
+      } else if (nominalCount < 1) {
+        suffix = 'mm';
+        pointResolution *= 1000;
+      } else if (nominalCount < 1000) {
+        suffix = 'm';
+      } else {
+        suffix = 'km';
+        pointResolution /= 1000;
+      }
+    } else if (units == Units.US) {
+      if (nominalCount < 0.9144) {
+        suffix = 'in';
+        pointResolution *= 39.37;
+      } else if (nominalCount < 1609.344) {
+        suffix = 'ft';
+        pointResolution /= 0.30480061;
+      } else {
+        suffix = 'mi';
+        pointResolution /= 1609.3472;
+      }
+    } else {
+      Object(_asserts_js__WEBPACK_IMPORTED_MODULE_1__["assert"])(false, 33); // Invalid units
+    }
+
+    var i = 3 * Math.floor(
+      Math.log(this.minWidth_ * pointResolution) / Math.log(10));
+    var count, width;
+    while (true) {
+      count = LEADING_DIGITS[((i % 3) + 3) % 3] *
+          Math.pow(10, Math.floor(i / 3));
+      width = Math.round(count / pointResolution);
+      if (isNaN(width)) {
+        this.element.style.display = 'none';
+        this.renderedVisible_ = false;
+        return;
+      } else if (width >= this.minWidth_) {
+        break;
+      }
+      ++i;
+    }
+
+    var html = count + ' ' + suffix;
+    if (this.renderedHTML_ != html) {
+      this.innerElement_.innerHTML = html;
+      this.renderedHTML_ = html;
+    }
+
+    if (this.renderedWidth_ != width) {
+      this.innerElement_.style.width = width + 'px';
+      this.renderedWidth_ = width;
+    }
+
+    if (!this.renderedVisible_) {
+      this.element.style.display = '';
+      this.renderedVisible_ = true;
+    }
+
+  };
+
+  return ScaleLine;
+}(_Control_js__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+
+/**
+ * Update the scale line element.
+ * @param {import("../MapEvent.js").default} mapEvent Map event.
+ * @this {ScaleLine}
+ * @api
+ */
+function render(mapEvent) {
+  var frameState = mapEvent.frameState;
+  if (!frameState) {
+    this.viewState_ = null;
+  } else {
+    this.viewState_ = frameState.viewState;
+  }
+  this.updateElement_();
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (ScaleLine);
+
+//# sourceMappingURL=ScaleLine.js.map
+
+/***/ }),
+
 /***/ "./node_modules/ol/control/Zoom.js":
 /*!*****************************************!*\
   !*** ./node_modules/ol/control/Zoom.js ***!
@@ -12870,6 +11721,526 @@ var Zoom = /*@__PURE__*/(function (Control) {
 /* harmony default export */ __webpack_exports__["default"] = (Zoom);
 
 //# sourceMappingURL=Zoom.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/ZoomSlider.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ol/control/ZoomSlider.js ***!
+  \***********************************************/
+/*! exports provided: render, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony import */ var _ViewHint_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../ViewHint.js */ "./node_modules/ol/ViewHint.js");
+/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/* harmony import */ var _easing_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../easing.js */ "./node_modules/ol/easing.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_Event_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events/Event.js */ "./node_modules/ol/events/Event.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../math.js */ "./node_modules/ol/math.js");
+/* harmony import */ var _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pointer/EventType.js */ "./node_modules/ol/pointer/EventType.js");
+/* harmony import */ var _pointer_PointerEventHandler_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pointer/PointerEventHandler.js */ "./node_modules/ol/pointer/PointerEventHandler.js");
+/**
+ * @module ol/control/ZoomSlider
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * The enum for available directions.
+ *
+ * @enum {number}
+ */
+var Direction = {
+  VERTICAL: 0,
+  HORIZONTAL: 1
+};
+
+
+/**
+ * @typedef {Object} Options
+ * @property {string} [className='ol-zoomslider'] CSS class name.
+ * @property {number} [duration=200] Animation duration in milliseconds.
+ * @property {function(import("../MapEvent.js").default)} [render] Function called when the control
+ * should be re-rendered. This is called in a `requestAnimationFrame` callback.
+ */
+
+
+/**
+ * @classdesc
+ * A slider type of control for zooming.
+ *
+ * Example:
+ *
+ *     map.addControl(new ZoomSlider());
+ *
+ * @api
+ */
+var ZoomSlider = /*@__PURE__*/(function (Control) {
+  function ZoomSlider(opt_options) {
+
+    var options = opt_options ? opt_options : {};
+
+    Control.call(this, {
+      element: document.createElement('div'),
+      render: options.render || render
+    });
+
+    /**
+      * @type {!Array.<import("../events.js").EventsKey>}
+      * @private
+      */
+    this.dragListenerKeys_ = [];
+
+    /**
+     * Will hold the current resolution of the view.
+     *
+     * @type {number|undefined}
+     * @private
+     */
+    this.currentResolution_ = undefined;
+
+    /**
+     * The direction of the slider. Will be determined from actual display of the
+     * container and defaults to Direction.VERTICAL.
+     *
+     * @type {Direction}
+     * @private
+     */
+    this.direction_ = Direction.VERTICAL;
+
+    /**
+     * @type {boolean}
+     * @private
+     */
+    this.dragging_;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this.heightLimit_ = 0;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this.widthLimit_ = 0;
+
+    /**
+     * @type {number|undefined}
+     * @private
+     */
+    this.previousX_;
+
+    /**
+     * @type {number|undefined}
+     * @private
+     */
+    this.previousY_;
+
+    /**
+     * The calculated thumb size (border box plus margins).  Set when initSlider_
+     * is called.
+     * @type {import("../size.js").Size}
+     * @private
+     */
+    this.thumbSize_ = null;
+
+    /**
+     * Whether the slider is initialized.
+     * @type {boolean}
+     * @private
+     */
+    this.sliderInitialized_ = false;
+
+    /**
+     * @type {number}
+     * @private
+     */
+    this.duration_ = options.duration !== undefined ? options.duration : 200;
+
+    var className = options.className !== undefined ? options.className : 'ol-zoomslider';
+    var thumbElement = document.createElement('button');
+    thumbElement.setAttribute('type', 'button');
+    thumbElement.className = className + '-thumb ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["CLASS_UNSELECTABLE"];
+    var containerElement = this.element;
+    containerElement.className = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["CLASS_UNSELECTABLE"] + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_2__["CLASS_CONTROL"];
+    containerElement.appendChild(thumbElement);
+    /**
+     * @type {PointerEventHandler}
+     * @private
+     */
+    this.dragger_ = new _pointer_PointerEventHandler_js__WEBPACK_IMPORTED_MODULE_9__["default"](containerElement);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.dragger_, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERDOWN,
+      this.handleDraggerStart_, this);
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.dragger_, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERMOVE,
+      this.handleDraggerDrag_, this);
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.dragger_, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERUP,
+      this.handleDraggerEnd_, this);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(containerElement, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].CLICK, this.handleContainerClick_, this);
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(thumbElement, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].CLICK, _events_Event_js__WEBPACK_IMPORTED_MODULE_5__["stopPropagation"]);
+  }
+
+  if ( Control ) ZoomSlider.__proto__ = Control;
+  ZoomSlider.prototype = Object.create( Control && Control.prototype );
+  ZoomSlider.prototype.constructor = ZoomSlider;
+
+  /**
+   * @inheritDoc
+   */
+  ZoomSlider.prototype.disposeInternal = function disposeInternal () {
+    this.dragger_.dispose();
+    Control.prototype.disposeInternal.call(this);
+  };
+
+  /**
+   * @inheritDoc
+   */
+  ZoomSlider.prototype.setMap = function setMap (map) {
+    Control.prototype.setMap.call(this, map);
+    if (map) {
+      map.render();
+    }
+  };
+
+  /**
+   * Initializes the slider element. This will determine and set this controls
+   * direction_ and also constrain the dragging of the thumb to always be within
+   * the bounds of the container.
+   *
+   * @private
+   */
+  ZoomSlider.prototype.initSlider_ = function initSlider_ () {
+    var container = this.element;
+    var containerSize = {
+      width: container.offsetWidth, height: container.offsetHeight
+    };
+
+    var thumb = /** @type {HTMLElement} */ (container.firstElementChild);
+    var computedStyle = getComputedStyle(thumb);
+    var thumbWidth = thumb.offsetWidth +
+        parseFloat(computedStyle['marginRight']) +
+        parseFloat(computedStyle['marginLeft']);
+    var thumbHeight = thumb.offsetHeight +
+        parseFloat(computedStyle['marginTop']) +
+        parseFloat(computedStyle['marginBottom']);
+    this.thumbSize_ = [thumbWidth, thumbHeight];
+
+    if (containerSize.width > containerSize.height) {
+      this.direction_ = Direction.HORIZONTAL;
+      this.widthLimit_ = containerSize.width - thumbWidth;
+    } else {
+      this.direction_ = Direction.VERTICAL;
+      this.heightLimit_ = containerSize.height - thumbHeight;
+    }
+    this.sliderInitialized_ = true;
+  };
+
+  /**
+   * @param {MouseEvent} event The browser event to handle.
+   * @private
+   */
+  ZoomSlider.prototype.handleContainerClick_ = function handleContainerClick_ (event) {
+    var view = this.getMap().getView();
+
+    var relativePosition = this.getRelativePosition_(
+      event.offsetX - this.thumbSize_[0] / 2,
+      event.offsetY - this.thumbSize_[1] / 2);
+
+    var resolution = this.getResolutionForPosition_(relativePosition);
+
+    view.animate({
+      resolution: view.constrainResolution(resolution),
+      duration: this.duration_,
+      easing: _easing_js__WEBPACK_IMPORTED_MODULE_3__["easeOut"]
+    });
+  };
+
+  /**
+   * Handle dragger start events.
+   * @param {import("../pointer/PointerEvent.js").default} event The drag event.
+   * @private
+   */
+  ZoomSlider.prototype.handleDraggerStart_ = function handleDraggerStart_ (event) {
+    if (!this.dragging_ && event.originalEvent.target === this.element.firstElementChild) {
+      this.getMap().getView().setHint(_ViewHint_js__WEBPACK_IMPORTED_MODULE_0__["default"].INTERACTING, 1);
+      this.previousX_ = event.clientX;
+      this.previousY_ = event.clientY;
+      this.dragging_ = true;
+
+      if (this.dragListenerKeys_.length === 0) {
+        var drag = this.handleDraggerDrag_;
+        var end = this.handleDraggerEnd_;
+        this.dragListenerKeys_.push(
+          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].MOUSEMOVE, drag, this),
+          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERMOVE, drag, this),
+          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _events_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].MOUSEUP, end, this),
+          Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(document, _pointer_EventType_js__WEBPACK_IMPORTED_MODULE_8__["default"].POINTERUP, end, this)
+        );
+      }
+    }
+  };
+
+  /**
+   * Handle dragger drag events.
+   *
+   * @param {import("../pointer/PointerEvent.js").default} event The drag event.
+   * @private
+   */
+  ZoomSlider.prototype.handleDraggerDrag_ = function handleDraggerDrag_ (event) {
+    if (this.dragging_) {
+      var element = /** @type {HTMLElement} */ (this.element.firstElementChild);
+      var deltaX = event.clientX - this.previousX_ + parseFloat(element.style.left);
+      var deltaY = event.clientY - this.previousY_ + parseFloat(element.style.top);
+      var relativePosition = this.getRelativePosition_(deltaX, deltaY);
+      this.currentResolution_ = this.getResolutionForPosition_(relativePosition);
+      this.getMap().getView().setResolution(this.currentResolution_);
+      this.setThumbPosition_(this.currentResolution_);
+      this.previousX_ = event.clientX;
+      this.previousY_ = event.clientY;
+    }
+  };
+
+  /**
+   * Handle dragger end events.
+   * @param {import("../pointer/PointerEvent.js").default} event The drag event.
+   * @private
+   */
+  ZoomSlider.prototype.handleDraggerEnd_ = function handleDraggerEnd_ (event) {
+    if (this.dragging_) {
+      var view = this.getMap().getView();
+      view.setHint(_ViewHint_js__WEBPACK_IMPORTED_MODULE_0__["default"].INTERACTING, -1);
+
+      view.animate({
+        resolution: view.constrainResolution(this.currentResolution_),
+        duration: this.duration_,
+        easing: _easing_js__WEBPACK_IMPORTED_MODULE_3__["easeOut"]
+      });
+
+      this.dragging_ = false;
+      this.previousX_ = undefined;
+      this.previousY_ = undefined;
+      this.dragListenerKeys_.forEach(_events_js__WEBPACK_IMPORTED_MODULE_4__["unlistenByKey"]);
+      this.dragListenerKeys_.length = 0;
+    }
+  };
+
+  /**
+   * Positions the thumb inside its container according to the given resolution.
+   *
+   * @param {number} res The res.
+   * @private
+   */
+  ZoomSlider.prototype.setThumbPosition_ = function setThumbPosition_ (res) {
+    var position = this.getPositionForResolution_(res);
+    var thumb = /** @type {HTMLElement} */ (this.element.firstElementChild);
+
+    if (this.direction_ == Direction.HORIZONTAL) {
+      thumb.style.left = this.widthLimit_ * position + 'px';
+    } else {
+      thumb.style.top = this.heightLimit_ * position + 'px';
+    }
+  };
+
+  /**
+   * Calculates the relative position of the thumb given x and y offsets.  The
+   * relative position scales from 0 to 1.  The x and y offsets are assumed to be
+   * in pixel units within the dragger limits.
+   *
+   * @param {number} x Pixel position relative to the left of the slider.
+   * @param {number} y Pixel position relative to the top of the slider.
+   * @return {number} The relative position of the thumb.
+   * @private
+   */
+  ZoomSlider.prototype.getRelativePosition_ = function getRelativePosition_ (x, y) {
+    var amount;
+    if (this.direction_ === Direction.HORIZONTAL) {
+      amount = x / this.widthLimit_;
+    } else {
+      amount = y / this.heightLimit_;
+    }
+    return Object(_math_js__WEBPACK_IMPORTED_MODULE_7__["clamp"])(amount, 0, 1);
+  };
+
+  /**
+   * Calculates the corresponding resolution of the thumb given its relative
+   * position (where 0 is the minimum and 1 is the maximum).
+   *
+   * @param {number} position The relative position of the thumb.
+   * @return {number} The corresponding resolution.
+   * @private
+   */
+  ZoomSlider.prototype.getResolutionForPosition_ = function getResolutionForPosition_ (position) {
+    var fn = this.getMap().getView().getResolutionForValueFunction();
+    return fn(1 - position);
+  };
+
+  /**
+   * Determines the relative position of the slider for the given resolution.  A
+   * relative position of 0 corresponds to the minimum view resolution.  A
+   * relative position of 1 corresponds to the maximum view resolution.
+   *
+   * @param {number} res The resolution.
+   * @return {number} The relative position value (between 0 and 1).
+   * @private
+   */
+  ZoomSlider.prototype.getPositionForResolution_ = function getPositionForResolution_ (res) {
+    var fn = this.getMap().getView().getValueForResolutionFunction();
+    return 1 - fn(res);
+  };
+
+  return ZoomSlider;
+}(_Control_js__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+
+/**
+ * Update the zoomslider element.
+ * @param {import("../MapEvent.js").default} mapEvent Map event.
+ * @this {ZoomSlider}
+ * @api
+ */
+function render(mapEvent) {
+  if (!mapEvent.frameState) {
+    return;
+  }
+  if (!this.sliderInitialized_) {
+    this.initSlider_();
+  }
+  var res = mapEvent.frameState.viewState.resolution;
+  if (res !== this.currentResolution_) {
+    this.currentResolution_ = res;
+    this.setThumbPosition_(res);
+  }
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (ZoomSlider);
+
+//# sourceMappingURL=ZoomSlider.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/control/ZoomToExtent.js":
+/*!*************************************************!*\
+  !*** ./node_modules/ol/control/ZoomToExtent.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/* harmony import */ var _Control_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Control.js */ "./node_modules/ol/control/Control.js");
+/* harmony import */ var _css_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css.js */ "./node_modules/ol/css.js");
+/**
+ * @module ol/control/ZoomToExtent
+ */
+
+
+
+
+
+
+/**
+ * @typedef {Object} Options
+ * @property {string} [className='ol-zoom-extent'] Class name.
+ * @property {HTMLElement|string} [target] Specify a target if you want the control
+ * to be rendered outside of the map's viewport.
+ * @property {string|HTMLElement} [label='E'] Text label to use for the button.
+ * Instead of text, also an element (e.g. a `span` element) can be used.
+ * @property {string} [tipLabel='Fit to extent'] Text label to use for the button tip.
+ * @property {import("../extent.js").Extent} [extent] The extent to zoom to. If undefined the validity
+ * extent of the view projection is used.
+ */
+
+
+/**
+ * @classdesc
+ * A button control which, when pressed, changes the map view to a specific
+ * extent. To style this control use the css selector `.ol-zoom-extent`.
+ *
+ * @api
+ */
+var ZoomToExtent = /*@__PURE__*/(function (Control) {
+  function ZoomToExtent(opt_options) {
+    var options = opt_options ? opt_options : {};
+
+    Control.call(this, {
+      element: document.createElement('div'),
+      target: options.target
+    });
+
+    /**
+     * @type {import("../extent.js").Extent}
+     * @protected
+     */
+    this.extent = options.extent ? options.extent : null;
+
+    var className = options.className !== undefined ? options.className : 'ol-zoom-extent';
+
+    var label = options.label !== undefined ? options.label : 'E';
+    var tipLabel = options.tipLabel !== undefined ? options.tipLabel : 'Fit to extent';
+    var button = document.createElement('button');
+    button.setAttribute('type', 'button');
+    button.title = tipLabel;
+    button.appendChild(
+      typeof label === 'string' ? document.createTextNode(label) : label
+    );
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(button, _events_EventType_js__WEBPACK_IMPORTED_MODULE_1__["default"].CLICK, this.handleClick_, this);
+
+    var cssClasses = className + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_UNSELECTABLE"] + ' ' + _css_js__WEBPACK_IMPORTED_MODULE_3__["CLASS_CONTROL"];
+    var element = this.element;
+    element.className = cssClasses;
+    element.appendChild(button);
+  }
+
+  if ( Control ) ZoomToExtent.__proto__ = Control;
+  ZoomToExtent.prototype = Object.create( Control && Control.prototype );
+  ZoomToExtent.prototype.constructor = ZoomToExtent;
+
+  /**
+   * @param {MouseEvent} event The event to handle
+   * @private
+   */
+  ZoomToExtent.prototype.handleClick_ = function handleClick_ (event) {
+    event.preventDefault();
+    this.handleZoomToExtent();
+  };
+
+  /**
+   * @protected
+   */
+  ZoomToExtent.prototype.handleZoomToExtent = function handleZoomToExtent () {
+    var map = this.getMap();
+    var view = map.getView();
+    var extent = !this.extent ? view.getProjection().getExtent() : this.extent;
+    view.fit(extent);
+  };
+
+  return ZoomToExtent;
+}(_Control_js__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/* harmony default export */ __webpack_exports__["default"] = (ZoomToExtent);
+
+//# sourceMappingURL=ZoomToExtent.js.map
 
 /***/ }),
 
@@ -28376,6 +27747,53 @@ var Translate = /*@__PURE__*/(function (PointerInteraction) {
 
 /***/ }),
 
+/***/ "./node_modules/ol/layer.js":
+/*!**********************************!*\
+  !*** ./node_modules/ol/layer.js ***!
+  \**********************************/
+/*! exports provided: Group, Heatmap, Image, Layer, Tile, Vector, VectorTile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layer_Group_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./layer/Group.js */ "./node_modules/ol/layer/Group.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Group", function() { return _layer_Group_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _layer_Heatmap_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./layer/Heatmap.js */ "./node_modules/ol/layer/Heatmap.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Heatmap", function() { return _layer_Heatmap_js__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _layer_Image_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./layer/Image.js */ "./node_modules/ol/layer/Image.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Image", function() { return _layer_Image_js__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _layer_Layer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./layer/Layer.js */ "./node_modules/ol/layer/Layer.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Layer", function() { return _layer_Layer_js__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _layer_Tile_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./layer/Tile.js */ "./node_modules/ol/layer/Tile.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Tile", function() { return _layer_Tile_js__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _layer_Vector_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./layer/Vector.js */ "./node_modules/ol/layer/Vector.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Vector", function() { return _layer_Vector_js__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+/* harmony import */ var _layer_VectorTile_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./layer/VectorTile.js */ "./node_modules/ol/layer/VectorTile.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VectorTile", function() { return _layer_VectorTile_js__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+
+/**
+ * @module ol/layer
+ */
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=layer.js.map
+
+/***/ }),
+
 /***/ "./node_modules/ol/layer/Base.js":
 /*!***************************************!*\
   !*** ./node_modules/ol/layer/Base.js ***!
@@ -28925,6 +28343,342 @@ var LayerGroup = /*@__PURE__*/(function (BaseLayer) {
 /* harmony default export */ __webpack_exports__["default"] = (LayerGroup);
 
 //# sourceMappingURL=Group.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/layer/Heatmap.js":
+/*!******************************************!*\
+  !*** ./node_modules/ol/layer/Heatmap.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _Object_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../Object.js */ "./node_modules/ol/Object.js");
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _Vector_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Vector.js */ "./node_modules/ol/layer/Vector.js");
+/* harmony import */ var _math_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../math.js */ "./node_modules/ol/math.js");
+/* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../obj.js */ "./node_modules/ol/obj.js");
+/* harmony import */ var _render_EventType_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../render/EventType.js */ "./node_modules/ol/render/EventType.js");
+/* harmony import */ var _style_Icon_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../style/Icon.js */ "./node_modules/ol/style/Icon.js");
+/* harmony import */ var _style_Style_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../style/Style.js */ "./node_modules/ol/style/Style.js");
+/**
+ * @module ol/layer/Heatmap
+ */
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @typedef {Object} Options
+ * @property {number} [opacity=1] Opacity (0, 1).
+ * @property {boolean} [visible=true] Visibility.
+ * @property {import("../extent.js").Extent} [extent] The bounding extent for layer rendering.  The layer will not be
+ * rendered outside of this extent.
+ * @property {number} [zIndex] The z-index for layer rendering.  At rendering time, the layers
+ * will be ordered, first by Z-index and then by position. When `undefined`, a `zIndex` of 0 is assumed
+ * for layers that are added to the map's `layers` collection, or `Infinity` when the layer's `setMap()`
+ * method was used.
+ * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
+ * visible.
+ * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
+ * be visible.
+ * @property {Array<string>} [gradient=['#00f', '#0ff', '#0f0', '#ff0', '#f00']] The color gradient
+ * of the heatmap, specified as an array of CSS color strings.
+ * @property {number} [radius=8] Radius size in pixels.
+ * @property {number} [blur=15] Blur size in pixels.
+ * @property {number} [shadow=250] Shadow size in pixels.
+ * @property {string|function(import("../Feature.js").default):number} [weight='weight'] The feature
+ * attribute to use for the weight or a function that returns a weight from a feature. Weight values
+ * should range from 0 to 1 (and values outside will be clamped to that range).
+ * @property {import("./VectorRenderType.js").default|string} [renderMode='vector'] Render mode for vector layers:
+ *  * `'image'`: Vector layers are rendered as images. Great performance, but point symbols and
+ *    texts are always rotated with the view and pixels are scaled during zoom animations.
+ *  * `'vector'`: Vector layers are rendered as vectors. Most accurate rendering even during
+ *    animations, but slower performance.
+ * @property {import("../source/Vector.js").default} [source] Source.
+ */
+
+
+/**
+ * @enum {string}
+ * @private
+ */
+var Property = {
+  BLUR: 'blur',
+  GRADIENT: 'gradient',
+  RADIUS: 'radius'
+};
+
+
+/**
+ * @const
+ * @type {Array<string>}
+ */
+var DEFAULT_GRADIENT = ['#00f', '#0ff', '#0f0', '#ff0', '#f00'];
+
+
+/**
+ * @classdesc
+ * Layer for rendering vector data as a heatmap.
+ * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @fires import("../render/Event.js").RenderEvent
+ * @api
+ */
+var Heatmap = /*@__PURE__*/(function (VectorLayer) {
+  function Heatmap(opt_options) {
+    var options = opt_options ? opt_options : {};
+
+    var baseOptions = Object(_obj_js__WEBPACK_IMPORTED_MODULE_5__["assign"])({}, options);
+
+    delete baseOptions.gradient;
+    delete baseOptions.radius;
+    delete baseOptions.blur;
+    delete baseOptions.shadow;
+    delete baseOptions.weight;
+    VectorLayer.call(this, baseOptions);
+
+    /**
+     * @private
+     * @type {Uint8ClampedArray}
+     */
+    this.gradient_ = null;
+
+    /**
+     * @private
+     * @type {number}
+     */
+    this.shadow_ = options.shadow !== undefined ? options.shadow : 250;
+
+    /**
+     * @private
+     * @type {string|undefined}
+     */
+    this.circleImage_ = undefined;
+
+    /**
+     * @private
+     * @type {Array<Array<import("../style/Style.js").default>>}
+     */
+    this.styleCache_ = null;
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(this,
+      Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.GRADIENT),
+      this.handleGradientChanged_, this);
+
+    this.setGradient(options.gradient ? options.gradient : DEFAULT_GRADIENT);
+
+    this.setBlur(options.blur !== undefined ? options.blur : 15);
+
+    this.setRadius(options.radius !== undefined ? options.radius : 8);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(this,
+      Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.BLUR),
+      this.handleStyleChanged_, this);
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(this,
+      Object(_Object_js__WEBPACK_IMPORTED_MODULE_1__["getChangeEventType"])(Property.RADIUS),
+      this.handleStyleChanged_, this);
+
+    this.handleStyleChanged_();
+
+    var weight = options.weight ? options.weight : 'weight';
+    var weightFunction;
+    if (typeof weight === 'string') {
+      weightFunction = function(feature) {
+        return feature.get(weight);
+      };
+    } else {
+      weightFunction = weight;
+    }
+
+    this.setStyle(function(feature, resolution) {
+      var weight = weightFunction(feature);
+      var opacity = weight !== undefined ? Object(_math_js__WEBPACK_IMPORTED_MODULE_4__["clamp"])(weight, 0, 1) : 1;
+      // cast to 8 bits
+      var index = (255 * opacity) | 0;
+      var style = this.styleCache_[index];
+      if (!style) {
+        style = [
+          new _style_Style_js__WEBPACK_IMPORTED_MODULE_8__["default"]({
+            image: new _style_Icon_js__WEBPACK_IMPORTED_MODULE_7__["default"]({
+              opacity: opacity,
+              src: this.circleImage_
+            })
+          })
+        ];
+        this.styleCache_[index] = style;
+      }
+      return style;
+    }.bind(this));
+
+    // For performance reasons, don't sort the features before rendering.
+    // The render order is not relevant for a heatmap representation.
+    this.setRenderOrder(null);
+
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_0__["listen"])(this, _render_EventType_js__WEBPACK_IMPORTED_MODULE_6__["default"].RENDER, this.handleRender_, this);
+  }
+
+  if ( VectorLayer ) Heatmap.__proto__ = VectorLayer;
+  Heatmap.prototype = Object.create( VectorLayer && VectorLayer.prototype );
+  Heatmap.prototype.constructor = Heatmap;
+
+  /**
+   * @return {string} Data URL for a circle.
+   * @private
+   */
+  Heatmap.prototype.createCircle_ = function createCircle_ () {
+    var radius = this.getRadius();
+    var blur = this.getBlur();
+    var halfSize = radius + blur + 1;
+    var size = 2 * halfSize;
+    var context = Object(_dom_js__WEBPACK_IMPORTED_MODULE_2__["createCanvasContext2D"])(size, size);
+    context.shadowOffsetX = context.shadowOffsetY = this.shadow_;
+    context.shadowBlur = blur;
+    context.shadowColor = '#000';
+    context.beginPath();
+    var center = halfSize - this.shadow_;
+    context.arc(center, center, radius, 0, Math.PI * 2, true);
+    context.fill();
+    return context.canvas.toDataURL();
+  };
+
+  /**
+   * Return the blur size in pixels.
+   * @return {number} Blur size in pixels.
+   * @api
+   * @observable
+   */
+  Heatmap.prototype.getBlur = function getBlur () {
+    return /** @type {number} */ (this.get(Property.BLUR));
+  };
+
+  /**
+   * Return the gradient colors as array of strings.
+   * @return {Array<string>} Colors.
+   * @api
+   * @observable
+   */
+  Heatmap.prototype.getGradient = function getGradient () {
+    return /** @type {Array<string>} */ (this.get(Property.GRADIENT));
+  };
+
+  /**
+   * Return the size of the radius in pixels.
+   * @return {number} Radius size in pixel.
+   * @api
+   * @observable
+   */
+  Heatmap.prototype.getRadius = function getRadius () {
+    return /** @type {number} */ (this.get(Property.RADIUS));
+  };
+
+  /**
+   * @private
+   */
+  Heatmap.prototype.handleGradientChanged_ = function handleGradientChanged_ () {
+    this.gradient_ = createGradient(this.getGradient());
+  };
+
+  /**
+   * @private
+   */
+  Heatmap.prototype.handleStyleChanged_ = function handleStyleChanged_ () {
+    this.circleImage_ = this.createCircle_();
+    this.styleCache_ = new Array(256);
+    this.changed();
+  };
+
+  /**
+   * @param {import("../render/Event.js").default} event Post compose event
+   * @private
+   */
+  Heatmap.prototype.handleRender_ = function handleRender_ (event) {
+    var context = event.context;
+    var canvas = context.canvas;
+    var image = context.getImageData(0, 0, canvas.width, canvas.height);
+    var view8 = image.data;
+    for (var i = 0, ii = view8.length; i < ii; i += 4) {
+      var alpha = view8[i + 3] * 4;
+      if (alpha) {
+        view8[i] = this.gradient_[alpha];
+        view8[i + 1] = this.gradient_[alpha + 1];
+        view8[i + 2] = this.gradient_[alpha + 2];
+      }
+    }
+    context.putImageData(image, 0, 0);
+  };
+
+  /**
+   * Set the blur size in pixels.
+   * @param {number} blur Blur size in pixels.
+   * @api
+   * @observable
+   */
+  Heatmap.prototype.setBlur = function setBlur (blur) {
+    this.set(Property.BLUR, blur);
+  };
+
+  /**
+   * Set the gradient colors as array of strings.
+   * @param {Array<string>} colors Gradient.
+   * @api
+   * @observable
+   */
+  Heatmap.prototype.setGradient = function setGradient (colors) {
+    this.set(Property.GRADIENT, colors);
+  };
+
+  /**
+   * Set the size of the radius in pixels.
+   * @param {number} radius Radius size in pixel.
+   * @api
+   * @observable
+   */
+  Heatmap.prototype.setRadius = function setRadius (radius) {
+    this.set(Property.RADIUS, radius);
+  };
+
+  return Heatmap;
+}(_Vector_js__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+
+/**
+ * @param {Array<string>} colors A list of colored.
+ * @return {Uint8ClampedArray} An array.
+ */
+function createGradient(colors) {
+  var width = 1;
+  var height = 256;
+  var context = Object(_dom_js__WEBPACK_IMPORTED_MODULE_2__["createCanvasContext2D"])(width, height);
+
+  var gradient = context.createLinearGradient(0, 0, width, height);
+  var step = 1 / (colors.length - 1);
+  for (var i = 0, ii = colors.length; i < ii; ++i) {
+    gradient.addColorStop(i * step, colors[i]);
+  }
+
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, width, height);
+
+  return context.getImageData(0, 0, width, height).data;
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Heatmap);
+
+//# sourceMappingURL=Heatmap.js.map
 
 /***/ }),
 
@@ -29783,6 +29537,196 @@ __webpack_require__.r(__webpack_exports__);
 });
 
 //# sourceMappingURL=VectorRenderType.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/layer/VectorTile.js":
+/*!*********************************************!*\
+  !*** ./node_modules/ol/layer/VectorTile.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LayerType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../LayerType.js */ "./node_modules/ol/LayerType.js");
+/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../asserts.js */ "./node_modules/ol/asserts.js");
+/* harmony import */ var _TileProperty_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TileProperty.js */ "./node_modules/ol/layer/TileProperty.js");
+/* harmony import */ var _Vector_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Vector.js */ "./node_modules/ol/layer/Vector.js");
+/* harmony import */ var _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VectorTileRenderType.js */ "./node_modules/ol/layer/VectorTileRenderType.js");
+/* harmony import */ var _obj_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../obj.js */ "./node_modules/ol/obj.js");
+/**
+ * @module ol/layer/VectorTile
+ */
+
+
+
+
+
+
+
+
+/**
+ * @typedef {Object} Options
+ * @property {number} [opacity=1] Opacity (0, 1).
+ * @property {boolean} [visible=true] Visibility.
+ * @property {import("../extent.js").Extent} [extent] The bounding extent for layer rendering.  The layer will not be
+ * rendered outside of this extent.
+ * @property {number} [zIndex] The z-index for layer rendering.  At rendering time, the layers
+ * will be ordered, first by Z-index and then by position. When `undefined`, a `zIndex` of 0 is assumed
+ * for layers that are added to the map's `layers` collection, or `Infinity` when the layer's `setMap()`
+ * method was used.
+ * @property {number} [minResolution] The minimum resolution (inclusive) at which this layer will be
+ * visible.
+ * @property {number} [maxResolution] The maximum resolution (exclusive) below which this layer will
+ * be visible.
+ * @property {import("../render.js").OrderFunction} [renderOrder] Render order. Function to be used when sorting
+ * features before rendering. By default features are drawn in the order that they are created. Use
+ * `null` to avoid the sort, but get an undefined draw order.
+ * @property {number} [renderBuffer=100] The buffer in pixels around the tile extent used by the
+ * renderer when getting features from the vector tile for the rendering or hit-detection.
+ * Recommended value: Vector tiles are usually generated with a buffer, so this value should match
+ * the largest possible buffer of the used tiles. It should be at least the size of the largest
+ * point symbol or line width.
+ * @property {import("./VectorTileRenderType.js").default|string} [renderMode='hybrid'] Render mode for vector tiles:
+ *  * `'image'`: Vector tiles are rendered as images. Great performance, but point symbols and texts
+ *    are always rotated with the view and pixels are scaled during zoom animations.
+ *  * `'hybrid'`: Polygon and line elements are rendered as images, so pixels are scaled during zoom
+ *    animations. Point symbols and texts are accurately rendered as vectors and can stay upright on
+ *    rotated views.
+ *  * `'vector'`: Vector tiles are rendered as vectors. Most accurate rendering even during
+ *    animations, but slower performance than the other options.
+ *
+ * When `declutter` is set to `true`, `'hybrid'` will be used instead of `'image'`.
+ * @property {import("../source/VectorTile.js").default} [source] Source.
+ * @property {import("../PluggableMap.js").default} [map] Sets the layer as overlay on a map. The map will not manage
+ * this layer in its layers collection, and the layer will be rendered on top. This is useful for
+ * temporary layers. The standard way to add a layer to a map and have it managed by the map is to
+ * use {@link module:ol/Map#addLayer}.
+ * @property {boolean} [declutter=false] Declutter images and text. Decluttering is applied to all
+ * image and text styles, and the priority is defined by the z-index of the style. Lower z-index
+ * means higher priority. When set to `true`, a `renderMode` of `'image'` will be overridden with
+ * `'hybrid'`.
+ * @property {import("../style/Style.js").StyleLike} [style] Layer style. See
+ * {@link module:ol/style} for default style which will be used if this is not defined.
+ * @property {boolean} [updateWhileAnimating=false] When set to `true`, feature batches will be
+ * recreated during animations. This means that no vectors will be shown clipped, but the setting
+ * will have a performance impact for large amounts of vector data. When set to `false`, batches
+ * will be recreated when no animation is active.
+ * @property {boolean} [updateWhileInteracting=false] When set to `true`, feature batches will be
+ * recreated during interactions. See also `updateWhileAnimating`.
+ * @property {number} [preload=0] Preload. Load low-resolution tiles up to `preload` levels. `0`
+ * means no preloading.
+ * @property {import("../render.js").OrderFunction} [renderOrder] Render order. Function to be used when sorting
+ * features before rendering. By default features are drawn in the order that they are created.
+ * @property {import("../style/Style.js").StyleLike} [style] Layer style. See
+ * {@link module:ol/style} for default style which will be used if this is not defined.
+ * @property {boolean} [useInterimTilesOnError=true] Use interim tiles on error.
+ */
+
+
+/**
+ * @classdesc
+ * Layer for vector tile data that is rendered client-side.
+ * Note that any property set in the options is set as a {@link module:ol/Object~BaseObject}
+ * property on the layer object; for example, setting `title: 'My Title'` in the
+ * options means that `title` is observable, and has get/set accessors.
+ *
+ * @param {Options=} opt_options Options.
+ * @api
+ */
+var VectorTileLayer = /*@__PURE__*/(function (VectorLayer) {
+  function VectorTileLayer(opt_options) {
+    var options = opt_options ? opt_options : {};
+
+    var renderMode = options.renderMode || _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__["default"].HYBRID;
+    Object(_asserts_js__WEBPACK_IMPORTED_MODULE_1__["assert"])(renderMode == undefined ||
+       renderMode == _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__["default"].IMAGE ||
+       renderMode == _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__["default"].HYBRID ||
+       renderMode == _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__["default"].VECTOR,
+    28); // `renderMode` must be `'image'`, `'hybrid'` or `'vector'`
+    if (options.declutter && renderMode == _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__["default"].IMAGE) {
+      renderMode = _VectorTileRenderType_js__WEBPACK_IMPORTED_MODULE_4__["default"].HYBRID;
+    }
+    options.renderMode = renderMode;
+
+    var baseOptions = /** @type {Object} */ (Object(_obj_js__WEBPACK_IMPORTED_MODULE_5__["assign"])({}, options));
+    delete baseOptions.preload;
+    delete baseOptions.useInterimTilesOnError;
+
+    VectorLayer.call(/** @type {import("./Vector.js").Options} */ this, (baseOptions));
+
+    this.setPreload(options.preload ? options.preload : 0);
+    this.setUseInterimTilesOnError(options.useInterimTilesOnError !== undefined ?
+      options.useInterimTilesOnError : true);
+
+    /**
+    * The layer type.
+    * @protected
+    * @type {import("../LayerType.js").default}
+    */
+    this.type = _LayerType_js__WEBPACK_IMPORTED_MODULE_0__["default"].VECTOR_TILE;
+
+  }
+
+  if ( VectorLayer ) VectorTileLayer.__proto__ = VectorLayer;
+  VectorTileLayer.prototype = Object.create( VectorLayer && VectorLayer.prototype );
+  VectorTileLayer.prototype.constructor = VectorTileLayer;
+
+  /**
+  * Return the level as number to which we will preload tiles up to.
+  * @return {number} The level to preload tiles up to.
+  * @observable
+  * @api
+  */
+  VectorTileLayer.prototype.getPreload = function getPreload () {
+    return /** @type {number} */ (this.get(_TileProperty_js__WEBPACK_IMPORTED_MODULE_2__["default"].PRELOAD));
+  };
+
+  /**
+  * Whether we use interim tiles on error.
+  * @return {boolean} Use interim tiles on error.
+  * @observable
+  * @api
+  */
+  VectorTileLayer.prototype.getUseInterimTilesOnError = function getUseInterimTilesOnError () {
+    return /** @type {boolean} */ (this.get(_TileProperty_js__WEBPACK_IMPORTED_MODULE_2__["default"].USE_INTERIM_TILES_ON_ERROR));
+  };
+
+  /**
+  * Set the level as number to which we will preload tiles up to.
+  * @param {number} preload The level to preload tiles up to.
+  * @observable
+  * @api
+  */
+  VectorTileLayer.prototype.setPreload = function setPreload (preload) {
+    this.set(_TileProperty_js__WEBPACK_IMPORTED_MODULE_2__["default"].PRELOAD, preload);
+  };
+
+  /**
+  * Set whether we use interim tiles on error.
+  * @param {boolean} useInterimTilesOnError Use interim tiles on error.
+  * @observable
+  * @api
+  */
+  VectorTileLayer.prototype.setUseInterimTilesOnError = function setUseInterimTilesOnError (useInterimTilesOnError) {
+    this.set(_TileProperty_js__WEBPACK_IMPORTED_MODULE_2__["default"].USE_INTERIM_TILES_ON_ERROR, useInterimTilesOnError);
+  };
+
+  return VectorTileLayer;
+}(_Vector_js__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+
+/**
+ * Return the associated {@link module:ol/source/VectorTile vectortilesource} of the layer.
+ * @function
+ * @return {import("../source/VectorTile.js").default} Source.
+ * @api
+ */
+VectorTileLayer.prototype.getSource;
+/* harmony default export */ __webpack_exports__["default"] = (VectorTileLayer);
+
+//# sourceMappingURL=VectorTile.js.map
 
 /***/ }),
 
@@ -53596,6 +53540,749 @@ Fill.prototype.getChecksum = function getChecksum () {
 
 /***/ }),
 
+/***/ "./node_modules/ol/style/Icon.js":
+/*!***************************************!*\
+  !*** ./node_modules/ol/style/Icon.js ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _util_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util.js */ "./node_modules/ol/util.js");
+/* harmony import */ var _ImageState_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ImageState.js */ "./node_modules/ol/ImageState.js");
+/* harmony import */ var _asserts_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../asserts.js */ "./node_modules/ol/asserts.js");
+/* harmony import */ var _color_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../color.js */ "./node_modules/ol/color.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/* harmony import */ var _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./IconAnchorUnits.js */ "./node_modules/ol/style/IconAnchorUnits.js");
+/* harmony import */ var _IconImage_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./IconImage.js */ "./node_modules/ol/style/IconImage.js");
+/* harmony import */ var _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./IconOrigin.js */ "./node_modules/ol/style/IconOrigin.js");
+/* harmony import */ var _Image_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Image.js */ "./node_modules/ol/style/Image.js");
+/**
+ * @module ol/style/Icon
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @typedef {Object} Options
+ * @property {Array<number>} [anchor=[0.5, 0.5]] Anchor. Default value is the icon center.
+ * @property {import("./IconOrigin.js").default} [anchorOrigin] Origin of the anchor: `bottom-left`, `bottom-right`,
+ * `top-left` or `top-right`. Default is `top-left`.
+ * @property {import("./IconAnchorUnits.js").default} [anchorXUnits] Units in which the anchor x value is
+ * specified. A value of `'fraction'` indicates the x value is a fraction of the icon. A value of `'pixels'` indicates
+ * the x value in pixels. Default is `'fraction'`.
+ * @property {import("./IconAnchorUnits.js").default} [anchorYUnits] Units in which the anchor y value is
+ * specified. A value of `'fraction'` indicates the y value is a fraction of the icon. A value of `'pixels'` indicates
+ * the y value in pixels. Default is `'fraction'`.
+ * @property {import("../color.js").Color|string} [color] Color to tint the icon. If not specified,
+ * the icon will be left as is.
+ * @property {null|string} [crossOrigin] The `crossOrigin` attribute for loaded images. Note that you must provide a
+ * `crossOrigin` value if you are using the WebGL renderer or if you want to access pixel data with the Canvas renderer.
+ * See https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_enabled_image for more detail.
+ * @property {HTMLImageElement|HTMLCanvasElement} [img] Image object for the icon. If the `src` option is not provided then the
+ * provided image must already be loaded. And in that case, it is required
+ * to provide the size of the image, with the `imgSize` option.
+ * @property {Array<number>} [offset=[0, 0]] Offset, which, together with the size and the offset origin, define the
+ * sub-rectangle to use from the original icon image.
+ * @property {import("./IconOrigin.js").default} [offsetOrigin] Origin of the offset: `bottom-left`, `bottom-right`,
+ * `top-left` or `top-right`. Default is `top-left`.
+ * @property {number} [opacity=1] Opacity of the icon.
+ * @property {number} [scale=1] Scale.
+ * @property {boolean} [rotateWithView=false] Whether to rotate the icon with the view.
+ * @property {number} [rotation=0] Rotation in radians (positive rotation clockwise).
+ * @property {import("../size.js").Size} [size] Icon size in pixel. Can be used together with `offset` to define the
+ * sub-rectangle to use from the origin (sprite) icon image.
+ * @property {import("../size.js").Size} [imgSize] Image size in pixels. Only required if `img` is set and `src` is not, and
+ * for SVG images in Internet Explorer 11. The provided `imgSize` needs to match the actual size of the image.
+ * @property {string} [src] Image source URI.
+ */
+
+
+/**
+ * @classdesc
+ * Set icon style for vector features.
+ * @api
+ */
+var Icon = /*@__PURE__*/(function (ImageStyle) {
+  function Icon(opt_options) {
+    var options = opt_options || {};
+
+    /**
+     * @type {number}
+     */
+    var opacity = options.opacity !== undefined ? options.opacity : 1;
+
+    /**
+     * @type {number}
+     */
+    var rotation = options.rotation !== undefined ? options.rotation : 0;
+
+    /**
+     * @type {number}
+     */
+    var scale = options.scale !== undefined ? options.scale : 1;
+
+    /**
+     * @type {boolean}
+     */
+    var rotateWithView = options.rotateWithView !== undefined ?
+      options.rotateWithView : false;
+
+    ImageStyle.call(this, {
+      opacity: opacity,
+      rotation: rotation,
+      scale: scale,
+      rotateWithView: rotateWithView
+    });
+
+    /**
+     * @private
+     * @type {Array<number>}
+     */
+    this.anchor_ = options.anchor !== undefined ? options.anchor : [0.5, 0.5];
+
+    /**
+     * @private
+     * @type {Array<number>}
+     */
+    this.normalizedAnchor_ = null;
+
+    /**
+     * @private
+     * @type {import("./IconOrigin.js").default}
+     */
+    this.anchorOrigin_ = options.anchorOrigin !== undefined ?
+      options.anchorOrigin : _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].TOP_LEFT;
+
+    /**
+     * @private
+     * @type {import("./IconAnchorUnits.js").default}
+     */
+    this.anchorXUnits_ = options.anchorXUnits !== undefined ?
+      options.anchorXUnits : _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__["default"].FRACTION;
+
+    /**
+     * @private
+     * @type {import("./IconAnchorUnits.js").default}
+     */
+    this.anchorYUnits_ = options.anchorYUnits !== undefined ?
+      options.anchorYUnits : _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__["default"].FRACTION;
+
+    /**
+     * @private
+     * @type {?string}
+     */
+    this.crossOrigin_ =
+        options.crossOrigin !== undefined ? options.crossOrigin : null;
+
+    /**
+     * @type {HTMLImageElement|HTMLCanvasElement}
+     */
+    var image = options.img !== undefined ? options.img : null;
+
+    /**
+     * @type {import("../size.js").Size}
+     */
+    var imgSize = options.imgSize !== undefined ? options.imgSize : null;
+
+    /**
+     * @type {string|undefined}
+     */
+    var src = options.src;
+
+    Object(_asserts_js__WEBPACK_IMPORTED_MODULE_2__["assert"])(!(src !== undefined && image),
+      4); // `image` and `src` cannot be provided at the same time
+    Object(_asserts_js__WEBPACK_IMPORTED_MODULE_2__["assert"])(!image || (image && imgSize),
+      5); // `imgSize` must be set when `image` is provided
+
+    if ((src === undefined || src.length === 0) && image) {
+      src = /** @type {HTMLImageElement} */ (image).src || Object(_util_js__WEBPACK_IMPORTED_MODULE_0__["getUid"])(image);
+    }
+    Object(_asserts_js__WEBPACK_IMPORTED_MODULE_2__["assert"])(src !== undefined && src.length > 0,
+      6); // A defined and non-empty `src` or `image` must be provided
+
+    /**
+     * @type {import("../ImageState.js").default}
+     */
+    var imageState = options.src !== undefined ?
+      _ImageState_js__WEBPACK_IMPORTED_MODULE_1__["default"].IDLE : _ImageState_js__WEBPACK_IMPORTED_MODULE_1__["default"].LOADED;
+
+    /**
+     * @private
+     * @type {import("../color.js").Color}
+     */
+    this.color_ = options.color !== undefined ? Object(_color_js__WEBPACK_IMPORTED_MODULE_3__["asArray"])(options.color) : null;
+
+    /**
+     * @private
+     * @type {import("./IconImage.js").default}
+     */
+    this.iconImage_ = Object(_IconImage_js__WEBPACK_IMPORTED_MODULE_7__["get"])(
+      image, /** @type {string} */ (src), imgSize, this.crossOrigin_, imageState, this.color_);
+
+    /**
+     * @private
+     * @type {Array<number>}
+     */
+    this.offset_ = options.offset !== undefined ? options.offset : [0, 0];
+
+    /**
+     * @private
+     * @type {import("./IconOrigin.js").default}
+     */
+    this.offsetOrigin_ = options.offsetOrigin !== undefined ?
+      options.offsetOrigin : _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].TOP_LEFT;
+
+    /**
+     * @private
+     * @type {Array<number>}
+     */
+    this.origin_ = null;
+
+    /**
+     * @private
+     * @type {import("../size.js").Size}
+     */
+    this.size_ = options.size !== undefined ? options.size : null;
+
+  }
+
+  if ( ImageStyle ) Icon.__proto__ = ImageStyle;
+  Icon.prototype = Object.create( ImageStyle && ImageStyle.prototype );
+  Icon.prototype.constructor = Icon;
+
+  /**
+   * Clones the style. The underlying Image/HTMLCanvasElement is not cloned.
+   * @return {Icon} The cloned style.
+   * @api
+   */
+  Icon.prototype.clone = function clone () {
+    return new Icon({
+      anchor: this.anchor_.slice(),
+      anchorOrigin: this.anchorOrigin_,
+      anchorXUnits: this.anchorXUnits_,
+      anchorYUnits: this.anchorYUnits_,
+      crossOrigin: this.crossOrigin_,
+      color: (this.color_ && this.color_.slice) ? this.color_.slice() : this.color_ || undefined,
+      src: this.getSrc(),
+      offset: this.offset_.slice(),
+      offsetOrigin: this.offsetOrigin_,
+      size: this.size_ !== null ? this.size_.slice() : undefined,
+      opacity: this.getOpacity(),
+      scale: this.getScale(),
+      rotation: this.getRotation(),
+      rotateWithView: this.getRotateWithView()
+    });
+  };
+
+  /**
+   * @inheritDoc
+   * @api
+   */
+  Icon.prototype.getAnchor = function getAnchor () {
+    if (this.normalizedAnchor_) {
+      return this.normalizedAnchor_;
+    }
+    var anchor = this.anchor_;
+    var size = this.getSize();
+    if (this.anchorXUnits_ == _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__["default"].FRACTION ||
+        this.anchorYUnits_ == _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__["default"].FRACTION) {
+      if (!size) {
+        return null;
+      }
+      anchor = this.anchor_.slice();
+      if (this.anchorXUnits_ == _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__["default"].FRACTION) {
+        anchor[0] *= size[0];
+      }
+      if (this.anchorYUnits_ == _IconAnchorUnits_js__WEBPACK_IMPORTED_MODULE_6__["default"].FRACTION) {
+        anchor[1] *= size[1];
+      }
+    }
+
+    if (this.anchorOrigin_ != _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].TOP_LEFT) {
+      if (!size) {
+        return null;
+      }
+      if (anchor === this.anchor_) {
+        anchor = this.anchor_.slice();
+      }
+      if (this.anchorOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].TOP_RIGHT ||
+          this.anchorOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_RIGHT) {
+        anchor[0] = -anchor[0] + size[0];
+      }
+      if (this.anchorOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_LEFT ||
+          this.anchorOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_RIGHT) {
+        anchor[1] = -anchor[1] + size[1];
+      }
+    }
+    this.normalizedAnchor_ = anchor;
+    return this.normalizedAnchor_;
+  };
+
+  /**
+   * Set the anchor point. The anchor determines the center point for the
+   * symbolizer.
+   *
+   * @param {Array<number>} anchor Anchor.
+   * @api
+   */
+  Icon.prototype.setAnchor = function setAnchor (anchor) {
+    this.anchor_ = anchor;
+    this.normalizedAnchor_ = null;
+  };
+
+  /**
+   * Get the icon color.
+   * @return {import("../color.js").Color} Color.
+   * @api
+   */
+  Icon.prototype.getColor = function getColor () {
+    return this.color_;
+  };
+
+  /**
+   * Get the image icon.
+   * @param {number} pixelRatio Pixel ratio.
+   * @return {HTMLImageElement|HTMLCanvasElement} Image or Canvas element.
+   * @override
+   * @api
+   */
+  Icon.prototype.getImage = function getImage (pixelRatio) {
+    return this.iconImage_.getImage(pixelRatio);
+  };
+
+  /**
+   * @override
+   */
+  Icon.prototype.getImageSize = function getImageSize () {
+    return this.iconImage_.getSize();
+  };
+
+  /**
+   * @override
+   */
+  Icon.prototype.getHitDetectionImageSize = function getHitDetectionImageSize () {
+    return this.getImageSize();
+  };
+
+  /**
+   * @override
+   */
+  Icon.prototype.getImageState = function getImageState () {
+    return this.iconImage_.getImageState();
+  };
+
+  /**
+   * @override
+   */
+  Icon.prototype.getHitDetectionImage = function getHitDetectionImage (pixelRatio) {
+    return this.iconImage_.getHitDetectionImage(pixelRatio);
+  };
+
+  /**
+   * @inheritDoc
+   * @api
+   */
+  Icon.prototype.getOrigin = function getOrigin () {
+    if (this.origin_) {
+      return this.origin_;
+    }
+    var offset = this.offset_;
+
+    if (this.offsetOrigin_ != _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].TOP_LEFT) {
+      var size = this.getSize();
+      var iconImageSize = this.iconImage_.getSize();
+      if (!size || !iconImageSize) {
+        return null;
+      }
+      offset = offset.slice();
+      if (this.offsetOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].TOP_RIGHT ||
+          this.offsetOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_RIGHT) {
+        offset[0] = iconImageSize[0] - size[0] - offset[0];
+      }
+      if (this.offsetOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_LEFT ||
+          this.offsetOrigin_ == _IconOrigin_js__WEBPACK_IMPORTED_MODULE_8__["default"].BOTTOM_RIGHT) {
+        offset[1] = iconImageSize[1] - size[1] - offset[1];
+      }
+    }
+    this.origin_ = offset;
+    return this.origin_;
+  };
+
+  /**
+   * Get the image URL.
+   * @return {string|undefined} Image src.
+   * @api
+   */
+  Icon.prototype.getSrc = function getSrc () {
+    return this.iconImage_.getSrc();
+  };
+
+  /**
+   * @inheritDoc
+   * @api
+   */
+  Icon.prototype.getSize = function getSize () {
+    return !this.size_ ? this.iconImage_.getSize() : this.size_;
+  };
+
+  /**
+   * @override
+   */
+  Icon.prototype.listenImageChange = function listenImageChange (listener, thisArg) {
+    return Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["listen"])(this.iconImage_, _events_EventType_js__WEBPACK_IMPORTED_MODULE_5__["default"].CHANGE,
+      listener, thisArg);
+  };
+
+  /**
+   * Load not yet loaded URI.
+   * When rendering a feature with an icon style, the vector renderer will
+   * automatically call this method. However, you might want to call this
+   * method yourself for preloading or other purposes.
+   * @override
+   * @api
+   */
+  Icon.prototype.load = function load () {
+    this.iconImage_.load();
+  };
+
+  /**
+   * @override
+   */
+  Icon.prototype.unlistenImageChange = function unlistenImageChange (listener, thisArg) {
+    Object(_events_js__WEBPACK_IMPORTED_MODULE_4__["unlisten"])(this.iconImage_, _events_EventType_js__WEBPACK_IMPORTED_MODULE_5__["default"].CHANGE,
+      listener, thisArg);
+  };
+
+  return Icon;
+}(_Image_js__WEBPACK_IMPORTED_MODULE_9__["default"]));
+
+
+/* harmony default export */ __webpack_exports__["default"] = (Icon);
+
+//# sourceMappingURL=Icon.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/style/IconAnchorUnits.js":
+/*!**************************************************!*\
+  !*** ./node_modules/ol/style/IconAnchorUnits.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @module ol/style/IconAnchorUnits
+ */
+
+/**
+ * Icon anchor units. One of 'fraction', 'pixels'.
+ * @enum {string}
+ */
+/* harmony default export */ __webpack_exports__["default"] = ({
+  FRACTION: 'fraction',
+  PIXELS: 'pixels'
+});
+
+//# sourceMappingURL=IconAnchorUnits.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/style/IconImage.js":
+/*!********************************************!*\
+  !*** ./node_modules/ol/style/IconImage.js ***!
+  \********************************************/
+/*! exports provided: get, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "get", function() { return get; });
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dom.js */ "./node_modules/ol/dom.js");
+/* harmony import */ var _events_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../events.js */ "./node_modules/ol/events.js");
+/* harmony import */ var _events_Target_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../events/Target.js */ "./node_modules/ol/events/Target.js");
+/* harmony import */ var _events_EventType_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../events/EventType.js */ "./node_modules/ol/events/EventType.js");
+/* harmony import */ var _ImageState_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ImageState.js */ "./node_modules/ol/ImageState.js");
+/* harmony import */ var _IconImageCache_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./IconImageCache.js */ "./node_modules/ol/style/IconImageCache.js");
+/**
+ * @module ol/style/IconImage
+ */
+
+
+
+
+
+
+
+
+var IconImage = /*@__PURE__*/(function (EventTarget) {
+  function IconImage(image, src, size, crossOrigin, imageState, color) {
+
+    EventTarget.call(this);
+
+    /**
+     * @private
+     * @type {HTMLImageElement|HTMLCanvasElement}
+     */
+    this.hitDetectionImage_ = null;
+
+    /**
+     * @private
+     * @type {HTMLImageElement|HTMLCanvasElement}
+     */
+    this.image_ = !image ? new Image() : image;
+
+    if (crossOrigin !== null) {
+      /** @type {HTMLImageElement} */ (this.image_).crossOrigin = crossOrigin;
+    }
+
+    /**
+     * @private
+     * @type {HTMLCanvasElement}
+     */
+    this.canvas_ = color ?
+      /** @type {HTMLCanvasElement} */ (document.createElement('canvas')) :
+      null;
+
+    /**
+     * @private
+     * @type {import("../color.js").Color}
+     */
+    this.color_ = color;
+
+    /**
+     * @private
+     * @type {Array<import("../events.js").EventsKey>}
+     */
+    this.imageListenerKeys_ = null;
+
+    /**
+     * @private
+     * @type {import("../ImageState.js").default}
+     */
+    this.imageState_ = imageState;
+
+    /**
+     * @private
+     * @type {import("../size.js").Size}
+     */
+    this.size_ = size;
+
+    /**
+     * @private
+     * @type {string|undefined}
+     */
+    this.src_ = src;
+
+    /**
+     * @private
+     * @type {boolean|undefined}
+     */
+    this.tainted_;
+
+  }
+
+  if ( EventTarget ) IconImage.__proto__ = EventTarget;
+  IconImage.prototype = Object.create( EventTarget && EventTarget.prototype );
+  IconImage.prototype.constructor = IconImage;
+
+  /**
+   * @private
+   * @return {boolean} The image canvas is tainted.
+   */
+  IconImage.prototype.isTainted_ = function isTainted_ () {
+    if (this.tainted_ === undefined && this.imageState_ === _ImageState_js__WEBPACK_IMPORTED_MODULE_4__["default"].LOADED) {
+      this.tainted_ = false;
+      var context = Object(_dom_js__WEBPACK_IMPORTED_MODULE_0__["createCanvasContext2D"])(1, 1);
+      try {
+        context.drawImage(this.image_, 0, 0);
+        context.getImageData(0, 0, 1, 1);
+      } catch (e) {
+        this.tainted_ = true;
+      }
+    }
+    return this.tainted_ === true;
+  };
+
+  /**
+   * @private
+   */
+  IconImage.prototype.dispatchChangeEvent_ = function dispatchChangeEvent_ () {
+    this.dispatchEvent(_events_EventType_js__WEBPACK_IMPORTED_MODULE_3__["default"].CHANGE);
+  };
+
+  /**
+   * @private
+   */
+  IconImage.prototype.handleImageError_ = function handleImageError_ () {
+    this.imageState_ = _ImageState_js__WEBPACK_IMPORTED_MODULE_4__["default"].ERROR;
+    this.unlistenImage_();
+    this.dispatchChangeEvent_();
+  };
+
+  /**
+   * @private
+   */
+  IconImage.prototype.handleImageLoad_ = function handleImageLoad_ () {
+    this.imageState_ = _ImageState_js__WEBPACK_IMPORTED_MODULE_4__["default"].LOADED;
+    if (this.size_) {
+      this.image_.width = this.size_[0];
+      this.image_.height = this.size_[1];
+    }
+    this.size_ = [this.image_.width, this.image_.height];
+    this.unlistenImage_();
+    this.replaceColor_();
+    this.dispatchChangeEvent_();
+  };
+
+  /**
+   * @param {number} pixelRatio Pixel ratio.
+   * @return {HTMLImageElement|HTMLCanvasElement} Image or Canvas element.
+   */
+  IconImage.prototype.getImage = function getImage (pixelRatio) {
+    return this.canvas_ ? this.canvas_ : this.image_;
+  };
+
+  /**
+   * @return {import("../ImageState.js").default} Image state.
+   */
+  IconImage.prototype.getImageState = function getImageState () {
+    return this.imageState_;
+  };
+
+  /**
+   * @param {number} pixelRatio Pixel ratio.
+   * @return {HTMLImageElement|HTMLCanvasElement} Image element.
+   */
+  IconImage.prototype.getHitDetectionImage = function getHitDetectionImage (pixelRatio) {
+    if (!this.hitDetectionImage_) {
+      if (this.isTainted_()) {
+        var width = this.size_[0];
+        var height = this.size_[1];
+        var context = Object(_dom_js__WEBPACK_IMPORTED_MODULE_0__["createCanvasContext2D"])(width, height);
+        context.fillRect(0, 0, width, height);
+        this.hitDetectionImage_ = context.canvas;
+      } else {
+        this.hitDetectionImage_ = this.image_;
+      }
+    }
+    return this.hitDetectionImage_;
+  };
+
+  /**
+   * @return {import("../size.js").Size} Image size.
+   */
+  IconImage.prototype.getSize = function getSize () {
+    return this.size_;
+  };
+
+  /**
+   * @return {string|undefined} Image src.
+   */
+  IconImage.prototype.getSrc = function getSrc () {
+    return this.src_;
+  };
+
+  /**
+   * Load not yet loaded URI.
+   */
+  IconImage.prototype.load = function load () {
+    if (this.imageState_ == _ImageState_js__WEBPACK_IMPORTED_MODULE_4__["default"].IDLE) {
+      this.imageState_ = _ImageState_js__WEBPACK_IMPORTED_MODULE_4__["default"].LOADING;
+      this.imageListenerKeys_ = [
+        Object(_events_js__WEBPACK_IMPORTED_MODULE_1__["listenOnce"])(this.image_, _events_EventType_js__WEBPACK_IMPORTED_MODULE_3__["default"].ERROR,
+          this.handleImageError_, this),
+        Object(_events_js__WEBPACK_IMPORTED_MODULE_1__["listenOnce"])(this.image_, _events_EventType_js__WEBPACK_IMPORTED_MODULE_3__["default"].LOAD,
+          this.handleImageLoad_, this)
+      ];
+      try {
+        /** @type {HTMLImageElement} */ (this.image_).src = this.src_;
+      } catch (e) {
+        this.handleImageError_();
+      }
+    }
+  };
+
+  /**
+   * @private
+   */
+  IconImage.prototype.replaceColor_ = function replaceColor_ () {
+    if (!this.color_ || this.isTainted_()) {
+      return;
+    }
+
+    this.canvas_.width = this.image_.width;
+    this.canvas_.height = this.image_.height;
+
+    var ctx = this.canvas_.getContext('2d');
+    ctx.drawImage(this.image_, 0, 0);
+
+    var imgData = ctx.getImageData(0, 0, this.image_.width, this.image_.height);
+    var data = imgData.data;
+    var r = this.color_[0] / 255.0;
+    var g = this.color_[1] / 255.0;
+    var b = this.color_[2] / 255.0;
+
+    for (var i = 0, ii = data.length; i < ii; i += 4) {
+      data[i] *= r;
+      data[i + 1] *= g;
+      data[i + 2] *= b;
+    }
+    ctx.putImageData(imgData, 0, 0);
+  };
+
+  /**
+   * Discards event handlers which listen for load completion or errors.
+   *
+   * @private
+   */
+  IconImage.prototype.unlistenImage_ = function unlistenImage_ () {
+    this.imageListenerKeys_.forEach(_events_js__WEBPACK_IMPORTED_MODULE_1__["unlistenByKey"]);
+    this.imageListenerKeys_ = null;
+  };
+
+  return IconImage;
+}(_events_Target_js__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+
+/**
+ * @param {HTMLImageElement|HTMLCanvasElement} image Image.
+ * @param {string} src Src.
+ * @param {import("../size.js").Size} size Size.
+ * @param {?string} crossOrigin Cross origin.
+ * @param {import("../ImageState.js").default} imageState Image state.
+ * @param {import("../color.js").Color} color Color.
+ * @return {IconImage} Icon image.
+ */
+function get(image, src, size, crossOrigin, imageState, color) {
+  var iconImage = _IconImageCache_js__WEBPACK_IMPORTED_MODULE_5__["shared"].get(src, crossOrigin, color);
+  if (!iconImage) {
+    iconImage = new IconImage(image, src, size, crossOrigin, imageState, color);
+    _IconImageCache_js__WEBPACK_IMPORTED_MODULE_5__["shared"].set(src, crossOrigin, color, iconImage);
+  }
+  return iconImage;
+}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (IconImage);
+
+//# sourceMappingURL=IconImage.js.map
+
+/***/ }),
+
 /***/ "./node_modules/ol/style/IconImageCache.js":
 /*!*************************************************!*\
   !*** ./node_modules/ol/style/IconImageCache.js ***!
@@ -53720,6 +54407,34 @@ function getKey(src, crossOrigin, color) {
 var shared = new IconImageCache();
 
 //# sourceMappingURL=IconImageCache.js.map
+
+/***/ }),
+
+/***/ "./node_modules/ol/style/IconOrigin.js":
+/*!*********************************************!*\
+  !*** ./node_modules/ol/style/IconOrigin.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * @module ol/style/IconOrigin
+ */
+
+/**
+ * Icon origin. One of 'bottom-left', 'bottom-right', 'top-left', 'top-right'.
+ * @enum {string}
+ */
+/* harmony default export */ __webpack_exports__["default"] = ({
+  BOTTOM_LEFT: 'bottom-left',
+  BOTTOM_RIGHT: 'bottom-right',
+  TOP_LEFT: 'top-left',
+  TOP_RIGHT: 'top-right'
+});
+
+//# sourceMappingURL=IconOrigin.js.map
 
 /***/ }),
 
@@ -57918,516 +58633,7 @@ function newImageData(data, width, height) {
 exports.newImageData = newImageData;
 
 
-/***/ }),
-
-/***/ "./node_modules/style-loader/lib/addStyles.js":
-/*!****************************************************!*\
-  !*** ./node_modules/style-loader/lib/addStyles.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getTarget = function (target, parent) {
-  if (parent){
-    return parent.querySelector(target);
-  }
-  return document.querySelector(target);
-};
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(target, parent) {
-                // If passing function in options, then use it for resolve "head" element.
-                // Useful for Shadow Root style i.e
-                // {
-                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
-                // }
-                if (typeof target === 'function') {
-                        return target();
-                }
-                if (typeof memo[target] === "undefined") {
-			var styleTarget = getTarget.call(this, target, parent);
-			// Special case to return head of iframe instead of iframe itself
-			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[target] = styleTarget;
-		}
-		return memo[target]
-	};
-})();
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-        if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertAt.before, target);
-		target.insertBefore(style, nextSibling);
-	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	if(options.attrs.type === undefined) {
-		options.attrs.type = "text/css";
-	}
-
-	if(options.attrs.nonce === undefined) {
-		var nonce = getNonce();
-		if (nonce) {
-			options.attrs.nonce = nonce;
-		}
-	}
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	if(options.attrs.type === undefined) {
-		options.attrs.type = "text/css";
-	}
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function getNonce() {
-	if (false) {}
-
-	return __webpack_require__.nc;
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = typeof options.transform === 'function'
-		 ? options.transform(obj.css) 
-		 : options.transform.default(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/lib/urls.js":
-/*!***********************************************!*\
-  !*** ./node_modules/style-loader/lib/urls.js ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
-
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
-
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
-
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
-
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
-
 /***/ })
 
 /******/ });
-//# sourceMappingURL=motion-track.js.map
+//# sourceMappingURL=image-map.js.map
