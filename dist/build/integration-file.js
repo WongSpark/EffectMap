@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "2886517766441d6c00ce";
+/******/ 	var hotCurrentHash = "a358fc3fe1b158072316";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -258,7 +258,7 @@
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = "progress-circle";
+/******/ 			var chunkId = "integration-file";
 /******/ 			// eslint-disable-next-line no-lone-blocks
 /******/ 			{
 /******/ 				/*globals chunkId */
@@ -788,180 +788,538 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire("./js/progress-circle/main.ts")(__webpack_require__.s = "./js/progress-circle/main.ts");
+/******/ 	return hotCreateRequire("./js/integration-file/main.js")(__webpack_require__.s = "./js/integration-file/main.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./js/progress-circle/ProgressCircleLayer.ts":
-/*!***************************************************!*\
-  !*** ./js/progress-circle/ProgressCircleLayer.ts ***!
-  \***************************************************/
-/*! exports provided: default */
+/***/ "./js/integration-file/AnimationLayer.js":
+/*!***********************************************!*\
+  !*** ./js/integration-file/AnimationLayer.js ***!
+  \***********************************************/
+/*! exports provided: HaloAnimationLayer, AnimationFeature */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HaloAnimationLayer", function() { return HaloAnimationLayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AnimationFeature", function() { return AnimationFeature; });
 /* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer.js");
-/* harmony import */ var ol_style_Style__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/style/Style */ "./node_modules/ol/style/Style.js");
-/* harmony import */ var ol_geom_GeometryType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/geom/GeometryType */ "./node_modules/ol/geom/GeometryType.js");
+/* harmony import */ var ol_render_EventType__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/render/EventType */ "./node_modules/ol/render/EventType.js");
+/* harmony import */ var ol_style_Style__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/style/Style */ "./node_modules/ol/style/Style.js");
 /* harmony import */ var ol_style_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/style/Icon */ "./node_modules/ol/style/Icon.js");
-/* harmony import */ var ol_render_EventType__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/render/EventType */ "./node_modules/ol/render/EventType.js");
-var __extends = (undefined && undefined.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+/* harmony import */ var ol_geom_GeometryType__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/geom/GeometryType */ "./node_modules/ol/geom/GeometryType.js");
+/* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/Feature */ "./node_modules/ol/Feature.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
 
 
 
-var ProgressCircleLayer = /** @class */ (function (_super) {
-    __extends(ProgressCircleLayer, _super);
-    function ProgressCircleLayer(opt) {
-        var _this = _super.call(this, opt) || this;
-        _this._internalIdRecord = 0;
-        _this._internalIdKey = "_progress_circle__inner_id";
-        _this._styleCache = new Map();
-        _this.backgroundCircleRadius = opt.outCircleRadius ? opt.outCircleRadius : 10;
-        _this.frontCircleRadius = opt.innerCircleRadius ? opt.innerCircleRadius : 10;
-        _this.canvasWidth = _this.backgroundCircleRadius * 2 + 10;
-        _this.canvasHeight = _this.backgroundCircleRadius * 2 + 10;
-        _this.backgroundCircleColor = opt.outCircleColor ? opt.outCircleColor : "rgb(209, 211, 214)";
-        _this.frontCircleColor = opt.innerCircleColor ? opt.innerCircleColor : "#e8a915";
-        _this.backgroundLineWidth = opt.outLineWidth ? opt.outLineWidth : 4;
-        _this.frontLineWidth = opt.innerLineWidth ? opt.innerLineWidth : 4;
-        //tip:for performance,render event will not impact interaction.
-        _this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_4__["default"].RENDER, function (event) {
-            _this.drawCircle(event);
-        });
-        _this.getSource().on("addfeature", function (event) {
-            var feature = event.feature;
-            var featureId = _this._internalIdRecord++;
-            feature.set(_this._internalIdKey, featureId);
-            var featureProgress = feature.get("progress");
-            var style = _this._composeCircleStyle(featureProgress);
-            _this._styleCache.set(featureId, style);
-        });
-        _this.getSource().on("removefeature", function (event) {
-            var feature = event.feature;
-            var featureId = feature.get(_this._internalIdKey);
-            _this._styleCache.delete(featureId);
-        });
-        _this.getSource().on("changefeature", function (event) {
-            var feature = event.feature;
-            var featureId = feature.get(_this._internalIdKey);
-            var progress = feature.get("progress");
-            var style = _this._composeCircleStyle(progress);
-            _this._styleCache.set(featureId, style);
-            _this.changed();
-        });
-        //tips: for performance
-        _this.setRenderOrder(null);
-        return _this;
-    }
-    ProgressCircleLayer.prototype.drawCircle = function (event) {
-        var _this = this;
-        var vectorContext = event.vectorContext;
-        var points = this.getSource().getFeatures().filter(function (feature) {
-            return feature.getGeometry().getType() === ol_geom_GeometryType__WEBPACK_IMPORTED_MODULE_2__["default"].POINT;
-        });
-        points.forEach(function (pointFeature) {
-            var point = pointFeature.getGeometry();
-            var featureId = pointFeature.get(_this._internalIdKey);
-            var style = _this._styleCache.get(featureId);
-            vectorContext.setStyle(style);
-            vectorContext.drawGeometry(point);
-        });
-    };
-    ProgressCircleLayer.prototype._composeCircleStyle = function (progress) {
-        var canvas = document.createElement('canvas');
-        canvas.width = this.canvasWidth;
-        canvas.height = this.canvasHeight;
-        var context = canvas.getContext("2d");
-        context.beginPath();
-        context.lineWidth = this.backgroundLineWidth;
-        context.strokeStyle = this.backgroundCircleColor;
-        context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.backgroundCircleRadius, 0, Math.PI * 2);
-        context.stroke();
-        context.closePath();
-        context.beginPath();
-        context.lineWidth = this.frontLineWidth;
-        context.strokeStyle = this.frontCircleColor;
-        context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.frontCircleRadius, 0, Math.PI * 2 * progress);
-        context.stroke();
-        context.closePath();
-        return new ol_style_Style__WEBPACK_IMPORTED_MODULE_1__["default"]({
-            image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]({
-                img: canvas,
-                imgSize: [canvas.width, canvas.height]
-            })
-        });
-    };
-    ;
+
+
+
+var Point = function Point(x, y) {
+  _classCallCheck(this, Point);
+
+  this.x = x;
+  this.y = y;
+};
+
+var Rect = function Rect(x, y, w, h) {
+  _classCallCheck(this, Rect);
+
+  this.x = x;
+  this.y = y;
+  this.width = w;
+  this.height = h;
+};
+/**
+ * @typedef {object} HaloAnimationOption
+ * @property {number} maxRadius 最大环半径
+ * @property {number} minRadius 最小环半径
+ * @property {number} lineWidth 光环线的宽度
+ * @property {number} radiusIncrement 每一帧半径增量
+ * @property {string} color 光环颜色
+ *
+ * @property outCircleRadius {number} 外环半径
+ * @property outCircleColor {string} 外环颜色
+ * @property outLineWidth {number} 外环线宽
+ * @property innerCircleRadius {number} 内环半径
+ * @property innerCircleColor {string} 内环颜色
+ * @property innerLineWidth {number} 内环线宽
+ */
+
+/**
+ * 动画图层，可设置炫光环特效。
+ * @class HaloAnimationLayer
+ * @extends Vector
+ */
+
+
+var HaloAnimationLayer =
+/*#__PURE__*/
+function (_Vector) {
+  _inherits(HaloAnimationLayer, _Vector);
+
+  /**
+   * @param opt {HaloAnimationOption} - 同时支持Openlayers Vector图层的配置项
+   */
+  function HaloAnimationLayer(opt) {
+    var _this;
+
+    _classCallCheck(this, HaloAnimationLayer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(HaloAnimationLayer).call(this, opt)); //光环动画属性
+
+    _this.lineWidth = opt.lineWidth ? opt.lineWidth : 5;
+    _this.maxRadius = opt.maxRadius ? opt.maxRadius : 40;
+    _this.minRadius = opt.minRadius ? opt.minRadius : 15;
+    _this.radiusIncrement = opt.radiusIncrement ? opt.radiusIncrement : 0.5;
+    _this.color = opt.color ? opt.color : 'rgba(131, 45, 72,1)';
     /**
-     * 设置不规则几何图形特效样式
-     * @param vectorContext
+     * @type {number}
      * @private
      */
-    ProgressCircleLayer.prototype._setArrowStyle = function (vectorContext) {
-        var canvas = document.createElement('canvas');
-        canvas.width = 20;
-        canvas.height = 20;
-        var context = canvas.getContext("2d");
-        context.strokeStyle = "red";
-        context.lineWidth = 1;
-        context.beginPath();
-        context.moveTo(0, 0);
-        context.lineTo(20, 10);
-        context.lineTo(0, 20);
-        context.lineTo(10, 10);
-        context.lineTo(0, 0);
-        context.stroke();
-        // 把绘制了的canvas设置到style里面
-        var canvasStyle = new ol_style_Style__WEBPACK_IMPORTED_MODULE_1__["default"]({
-            image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]({
-                img: canvas,
-                imgSize: [canvas.width, canvas.height],
-                rotation: 90 * Math.PI / 180
-            })
-        });
-        vectorContext.setStyle(canvasStyle);
-    };
-    return ProgressCircleLayer;
-}(ol_layer__WEBPACK_IMPORTED_MODULE_0__["Vector"]));
-/* harmony default export */ __webpack_exports__["default"] = (ProgressCircleLayer);
+
+    _this._canvasPadding = 10;
+    _this._tempRadius = 0;
+    _this._canvasHeight = _this.maxRadius * 2;
+    _this._canvasWidth = _this.maxRadius * 2;
+    _this._textCanvas = document.createElement('canvas');
+    _this._textCanvas.width = _this._canvasWidth;
+    _this._textCanvas.height = _this._canvasHeight;
+    _this._frontCanvas = document.createElement('canvas');
+    _this._frontCanvas.width = _this._canvasWidth;
+    _this._frontCanvas.height = _this._canvasHeight;
+    _this._backCanvas = document.createElement('canvas');
+    _this._backCanvas.width = _this._canvasWidth;
+    _this._backCanvas.height = _this._canvasHeight;
+    _this._backContext = _this._backCanvas.getContext('2d');
+    _this._backContext.globalAlpha = 0.95;
+    _this._backContext.globalCompositeOperation = 'copy';
+    _this.listenComposeKey = _this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_1__["default"].POSTCOMPOSE, function (e) {
+      _this.getSource().changed();
+    });
+    _this.listenRenderKey = _this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_1__["default"].RENDER, function (e) {
+      _this._renderHandler(e);
+    }); //文本特效属性
+
+    _this._textStyleMap =
+    /**@type {Map.<string,Style>}*/
+    new Map(); //进度环特效属性
+
+    _this._styleCacheByProgress =
+    /**@type {Map<number,Style>}*/
+    new Map();
+    _this._internalIdRecord = 0;
+    _this._internalIdKey = "_progress_circle__inner_id";
+    _this.backgroundCircleRadius = opt.outCircleRadius ? opt.outCircleRadius : 10;
+    _this.frontCircleRadius = opt.innerCircleRadius ? opt.innerCircleRadius : 10;
+    _this.canvasWidth = _this.backgroundCircleRadius * 2 + 10;
+    _this.canvasHeight = _this.backgroundCircleRadius * 2 + 10;
+    _this.backgroundCircleColor = opt.outCircleColor ? opt.outCircleColor : "rgb(209, 211, 214)";
+    _this.frontCircleColor = opt.innerCircleColor ? opt.innerCircleColor : "#e8a915";
+    _this.backgroundLineWidth = opt.outLineWidth ? opt.outLineWidth : 4;
+    _this.frontLineWidth = opt.innerLineWidth ? opt.innerLineWidth : 4;
+
+    _this.getSource().on("addfeature", function (event) {
+      var feature = event.feature;
+      var featureId = _this._internalIdRecord++;
+      feature.set(_this._internalIdKey, featureId);
+      var featureProgress = feature.get("progress");
+
+      var style = _this._composeCircleStyle(featureProgress);
+
+      _this._styleCacheByProgress.set(featureProgress.toFixed(2), style);
+    });
+
+    _this.getSource().on("changefeature", function (event) {
+      var feature = event.feature;
+      var progress = feature.get("progress");
+
+      if (!_this._styleCacheByProgress.get(progress.toFixed(2))) {
+        var style = _this._composeCircleStyle(progress);
+
+        _this._styleCacheByProgress.set(progress.toFixed(2), style);
+
+        _this.changed();
+      }
+    });
+
+    _this.setRenderOrder(null);
+
+    return _this;
+  }
+  /**
+   * 关闭动画
+   */
+
+
+  _createClass(HaloAnimationLayer, [{
+    key: "disableAnimation",
+    value: function disableAnimation() {
+      Observable.unByKey(this.listenComposeKey);
+      Observable.unByKey(this.listenRenderKey);
+    }
+    /**
+     * 开启动画
+     */
+
+  }, {
+    key: "enableAnimation",
+    value: function enableAnimation() {
+      var _this2 = this;
+
+      this.listenComposeKey = this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_1__["default"].POSTCOMPOSE, function (e) {
+        _this2.getSource().changed();
+      });
+      this.listenRenderKey = this.on(ol_render_EventType__WEBPACK_IMPORTED_MODULE_1__["default"].RENDER, function (e) {
+        _this2._renderHandler(e);
+      });
+      this.getSource().changed();
+    }
+    /**
+     * 渲染处理器
+     * @param renderEvent
+     * @private
+     */
+
+  }, {
+    key: "_renderHandler",
+    value: function _renderHandler(renderEvent) {
+      var frameState = renderEvent.frameState;
+      var features = this.getSource().getFeaturesInExtent(frameState.extent);
+      var points = features.filter(function (feature) {
+        return feature.getGeometry().getType() === ol_geom_GeometryType__WEBPACK_IMPORTED_MODULE_4__["default"].POINT;
+      });
+
+      if (points && points.length > 0) {
+        this._renderHaloCircle(renderEvent, points);
+
+        this._renderProgressCircle(renderEvent, points);
+
+        this._renderText(renderEvent, points);
+      }
+    }
+    /**
+     * 渲染进度环
+     * @param event
+     * @param points
+     * @private
+     */
+
+  }, {
+    key: "_renderProgressCircle",
+    value: function _renderProgressCircle(event, points) {
+      var _this3 = this;
+
+      var vectorContext = event.vectorContext;
+      points.forEach(function (pointFeature) {
+        var progress = pointFeature.get("progress");
+
+        if (progress) {
+          var point = pointFeature.getGeometry();
+          progress = progress.toFixed(2);
+
+          var style = _this3._styleCacheByProgress.get(progress);
+
+          vectorContext.setStyle(style);
+          vectorContext.drawGeometry(point);
+        }
+      });
+    }
+  }, {
+    key: "_composeCircleStyle",
+    value: function _composeCircleStyle(progress) {
+      var canvas = document.createElement('canvas');
+      canvas.width = this.canvasWidth;
+      canvas.height = this.canvasHeight;
+      var context = canvas.getContext("2d");
+      context.beginPath();
+      context.lineWidth = this.backgroundLineWidth;
+      context.strokeStyle = this.backgroundCircleColor;
+      context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.backgroundCircleRadius, 0, Math.PI * 2);
+      context.stroke();
+      context.closePath();
+      context.beginPath();
+      context.lineWidth = this.frontLineWidth;
+      context.strokeStyle = this.frontCircleColor;
+      context.arc(this.canvasWidth / 2, this.canvasHeight / 2, this.frontCircleRadius, 0, Math.PI * 2 * progress);
+      context.stroke();
+      context.closePath();
+      return new ol_style_Style__WEBPACK_IMPORTED_MODULE_2__["default"]({
+        image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]({
+          img: canvas,
+          imgSize: [canvas.width, canvas.height]
+        })
+      });
+    }
+  }, {
+    key: "_renderText",
+
+    /**
+     * 渲染文本
+     * @param renderEvent
+     * @param points
+     * @private
+     */
+    value: function _renderText(renderEvent, points) {
+      var vectorContext = renderEvent.vectorContext;
+
+      for (var i = 0; i < points.length; i++) {
+        var feature = points[i];
+        var textWithColor = feature.get("textWithColor");
+        var enableTextBackground = feature.get("enableTextBackground");
+
+        if (textWithColor && enableTextBackground) {
+          var style = this._textStyleMap.get(textWithColor);
+
+          if (!style) {
+            style = this._composeTextStyle(textWithColor);
+
+            this._textStyleMap.set(textWithColor, style);
+          }
+
+          vectorContext.setStyle(style);
+          vectorContext.drawGeometry(feature.getGeometry());
+        }
+      }
+    }
+  }, {
+    key: "_composeTextStyle",
+    value: function _composeTextStyle(textContent) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext("2d");
+      context.font = "bold 14px 微软雅黑";
+      var textAndColors = textContent.split(";");
+      var textTotalLength = textAndColors.map(function (textAndColor) {
+        return textAndColor.split("$")[0];
+      }).reduce(function (sum, text) {
+        sum += context.measureText(text).width;
+        return sum;
+      }, 0);
+      var textLengthWithBuffer = textTotalLength + 20;
+      canvas.width = textLengthWithBuffer;
+      canvas.height = this._canvasHeight;
+      context.strokeStyle = "#373665e8";
+      context.fillStyle = "#373665e8";
+      var rect = new Rect(0, 0, textLengthWithBuffer, 24);
+
+      this._drawRoundedRectWithTriangle(rect, 10, context);
+
+      var textOffsetX = 10;
+      context.font = "bold 14px 微软雅黑";
+      context.fillStyle = "white";
+      context.textAlign = "start";
+      context.textBaseline = "top";
+
+      for (var i = 0; i < textAndColors.length; i++) {
+        var textAndColor = textAndColors[i].split("$");
+        var textOnly = textAndColor[0];
+        var colorOnly = textAndColor[1];
+        context.fillStyle = colorOnly;
+        context.fillText(textOnly, textOffsetX, 5);
+        textOffsetX += context.measureText(textOnly).width;
+      }
+
+      return new ol_style_Style__WEBPACK_IMPORTED_MODULE_2__["default"]({
+        image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]({
+          img: canvas,
+          imgSize: [canvas.width, canvas.height]
+        })
+      });
+    }
+    /**
+     * 绘制带三角的圆角矩形
+     * @param rect
+     * @param r
+     * @param context
+     * @private
+     */
+
+  }, {
+    key: "_drawRoundedRectWithTriangle",
+    value: function _drawRoundedRectWithTriangle(rect, r, context) {
+      var ptA = new Point(rect.x + r, rect.y);
+      var ptB = new Point(rect.x + rect.width, rect.y);
+      var ptC = new Point(rect.x + rect.width, rect.y + rect.height);
+      var ptD = new Point(rect.x, rect.y + rect.height);
+      var ptE = new Point(rect.x, rect.y);
+      context.beginPath();
+      context.moveTo(ptA.x, ptA.y);
+      context.arcTo(ptB.x, ptB.y, ptC.x, ptC.y, r);
+      context.arcTo(ptC.x, ptC.y, ptD.x, ptD.y, r);
+      context.arcTo(ptD.x, ptD.y, ptE.x, ptE.y, r);
+      context.arcTo(ptE.x, ptE.y, ptA.x, ptA.y, r);
+      var y = ptC.y;
+      var x = (ptC.x + ptD.x) / 2 - 5;
+      context.moveTo(x, y);
+      context.lineTo(x + 5, y + 5);
+      context.lineTo(x + 10, y); // context.stroke();
+
+      context.fill();
+    }
+    /**
+     * 绘制圆角矩形
+     * @param rect
+     * @param r
+     * @param context
+     * @private
+     */
+
+  }, {
+    key: "_drawRoundedRect",
+    value: function _drawRoundedRect(rect, r, context) {
+      var ptA = new Point(rect.x + r, rect.y);
+      var ptB = new Point(rect.x + rect.width, rect.y);
+      var ptC = new Point(rect.x + rect.width, rect.y + rect.height);
+      var ptD = new Point(rect.x, rect.y + rect.height);
+      var ptE = new Point(rect.x, rect.y);
+      context.beginPath();
+      context.moveTo(ptA.x, ptA.y);
+      context.arcTo(ptB.x, ptB.y, ptC.x, ptC.y, r);
+      context.arcTo(ptC.x, ptC.y, ptD.x, ptD.y, r);
+      context.arcTo(ptD.x, ptD.y, ptE.x, ptE.y, r);
+      context.arcTo(ptE.x, ptE.y, ptA.x, ptA.y, r); // context.stroke();
+
+      context.fill();
+    }
+    /**
+     * 构成处理器
+     * @param renderEvent
+     * @param points
+     * @private
+     */
+
+  }, {
+    key: "_renderHaloCircle",
+    value: function _renderHaloCircle(renderEvent, points) {
+      var vectorContext = renderEvent.vectorContext;
+
+      this._setHaloCircle(vectorContext);
+
+      for (var i = 0; i < points.length; i++) {
+        var feature = points[i];
+
+        if (feature.get("animation")) {
+          vectorContext.drawGeometry(feature.getGeometry());
+        }
+      }
+
+      this.getSource().changed();
+    }
+  }, {
+    key: "_setHaloCircle",
+    value: function _setHaloCircle(vectorContext) {
+      var canvasStyle = new ol_style_Style__WEBPACK_IMPORTED_MODULE_2__["default"]({
+        image: new ol_style_Icon__WEBPACK_IMPORTED_MODULE_3__["default"]({
+          img: this._getStyleCanvas(),
+          scale: 1,
+          imgSize: [this._canvasWidth, this._canvasHeight]
+        })
+      });
+      vectorContext.setStyle(canvasStyle);
+    }
+  }, {
+    key: "_getStyleCanvas",
+    value: function _getStyleCanvas() {
+      var context = this._frontCanvas.getContext("2d");
+
+      this._backContext.drawImage(this._frontCanvas, 0, 0, this._canvasWidth, this._canvasHeight);
+
+      context.clearRect(0, 0, this._canvasWidth, this._canvasHeight);
+
+      this._drawCircle();
+
+      context.drawImage(this._backCanvas, 0, 0, this._canvasWidth, this._canvasHeight);
+      return this._frontCanvas;
+    }
+  }, {
+    key: "_drawCircle",
+    value: function _drawCircle() {
+      var context = this._frontCanvas.getContext("2d");
+
+      context.beginPath();
+      context.arc(this.maxRadius, this.maxRadius, this._tempRadius, 0, Math.PI * 2);
+      context.closePath();
+      context.lineWidth = this.lineWidth;
+      context.strokeStyle = this.color;
+      context.stroke();
+      this._tempRadius += this.radiusIncrement;
+
+      if (this._tempRadius > this.maxRadius - this._canvasPadding) {
+        this._tempRadius = this.minRadius;
+      }
+    }
+  }]);
+
+  return HaloAnimationLayer;
+}(ol_layer__WEBPACK_IMPORTED_MODULE_0__["Vector"]);
+/**
+ * 兼容Feature所有属性，以下为自定义属性
+ * @typedef AnimationFeatureOption
+ * @property {boolean} animation - 是否开启光环动画
+ * @property {boolean} enableTextBackground - 是否开启文本背景特效
+ * @property {string} textWithColor - 文本与颜色合并的字符串(eg:`我要测试$#fb0505;我就是我$#ffffff;`)
+ * @property {number} progress - 进度(0-1)
+ */
+
+
+var AnimationFeature =
+/*#__PURE__*/
+function (_Feature) {
+  _inherits(AnimationFeature, _Feature);
+
+  /**
+   * @param opt {AnimationFeatureOption}
+   */
+  function AnimationFeature(opt) {
+    _classCallCheck(this, AnimationFeature);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AnimationFeature).call(this, opt));
+  }
+
+  return AnimationFeature;
+}(ol_Feature__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
 
 
 /***/ }),
 
-/***/ "./js/progress-circle/main.ts":
-/*!************************************!*\
-  !*** ./js/progress-circle/main.ts ***!
-  \************************************/
+/***/ "./js/integration-file/main.js":
+/*!*************************************!*\
+  !*** ./js/integration-file/main.js ***!
+  \*************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
-/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
-/* harmony import */ var ol_layer_Tile__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/layer/Tile */ "./node_modules/ol/layer/Tile.js");
-/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source.js");
-/* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/ol.css */ "./node_modules/ol/ol.css");
-/* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(ol_ol_css__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _ProgressCircleLayer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProgressCircleLayer */ "./js/progress-circle/ProgressCircleLayer.ts");
-/* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/Feature */ "./node_modules/ol/Feature.js");
-/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/geom/Point */ "./node_modules/ol/geom/Point.js");
+/* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ol/ol.css */ "./node_modules/ol/ol.css");
+/* harmony import */ var ol_ol_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(ol_ol_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var ol_Map__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ol/Map */ "./node_modules/ol/Map.js");
+/* harmony import */ var ol_source__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ol/source */ "./node_modules/ol/source.js");
+/* harmony import */ var ol_layer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/layer */ "./node_modules/ol/layer.js");
+/* harmony import */ var ol_View__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/View */ "./node_modules/ol/View.js");
+/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/geom/Point */ "./node_modules/ol/geom/Point.js");
+/* harmony import */ var _js_integration_file_AnimationLayer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/integration-file/AnimationLayer */ "./js/integration-file/AnimationLayer.js");
 
 
 
@@ -969,52 +1327,69 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+haloCircleExample();
 
-main();
-function main() {
-    var progressCircleLayer = new _ProgressCircleLayer__WEBPACK_IMPORTED_MODULE_5__["default"]({
-        renderMode: 'image',
-        source: new ol_source__WEBPACK_IMPORTED_MODULE_3__["Vector"](),
-    });
-    for (var i = 0; i < 2000; i++) {
-        addRandomFeature(progressCircleLayer.getSource(), i);
-    }
-    var view = new ol_View__WEBPACK_IMPORTED_MODULE_1__["default"]({
-        zoom: 14,
-        projection: 'EPSG:4326',
-        center: [120.08031547156963, 36.36778762724163]
-    });
-    var map = new ol_Map__WEBPACK_IMPORTED_MODULE_0__["default"]({
-        target: 'map',
-        // maxTilesLoading:96,
-        // loadTilesWhileAnimating:true,
-        // loadTilesWhileInteracting:true,
-        layers: [
-            new ol_layer_Tile__WEBPACK_IMPORTED_MODULE_2__["default"]({
-                source: new ol_source__WEBPACK_IMPORTED_MODULE_3__["XYZ"]({
-                    url: 'http://www.google.cn/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m3!1e0!2sm!3i342009817!3m9!2szh-CN!3sCN!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&token=32965'
-                })
-            })
-        ],
-        view: view
-    });
-    map.addLayer(progressCircleLayer);
-    setTimeout(function () {
-        //progressCircleLayer.getSource().removeFeature(progressCircleLayer.getSource().getFeatures()[0]);
-        // progressCircleLayer.getSource().getFeatures()[0].set("progress", 100);
-    }, 3000);
-}
-function addRandomFeature(source, index) {
-    var x = (Math.random() / 100) + 120.08;
-    var y = (Math.random() / 100) + 36.35;
-    var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"]([x, y]);
-    var feature = new ol_Feature__WEBPACK_IMPORTED_MODULE_6__["default"]({
+function haloCircleExample() {
+  var map = new ol_Map__WEBPACK_IMPORTED_MODULE_1__["default"]({
+    target: 'map',
+    view: new ol_View__WEBPACK_IMPORTED_MODULE_4__["default"]({
+      center: [120.09, 36.36],
+      zoom: 15,
+      projection: 'EPSG:4326'
+    }),
+    layers: [new ol_layer__WEBPACK_IMPORTED_MODULE_3__["Tile"]({
+      source: new ol_source__WEBPACK_IMPORTED_MODULE_2__["XYZ"]({
+        url: 'http://www.google.cn/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m3!1e0!2sm!3i342009817!3m9!2szh-CN!3sCN!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0&token=32965'
+      })
+    })]
+  });
+  var source = new ol_source__WEBPACK_IMPORTED_MODULE_2__["Vector"]({
+    overlaps: false,
+    wrapX: false
+  });
+  var vector = new _js_integration_file_AnimationLayer__WEBPACK_IMPORTED_MODULE_6__["HaloAnimationLayer"]({
+    color: 'rgba(131, 45, 72,1)',
+    lineWidth: 2,
+    maxRadius: 40,
+    minRadius: 15,
+    radiusIncrement: 0.5,
+    renderMode: 'image',
+    source: source,
+    transparent: true
+  });
+  map.addLayer(vector);
+
+  function addRandomFeature(enableAnimation, index) {
+    var x = Math.random() / 100 + 120.08;
+    var y = Math.random() / 100 + 36.35;
+    var geom = new ol_geom_Point__WEBPACK_IMPORTED_MODULE_5__["default"]([x, y]);
+    var feature = null;
+
+    if (index > 0) {
+      feature = new _js_integration_file_AnimationLayer__WEBPACK_IMPORTED_MODULE_6__["AnimationFeature"]({
         geometry: geom,
-        progress: Math.random(),
-    });
-    source.addFeature(feature);
-}
+        animation: true,
+        enableTextBackground: true,
+        textWithColor: "\u6211\u8981\u6D4B\u8BD5".concat(index, "$#fb0505;\u6211\u5C31\u662F\u6211$#ffffff;"),
+        progress: Math.random()
+      });
+    } else {
+      feature = new _js_integration_file_AnimationLayer__WEBPACK_IMPORTED_MODULE_6__["AnimationFeature"]({
+        geometry: geom,
+        animation: false,
+        enableTextBackground: true,
+        textWithColor: "\u6211\u8981\u6D4B\u8BD5".concat(index, "$#fb0505;\u6211\u5C31\u662F\u6211$#ffffff;"),
+        progress: Math.random()
+      });
+    }
 
+    source.addFeature(feature);
+  }
+
+  for (var i = 0; i < 200; i++) {
+    addRandomFeature(true, i);
+  }
+}
 
 /***/ }),
 
@@ -56634,4 +57009,4 @@ module.exports = function (css) {
 /***/ })
 
 /******/ });
-//# sourceMappingURL=progress-circle.js.map
+//# sourceMappingURL=integration-file.js.map
