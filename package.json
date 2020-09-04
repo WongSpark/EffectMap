@@ -26,7 +26,7 @@
     "http-proxy-middleware": "^0.19.1",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.13.1",
     "ol": "^5.3.3",
     "popper.js": "^1.15.0",
     "raw-loader": "^2.0.0",
